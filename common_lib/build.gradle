@@ -1,0 +1,46 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation rootProject.ext.dependencies["junit"]
+    androidTestImplementation rootProject.ext.dependencies["runner"]
+    androidTestImplementation rootProject.ext.dependencies["espresso_core"]
+    api rootProject.ext.dependencies["appcompat"]
+    api rootProject.ext.dependencies["constraint_layout"]
+    api rootProject.ext.dependencies["recyclerview"]
+    api rootProject.ext.dependencies["material"]
+
+    api rootProject.ext.dependencies["kotlin"]
+    api rootProject.ext.dependencies["ktx"]
+
+    api rootProject.ext.dependencies["gson"]
+    api rootProject.ext.dependencies["glide"]
+
+    api 'com.google.zxing:core:3.3.0'
+
+    //密码输入
+    api 'com.jungly:gridPasswordView:0.3'
+}

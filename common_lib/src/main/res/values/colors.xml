@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="titleBg">#DD2727</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_laser">#ffcc0000</color>
+    <color name="possible_result_points">#c0ffbd21</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="viewfinder_frame">#ff000000</color>
+
+    <color name="half_transparent">#e0000000</color>
+</resources>
