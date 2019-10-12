@@ -6,6 +6,7 @@ Kt、AndroidX、Retrofit、Okhttp3、Glide等
 
 ## 项目截图
 - 主页
+<img src="https://github.com/390057892/reader/blob/master/screenshot/%E9%A6%96%E9%A1%B5.jpg" width="375" alt="首页">
 ![首页](https://github.com/390057892/reader/blob/master/screenshot/%E9%A6%96%E9%A1%B5.jpg)
 ![推荐](https://github.com/390057892/reader/blob/master/screenshot/%E6%8E%A8%E8%8D%90.jpg)
 ![书库](https://github.com/390057892/reader/blob/master/screenshot/%E4%B9%A6%E5%BA%93.jpg)
