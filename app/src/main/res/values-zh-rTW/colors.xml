@@ -1,36 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="white">#ffffff</color>
     <color name="colorBlue">#5086DF</color>
-    <color name="black">#212121</color>
-    <!--day-->
-    <color name="colorPrimary">#ffffff</color>
+    <!--night-->
+    <color name="colorPrimary">#282A2E</color>
     <color name="colorSelect">#498EFF</color>
     <color name="colorNoSelect">#8B8484</color>
-
-    <!--一级标题-->
-    <color name="colorTitle">#212121</color>
-    <!--二级标题-->
-    <color name="smallColor">#262626</color>
-    <!--三级标题-->
-    <color name="colorSubTitle">#A8ABB8</color>
-    <!--描述-->
-    <color name="colorDesTitle">#707177</color>
-
-    <color name="colorLine">#F0F0F0</color>
-    <color name="colorSearchBg">#F5F5F5</color>
+    <color name="colorTitle">#FFFFFF</color>
+    <color name="colorSubTitle">#878C9B</color>
+    <color name="smallColor">#D2D2D2</color>
+    <color name="colorLine">#222326</color>
+    <color name="colorSearchBg">#515356</color>
     <color name="colorSearchText">#969696</color>
 
     <!--通用背景色-->
     <color name="common_bg">@color/colorPrimary</color>
     <!--通用触摸背景色-->
-    <color name="common_touch_bg">#E3E3E3</color>
+    <color name="common_touch_bg">#3C3C3C</color>
 
     <color name="transparent">#00000000</color>
-
-    <color name="read_menu_color">#C4C4C4</color>
-    <color name="read_menu_trans_color">#FCC4C4C4</color>
-    <color name="light_red">#EC4A48</color>
 
     <!--read-->
     <color name="nb.read.bg_1">#EFEFF7</color>
