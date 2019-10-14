@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <dbname value="readDb" />
+
+    <version value="6" />
+
+    <list>
+        <!--搜索记录表-->
+        <mapping class="com.novel.read.model.db.SearchListTable"/>
+        <!--收藏书籍表-->
+        <mapping class="com.novel.read.model.db.CollBookBean"/>
+        <!--章节表-->
+        <mapping class="com.novel.read.model.db.BookChapterBean"/>
+        <!--阅读记录表-->
+        <mapping class="com.novel.read.model.db.BookRecordBean"/>
+        <!--章节详情表-->
+        <mapping class="com.novel.read.model.db.ChapterInfoBean" />
+        <!--章节详情表-->
+        <mapping class="com.novel.read.model.db.DownloadTaskBean" />
+    </list>
+</litepal>

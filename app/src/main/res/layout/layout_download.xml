@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/read_menu_trans_color"
+    android:layout_gravity="top"
+    android:gravity="center"
+    android:id="@+id/ll_download"
+    android:visibility="gone"
+    tools:visibility="gone"
+    android:paddingBottom="10dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/downloading"
+        android:textColor="@color/white"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="15dp"/>
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:id="@+id/pb_loading"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:max="100"
+        android:progress="40"
+        android:layout_gravity="bottom"
+        android:layout_height="15dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:layout_marginEnd="15dp"
+        android:text="@string/download_loading"
+        android:textColor="@color/white"
+        android:layout_gravity="bottom"
+        android:textSize="16sp" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

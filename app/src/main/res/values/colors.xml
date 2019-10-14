@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+
+
+    <color name="white">#ffffff</color>
+    <color name="colorBlue">#5086DF</color>
+    <color name="black">#212121</color>
+    <!--day-->
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorSelect">#498EFF</color>
+    <color name="colorNoSelect">#8B8484</color>
+
+    <!--一级标题-->
+    <color name="colorTitle">#212121</color>
+    <!--二级标题-->
+    <color name="smallColor">#262626</color>
+    <!--三级标题-->
+    <color name="colorSubTitle">#A8ABB8</color>
+    <!--描述-->
+    <color name="colorDesTitle">#707177</color>
+
+    <color name="colorLine">#F0F0F0</color>
+    <color name="colorSearchBg">#F5F5F5</color>
+    <color name="colorSearchText">#969696</color>
+
+    <!--通用背景色-->
+    <color name="common_bg">@color/colorPrimary</color>
+    <!--通用触摸背景色-->
+    <color name="common_touch_bg">#E3E3E3</color>
+
+    <color name="transparent">#00000000</color>
+
+    <color name="read_menu_color">#C4C4C4</color>
+    <color name="read_menu_trans_color">#FCC4C4C4</color>
+    <color name="light_red">#EC4A48</color>
+
+    <!--read-->
+    <color name="nb.read.bg_1">#EFEFF7</color>
+    <color name="nb.read.bg_2">#CCEBCC</color>
+    <color name="nb.read.bg_4">#CEC29C</color>
+    <color name="nb.read.bg_5">#001C27</color>
+    <color name="nb.read.bg_6">#DDCEC29C</color>
+
+
+    <color name="nb.read.font_1">#383429</color>
+    <color name="nb.read.font_2">#2F332D</color>
+    <color name="nb.read.font_3">#92918C</color>
+    <color name="nb.read.font_4">#2C2C2C</color>
+    <color name="nb.read.font_5">#627176</color>
+
+    <color name="nb.read.bg.night">#000000</color>
+    <color name="nb.read.font_night">#99ffffff</color>
+
+    <color name="nb.read.menu.bg">#191919</color>
+    <color name="nb.read.menu.text">#CBCBCB</color>
+    <color name="nb.read.bar.translucent">#88000000</color>
 </resources>

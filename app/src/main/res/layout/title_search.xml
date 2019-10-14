@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:background="@color/colorPrimary"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/tv_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="7dp"
+        android:background="@drawable/bg_search"
+        android:drawableEnd="@drawable/ic_search"
+        android:drawablePadding="20dp"
+        android:hint="@string/key_word"
+        android:padding="10dp"
+        android:textColorHint="@color/colorSearchText"
+        android:textSize="15sp"
+        android:inputType="text"
+        android:maxLines="1"
+        android:imeOptions="actionSearch"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_cancel" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        android:textColor="@color/colorSelect"
+        android:gravity="center"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_search"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_search"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

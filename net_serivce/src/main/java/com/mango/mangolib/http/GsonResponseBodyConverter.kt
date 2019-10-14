@@ -43,14 +43,14 @@ class GsonResponseBodyConverter<T> internal constructor(
                     return gson.fromJson<T>(jsonArray.toString(), type)
                 } catch (e1: JSONException) {
                     e.printStackTrace()
-                    EventManager.getInstance().postEvent(HTTPReponseErrorEvent(resultResponse))
+                    EventManager.instance.postEvent(HTTPReponseErrorEvent(resultResponse))
                 }
 
             }
 
         } else {
             resultResponse.data = response
-            EventManager.getInstance().postEvent(HTTPReponseErrorEvent(resultResponse))
+            EventManager.instance.postEvent(HTTPReponseErrorEvent(resultResponse))
         }
         return null
     }

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/appBg"
+    android:orientation="vertical"
+    tools:context=".activity.NovelSettingActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="?attr/appBg"
+        app:elevation="4dp"
+        app:navigationIcon="@drawable/ic_back"
+        app:title="@string/setting"
+        app:titleTextAppearance="@style/Toolbar.TitleText" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_choose_language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_touch"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="@string/choose_text"
+            android:textColor="@color/smallColor" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/a_simple" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View style="@style/line" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_clear_cache"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_touch"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="@string/clear_cache"
+            android:textColor="@color/smallColor" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_cache_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="317kb" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View style="@style/line" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_check_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_touch"
+        android:orientation="horizontal"
+        android:padding="10dp">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="@string/check_update"
+            android:textColor="@color/smallColor" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="V2.2.1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="立即更新"
+            android:visibility="gone"
+            android:text="@string/update_now"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/colorSelect"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

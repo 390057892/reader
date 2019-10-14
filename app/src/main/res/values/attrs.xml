@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--标题颜色-->
+    <attr name="titleColor" format="reference"/>
+    <!--背景色-->
+    <attr name="appBg" format="reference"/>
+    <!--页面中的小标题-->
+    <attr name="smallColor" format="reference"/>
+
+
+    <declare-styleable name="HeadLayout">
+        <attr name="showHead" format="boolean" />
+        <attr name="headText" format="reference" />
+        <attr name="headImg" format="reference" />
+        <attr name="rightText" format="reference" />
+        <attr name="showRightText" format="boolean" />
+        <attr name="rightImg" format="reference" />
+
+    </declare-styleable>
+
+    <declare-styleable name="VpTabLayout">
+        <attr name="oneText" format="reference"/>
+        <attr name="twoText" format="reference"/>
+        <attr name="threeText" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="RefreshLayout">
+        <attr name="layout_refresh_empty" format="reference"/>
+        <attr name="layout_refresh_error" format="reference"/>
+        <attr name="layout_refresh_loading" format="reference"/>
+    </declare-styleable>
+
+</resources>

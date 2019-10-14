@@ -66,14 +66,8 @@ class EventManager private constructor() {
 
     companion object {
 
-        private var instance: EventManager? = null
-
-        @Synchronized
-        fun getInstance(): EventManager {
-            if (instance == null) {
-                instance = EventManager()
-            }
-            return instance as EventManager
+        val instance by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+            EventManager()
         }
     }
 }

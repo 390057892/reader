@@ -20,7 +20,7 @@ class ServiceCallback<T>(resultEventClass: Class<out BaseEvent<*>>) : Callback<T
     protected var event: BaseEvent<T>
 
     init {
-        EventManager.getInstance().registerSubscriber(this)
+        EventManager.instance.registerSubscriber(this)
         try {
             event = resultEventClass.newInstance() as BaseEvent<T>
         } catch (e: InstantiationException) {
@@ -91,12 +91,12 @@ class ServiceCallback<T>(resultEventClass: Class<out BaseEvent<*>>) : Callback<T
     }
 
     override fun onResponse(@NonNull call: Call<T>, @NonNull response: Response<T>) {
-        EventManager.getInstance().unregisterSubscriber(this)
+        EventManager.instance.unregisterSubscriber(this)
         if (response.isSuccessful) {
             val resBody = response.body()
             event.result = resBody
             if (onSuccess(resBody)) {
-                EventManager.getInstance().postEvent(event)
+                EventManager.instance.postEvent(event)
             }
         } else {
             val extracted = extractEr(response)
@@ -106,20 +106,20 @@ class ServiceCallback<T>(resultEventClass: Class<out BaseEvent<*>>) : Callback<T
 
             val er = event.er
             if (onFailure(er!!)) {
-                EventManager.getInstance().postEvent(event)
+                EventManager.instance.postEvent(event)
             }
             // 单独抛出一个错误事件
-            EventManager.getInstance().postEvent(GenericBaseEvent(er))
+            EventManager.instance.postEvent(GenericBaseEvent(er))
         }
     }
 
     override fun onFailure(@NonNull call: Call<T>, t: Throwable) {
-        EventManager.getInstance().unregisterSubscriber(this)
+        EventManager.instance.unregisterSubscriber(this)
         val er = ErrorResponse()
         er.code = -9999
         er.msg = "网络异常"
         event.er = er
-        EventManager.getInstance().postEvent(event)
+        EventManager.instance.postEvent(event)
         t.printStackTrace()
     }
 }

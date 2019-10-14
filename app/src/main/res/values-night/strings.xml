@@ -1,0 +1,151 @@
+<resources>
+    <string name="app_name">轻之阅读</string>
+    <string name="hello">哈喽</string>
+    <string name="book">书架</string>
+    <string name="recommend">推荐</string>
+    <string name="stack">书库</string>
+    <string name="more">更多</string>
+    <string name="choose_language">语言选择</string>
+    <string name="a_simple">简体中文</string>
+    <string name="a_traditional">繁体中文</string>
+    <string name="update_time">按更新时间</string>
+    <string name="read_time">按阅读时间</string>
+
+    <string name="empty_info"> </string>
+    <string name="common_no_data">没有相关数据!</string>
+    <string name="clear_book">清空书架列表</string>
+
+    <!--推荐-->
+    <string name="man">男生</string>
+    <string name="woman">女生</string>
+    <string name="recommend_key">书籍关键词/作者</string>
+    <string name="popular_selection">人气精选</string>
+    <string name="edit_recommend">编辑推荐</string>
+    <string name="recent_update">最近更新</string>
+    <string name="hot_search">热搜精选</string>
+    <string name="general_list">总榜</string>
+    <string name="month_list">月榜</string>
+    <string name="week_list">周榜</string>
+
+
+    <!--书库-->
+    <string name="key_word">请输入书籍关键词/作者名称</string>
+    <string name="modern_love">现代言情</string>
+    <string name="ancient_love">古代言情</string>
+    <string name="urban_love">都市婚恋</string>
+
+
+    <!--more-->
+    <string name="opinions">意见与反馈</string>
+    <string name="appraise">评价</string>
+    <string name="setting">设置</string>
+
+    <!--setting-->
+    <string name="choose_text">字体选择</string>
+    <string name="clear_cache">清除缓存</string>
+    <string name="check_update">检查更新</string>
+
+    <!--detail-->
+    <string name="book_detail">图书详情</string>
+    <string name="lovely">猜你喜欢</string>
+    <string name="already_add">已加入</string>
+    <string name="add_book">加入书架</string>
+    <string name="start_read">开始阅读</string>
+    <string name="popularity">人气</string>
+    <string name="love_look">爱看</string>
+    <string name="author_zhu">%s 著</string>
+    <string name="new_chapter">最新章节:%s</string>
+
+    <string name="jump_ad">跳过</string>
+    <string name="cancel">取消</string>
+    <string name="sure">确定</string>
+
+    <!--search-->
+    <string name="search_hot">热门搜索</string>
+    <string name="search_history">历史搜索</string>
+    <string name="clear_search">确认清空全部记录?</string>
+
+    <!--阅读器-->
+    <string name="contents">目录</string>
+    <string name="light">亮度</string>
+    <string name="cache">缓存</string>
+    <string name="listen">听书</string>
+    <string name="brief">简介</string>
+    <string name="label">标签</string>
+
+    <string name="d_cache_num">缓存多少章？</string>
+    <string name="d_cache_last_50">后面五十章</string>
+    <string name="d_cache_last_all">后面全部</string>
+    <string name="d_cache_all">全部</string>
+
+    <string name="font">字体</string>
+    <string name="simple_font">简体</string>
+    <string name="traditional_font">繁体</string>
+    <string name="font_size">字号</string>
+    <string name="font_bg">背景</string>
+
+    <string name="book_read_mode_day">夜间</string>
+
+
+    <string name="net_error">加入书架失败,请检查网络设置</string>
+
+    <string name="delete">删除</string>
+    <string name="add_bookmark">新增书签</string>
+    <string name="clear_bookmark">清除</string>
+    <string name="like_book">喜欢本书就加入书架吧</string>
+    <string name="please_add_book">请先添加书籍</string>
+
+    <string name="pic_loading">插图加载中...</string>
+
+    <!--version-->
+    <string name="new_version">新版本V %s</string>
+    <string name="download_loading">%d/%d</string>
+    <string name="downloading">正在下载</string>
+    <string name="update_now">立即更新</string>
+
+    <!--book status-->
+    <string name="cached">当前书籍已缓存</string>
+    <string name="cache_success">成功添加到缓存队列</string>
+    <string name="task_exist">任务已存在</string>
+
+    <string name="download_success">下载完成</string>
+    <string name="download_error">资源或网络错误</string>
+    <string name="download_pause">暂停加载</string>
+
+    <string name="night">日间模式</string>
+    <string name="switch_lau">切换语言</string>
+    <string name="book_sort">书架排序</string>
+    <string name="edit_book">编辑书架</string>
+
+    <string name="loading_more">正在加载更多...</string>
+
+    <!--听书-->
+    <string name="hard_work">努力开发中</string>
+    <string name="listen_speed">语速</string>
+    <string name="listen_slow">慢</string>
+    <string name="listen_fast">快</string>
+    <string name="listen_sound">发音</string>
+    <string name="listen_man">男声</string>
+    <string name="listen_woman">女声</string>
+    <string name="listen_dashi">大师</string>
+    <string name="listen_niuniu">妞妞</string>
+    <string name="listen_time">定时</string>
+    <string name="listen_time_no">不启用</string>
+    <string name="listen_shiwu">15分钟</string>
+    <string name="listen_sanshi">30分钟</string>
+    <string name="listen_liushi">60分钟</string>
+    <string name="listen_quit">退出听书</string>
+    <string name="listen_start">开始听书</string>
+    <string name="listen_no_switch">听书时不能切换发音哦</string>
+    <string name="listen_end">定时播放结束</string>
+    <string name="listen_time_start">定时播放开始</string>
+
+    <string name="good_text">如果您觉得我们做的还不错请给我们一个五星好评鼓励一下</string>
+
+    <!--DownloadTask:书籍下载-->
+    <string name="nb.download.add_succeed">成功添加到下载列表</string>
+    <string name="nb.download.exist">该任务已存在</string>
+    <string name="nb.download.load_all">已缓存全部章节</string>
+    <string name="nb.download.progress">%1$d/%2$d</string>
+    <string name="nb.download.chapter_scope">(%1$d-%2$d章)</string>
+</resources>

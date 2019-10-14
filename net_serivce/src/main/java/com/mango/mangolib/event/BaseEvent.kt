@@ -17,7 +17,7 @@ open class BaseEvent<T> : OttoEventInterface {
             field = er
         }
 
-    private var isFail = false
+    public var isFail = false
 
     private var extras: Bundle? = null
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string-array name="setting_dialog_language_choice">
+    <item>@string/a_simple</item>
+    <item>@string/a_traditional</item>
+  </string-array>
+
+  <string-array name="setting_dialog_sort_choice">
+    <item>@string/update_time</item>
+    <item>@string/read_time</item>
+  </string-array>
+
+</resources>

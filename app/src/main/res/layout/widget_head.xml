@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/title_layout_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_touch"
+    android:padding="10dp">
+
+
+    <TextView
+        android:id="@+id/tv_head"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/colorTitle"
+        android:drawablePadding="5dp"
+        android:text="@string/popular_selection"
+        android:textSize="15sp"
+        android:drawableStart="@drawable/ic_star"/>
+
+
+    <TextView
+        android:id="@+id/tv_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/more" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

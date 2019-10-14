@@ -39,6 +39,18 @@ dependencies {
     api rootProject.ext.dependencies["gson"]
     api rootProject.ext.dependencies["glide"]
 
+
+    api 'com.google.android:flexbox:0.3.1'
+    api 'org.litepal.android:java:3.0.0'
+    // RxJava
+    api 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    api 'io.reactivex.rxjava2:rxjava:2.0.1'
+    api 'org.reactivestreams:reactive-streams:1.0.0'
+
+    api 'com.tencent.bugly:crashreport:3.0.0'
+    api 'com.tencent.bugly:nativecrashreport:3.7.1'
+    api files('libs/ZHConverter.jar')
+
     api 'com.google.zxing:core:3.3.0'
 
     //密码输入
