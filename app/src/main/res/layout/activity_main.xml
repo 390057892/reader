@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activity.NovelMainActivity">
 
-
     <FrameLayout
         android:id="@+id/fl_content"
         android:layout_width="0dp"

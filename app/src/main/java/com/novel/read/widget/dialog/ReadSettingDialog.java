@@ -26,6 +26,7 @@ import com.novel.read.widget.page.ReadSettingManager;
 import java.util.Arrays;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ReadSettingDialog extends Dialog {
 
@@ -72,6 +73,7 @@ public class ReadSettingDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_setting);
+        ButterKnife.bind(this);
         setUpWindow();
         initData();
         initWidget();

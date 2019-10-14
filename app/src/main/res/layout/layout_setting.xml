@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/read_menu_color"
@@ -9,7 +9,7 @@
     android:id="@+id/ll_setting"
     android:padding="5dp">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -17,7 +17,7 @@
         android:layout_marginEnd="10dp">
 
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -25,7 +25,7 @@
             android:textSize="16sp"
             android:text="@string/font"/>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_simple"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -35,7 +35,7 @@
             android:textColor="@drawable/text_color"
             android:text="@string/simple_font"/>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_trans"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -45,9 +45,9 @@
             android:textColor="@drawable/text_color"
             android:text="@string/traditional_font"/>
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -55,7 +55,7 @@
         android:layout_marginEnd="10dp">
 
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -63,7 +63,7 @@
             android:textSize="16sp"
             android:text="@string/font_size"/>
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/read_setting_tv_font_minus"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_font_min"/>
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/read_setting_tv_font_plus"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -80,17 +80,17 @@
             android:gravity="center"
             android:src="@drawable/ic_font_add"/>
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -99,7 +99,7 @@
             android:textSize="16sp"
             android:text="@string/font_bg"/>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/read_setting_rv_bg"
             android:layout_width="0dp"
             android:layout_weight="4"
@@ -108,7 +108,7 @@
             android:layout_marginRight="5dp"
             android:scrollbars="none" />
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
