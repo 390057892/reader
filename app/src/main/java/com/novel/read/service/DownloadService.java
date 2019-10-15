@@ -112,7 +112,7 @@ public class DownloadService extends BaseService {
                             //判断是否该数据存在加载列表中
                             boolean isDelete = true;
                             for (DownloadTaskBean bean : mDownloadTaskQueue) {
-                                if (bean.getBookId().equals(event.collBook.getId())) {
+                                if (bean.getBookId().equals(event.getCollBook().getId())) {
                                     isDelete = false;
                                     break;
                                 }
@@ -123,13 +123,13 @@ public class DownloadService extends BaseService {
                                 Iterator<DownloadTaskBean> taskIt = mDownloadTaskList.iterator();
                                 while (taskIt.hasNext()) {
                                     DownloadTaskBean task = taskIt.next();
-                                    if (task.getBookId().equals(event.collBook.getId())) {
+                                    if (task.getBookId().equals(event.getCollBook().getId())) {
                                         taskIt.remove();
                                     }
                                 }
                             }
                             //返回状态
-                            RxBus.getInstance().post(new DeleteResponseEvent(isDelete, event.collBook));
+                            RxBus.getInstance().post(new DeleteResponseEvent(isDelete, event.getCollBook()));
                         }
                 );
         addDisposable(deleteDisp);

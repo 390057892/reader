@@ -26,7 +26,7 @@ public class BookAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private final int VALUE_ITEM = 100; //正常item
     private final int EMPTY_ITEM = 101; //空白item
-    protected OnItemClickListener mClickListener;
+    private OnItemClickListener mClickListener;
     private boolean mEdit;
 
     public BookAdapter(List<CollBookBean> mList) {

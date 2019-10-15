@@ -117,7 +117,7 @@ public class RecommendListResp implements Serializable {
         }
 
         public String getBook_title() {
-            return book_title == null ? "" : StringUtils.convertCC(book_title, MyApp.getContext());
+            return book_title == null ? "" : StringUtils.convertCC(book_title);
         }
 
         public void setBook_title(String book_title) {
@@ -133,7 +133,7 @@ public class RecommendListResp implements Serializable {
         }
 
         public String getAuthor() {
-            return author == null ? "" : StringUtils.convertCC(author, MyApp.getContext());
+            return author == null ? "" : StringUtils.convertCC(author);
         }
 
         public void setAuthor(String author) {
@@ -141,7 +141,7 @@ public class RecommendListResp implements Serializable {
         }
 
         public String getDescription() {
-            return description == null ? "" : StringUtils.convertCC(StringUtils.delete160(description), MyApp.getContext());
+            return description == null ? "" : StringUtils.convertCC(StringUtils.delete160(description));
         }
 
         public void setDescription(String description) {

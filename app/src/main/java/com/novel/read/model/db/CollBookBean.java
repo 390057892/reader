@@ -74,7 +74,7 @@ public class CollBookBean extends LitePalSupport implements Serializable {
     }
 
     public String getTitle() {
-        return title == null ? "" : StringUtils.convertCC(title, MyApp.getContext());
+        return title == null ? "" : StringUtils.convertCC(title);
     }
 
     public void setTitle(String title) {
@@ -82,7 +82,7 @@ public class CollBookBean extends LitePalSupport implements Serializable {
     }
 
     public String getAuthor() {
-        return author == null ? "" :StringUtils.convertCC(author, MyApp.getContext());
+        return author == null ? "" :StringUtils.convertCC(author);
     }
 
     public void setAuthor(String author) {
@@ -90,7 +90,7 @@ public class CollBookBean extends LitePalSupport implements Serializable {
     }
 
     public String getShortIntro() {
-        return shortIntro == null ? "" :StringUtils.convertCC(shortIntro, MyApp.getContext());
+        return shortIntro == null ? "" :StringUtils.convertCC(shortIntro);
     }
 
     public void setShortIntro(String shortIntro) {
@@ -154,7 +154,7 @@ public class CollBookBean extends LitePalSupport implements Serializable {
     }
 
     public String getLastChapter() {
-        return lastChapter == null ? "" : StringUtils.convertCC(lastChapter, MyApp.getContext());
+        return lastChapter == null ? "" : StringUtils.convertCC(lastChapter);
     }
 
     public void setLastChapter(String lastChapter) {

@@ -39,7 +39,7 @@ public class CategoryTypeResp implements Serializable {
         }
 
         public String getTitle() {
-            return StringUtils.convertCC(title == null ? "" : title, MyApp.getContext());
+            return StringUtils.convertCC(title == null ? "" : title);
         }
 
         public void setTitle(String title) {

@@ -18,7 +18,7 @@ public class NetworkUtils {
      * @return NetworkInfo
      */
     public static NetworkInfo getNetworkInfo(){
-        ConnectivityManager cm = (ConnectivityManager) MyApp.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager) MyApp.Companion.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
         return cm.getActiveNetworkInfo();
     }

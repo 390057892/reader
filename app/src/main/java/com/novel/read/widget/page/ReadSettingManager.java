@@ -4,11 +4,6 @@ package com.novel.read.widget.page;
 import com.novel.read.utlis.ScreenUtils;
 import com.novel.read.utlis.SpUtil;
 
-/**
- * Created by newbiechen on 17-5-17.
- * 阅读器的配置管理
- */
-
 public class ReadSettingManager {
     /*************实在想不出什么好记的命名方式。。******************/
     public static final int READ_BG_DEFAULT = 0;

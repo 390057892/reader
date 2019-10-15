@@ -54,7 +54,7 @@ public class RecommendBookResp implements Serializable {
         }
 
         public String getTitle() {
-            return title == null ? "" : StringUtils.convertCC(title, MyApp.getContext());
+            return title == null ? "" : StringUtils.convertCC(title);
         }
 
         public void setTitle(String title) {
@@ -70,7 +70,7 @@ public class RecommendBookResp implements Serializable {
         }
 
         public String getDescription() {
-            return description == null ? "" : StringUtils.convertCC(StringUtils.delete160(description), MyApp.getContext());
+            return description == null ? "" : StringUtils.convertCC(StringUtils.delete160(description));
         }
 
         public void setDescription(String description) {
@@ -94,7 +94,7 @@ public class RecommendBookResp implements Serializable {
         }
 
         public String getAuthor() {
-            return author == null ? "" : StringUtils.convertCC(author, MyApp.getContext()) ;
+            return author == null ? "" : StringUtils.convertCC(author) ;
         }
 
         public void setAuthor(String author) {

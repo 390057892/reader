@@ -318,7 +318,7 @@ public class BookRepository {
 
     //删除书籍
     public void deleteBook(String bookId) {
-        FileUtils.deleteFile(Constant.BOOK_CACHE_PATH + bookId);
+        FileUtils.deleteFile(Constant.INSTANCE.BOOK_CACHE_PATH + bookId);
     }
 
     public void deleteBookRecord(String id) {

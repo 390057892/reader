@@ -138,13 +138,4 @@ public class DateUtli {
      */
     private static String[] dayNames = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
 
-
-    public static boolean checkInstallTime() {
-        long installTime = SpUtil.getLongValue(Constant.InstallTime);
-        long currentTime = System.currentTimeMillis();
-        //如果当前时间比安装时间早7天 并且 安装包开启次数大于7
-        return currentTime - installTime > 7 * 24 * 3600 * 1000 && SpUtil.getIntValue(Constant.InstallCount, 0) > 7;
-
-    }
-
 }

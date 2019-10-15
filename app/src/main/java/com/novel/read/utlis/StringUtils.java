@@ -55,7 +55,7 @@ public class StringUtils {
     }
 
     //繁簡轉換
-    public static String convertCC(String input, Context context) {
+    public static String convertCC(String input) {
         int convertType = SpUtil.getIntValue(SHARED_READ_CONVERT_TYPE, 1);
 
         if (input.length() == 0)

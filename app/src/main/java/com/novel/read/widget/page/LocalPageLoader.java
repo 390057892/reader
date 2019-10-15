@@ -432,7 +432,7 @@ public class LocalPageLoader extends PageLoader {
         //从文件中获取数据
         byte[] content = getChapterContent(chapter);
         String test = new String(content);
-        test = StringUtils.convertCC(test, mContext);
+        test = StringUtils.convertCC(test);
         content = test.getBytes();
         ByteArrayInputStream bais = new ByteArrayInputStream(content);
         return new BufferedReader(new InputStreamReader(bais, mCharset.getName()));

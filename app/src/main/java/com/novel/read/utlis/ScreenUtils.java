@@ -68,7 +68,7 @@ public class ScreenUtils {
      * @return
      */
     public static int getStatusBarHeight(){
-        Resources resources = MyApp.getContext().getResources();
+        Resources resources = MyApp.Companion.getContext().getResources();
         int resourceId = resources.getIdentifier("status_bar_height","dimen","android");
         return resources.getDimensionPixelSize(resourceId);
     }
@@ -79,7 +79,7 @@ public class ScreenUtils {
      */
     public static int getNavigationBarHeight() {
         int navigationBarHeight = 0;
-        Resources rs = MyApp.getContext().getResources();
+        Resources rs = MyApp.Companion.getContext().getResources();
         int id = rs.getIdentifier("navigation_bar_height", "dimen", "android");
         if (id > 0 && hasNavigationBar()) {
             navigationBarHeight = rs.getDimensionPixelSize(id);
@@ -93,7 +93,7 @@ public class ScreenUtils {
      */
     private static boolean hasNavigationBar() {
         boolean hasNavigationBar = false;
-        Resources rs = MyApp.getContext().getResources();
+        Resources rs = MyApp.Companion.getContext().getResources();
         int id = rs.getIdentifier("config_showNavigationBar", "bool", "android");
         if (id > 0) {
             hasNavigationBar = rs.getBoolean(id);
@@ -114,7 +114,7 @@ public class ScreenUtils {
 
     public static DisplayMetrics getDisplayMetrics(){
         DisplayMetrics metrics = MyApp
-                .getContext()
+                .Companion.getContext()
                 .getResources()
                 .getDisplayMetrics();
         return metrics;

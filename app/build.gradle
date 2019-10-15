@@ -34,8 +34,6 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencies["espresso_core"]
     implementation project(path: ':net_serivce')
     implementation project(path: ':common_lib')
-    //注解
-    implementation "com.jakewharton:butterknife:10.0.0"
-    annotationProcessor "com.jakewharton:butterknife-compiler:10.0.0"
+
     implementation 'com.allenliu.versionchecklib:library:2.2.0'
 }

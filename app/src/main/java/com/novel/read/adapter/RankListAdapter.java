@@ -122,7 +122,7 @@ public class RankListAdapter extends RecyclerView.Adapter {
     public int getItemViewType(int position) {
         if (mList == null || mList.size() == 0) {
             return EMPTY_ITEM;
-        } else if (mList.get(position) == null) {
+        } else if (mList.get(position).getId() == 0) {
             return PROCESS_ITEM;
         }  else {
             return VALUE_ITEM;

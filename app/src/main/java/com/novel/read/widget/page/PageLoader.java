@@ -1300,12 +1300,12 @@ public abstract class PageLoader {
         int titleLinesCount = 0;
         boolean showTitle = true; // 是否展示标题
         String paragraph = chapter.getTitle();//默认展示标题
-        String title = StringUtils.convertCC(chapter.getTitle(), mContext);
+        String title = StringUtils.convertCC(chapter.getTitle());
         String half;
         try {
             while (showTitle || (paragraph = br.readLine()) != null) {
                 half = paragraph;
-                paragraph = StringUtils.convertCC(paragraph, mContext);
+                paragraph = StringUtils.convertCC(paragraph);
                 // 重置段落
                 if (!showTitle) {
                     paragraph = paragraph.replaceAll("\\s", "");

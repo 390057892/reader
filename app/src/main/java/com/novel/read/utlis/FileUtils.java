@@ -61,12 +61,12 @@ public class FileUtils {
     //获取Cache文件夹
     public static String getCachePath(){
         if (isSdCardExist()){
-            return MyApp.getContext()
+            return MyApp.Companion.getContext()
                     .getExternalCacheDir()
                     .getAbsolutePath();
         }
         else{
-            return MyApp.getContext()
+            return MyApp.Companion.getContext()
                     .getCacheDir()
                     .getAbsolutePath();
         }

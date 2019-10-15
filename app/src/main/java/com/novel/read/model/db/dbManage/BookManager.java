@@ -8,12 +8,6 @@ import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by newbiechen on 17-5-20.
- * 处理书籍的工具类，配合PageFactory使用
- * 已弃用，
- */
-
 public class BookManager {
     private static final String TAG = "BookManager";
     private String chapterName;

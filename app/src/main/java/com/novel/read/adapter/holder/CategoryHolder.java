@@ -11,9 +11,6 @@ import com.novel.read.model.db.dbManage.BookManager;
 import com.novel.read.utlis.StringUtils;
 import com.novel.read.widget.page.TxtChapter;
 
-import static com.novel.read.base.MyApp.getContext;
-
-
 public class CategoryHolder extends ViewHolderImpl<TxtChapter> {
 
     private TextView mTvChapter;
@@ -37,7 +34,7 @@ public class CategoryHolder extends ViewHolderImpl<TxtChapter> {
         mTvChapter.setSelected(false);
         mTvChapter.setTextColor(ContextCompat.getColor(getContext(),R.color.colorTitle));
         mTvChapter.setCompoundDrawablesWithIntrinsicBounds(drawable,null,null,null);
-        mTvChapter.setText(StringUtils.convertCC(value.getTitle(),getContext()));
+        mTvChapter.setText(StringUtils.convertCC(value.getTitle()));
 
     }
 

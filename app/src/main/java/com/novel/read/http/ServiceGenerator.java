@@ -30,7 +30,7 @@ public class ServiceGenerator {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson));
 
-    private static OkHttpClient getOkHttp(){
+    private static OkHttpClient getOkHttp() {
         return new OkHttpClient()
                 .newBuilder()
                 .addInterceptor(new CommonHeadersInterceptor())

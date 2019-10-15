@@ -8,7 +8,6 @@ import com.mango.mangolib.event.EventManager;
 import com.mango.mangolib.http.ErrorResponse;
 import com.mango.mangolib.http.MyRequestType;
 import com.mango.mangolib.http.ServiceCallback;
-import com.novel.read.constants.Constant;
 import com.novel.read.event.AddBookSignEvent;
 import com.novel.read.event.BookArticleEvent;
 import com.novel.read.event.DeleteBookSignEvent;
@@ -58,7 +57,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 /**
- * Created by JillFung on 2017/2/14.
+ * Created by zlj on 2017/2/14.
  */
 
 public class AccountManager {
@@ -79,69 +78,68 @@ public class AccountManager {
     }
 
 
-    public void getRecommendBook(String bookId,String limit) {
+    public void getRecommendBook(String bookId, String limit) {
         HashMap<String, String> map = new HashMap<>();
         map.put("book_id", bookId);
-        Call<RecommendBookResp> call = accountService.getRecommendBook(getUrlString(Urls.getRecommend,map));
+        Call<RecommendBookResp> call = accountService.getRecommendBook(getUrlString(Urls.getRecommend, map));
         call.enqueue(new ServiceCallback<>(GetRecommendBookEvent.class));
     }
 
     public void getBookDetail(String bookId) {
         HashMap<String, String> map = new HashMap<>();
         map.put("book_id", bookId);
-        Call<BookDetailResp> call = accountService.getBookDetail(getUrlString(Urls.getBookDetail,map));
+        Call<BookDetailResp> call = accountService.getBookDetail(getUrlString(Urls.getBookDetail, map));
         call.enqueue(new ServiceCallback<>(GetBookDetailEvent.class));
     }
 
-    public Single<BookDetailResp> getBookDetails(String bookId){ //rxjava 获取多书籍详情 合并请求调用
+    public Single<BookDetailResp> getBookDetails(String bookId) { //rxjava 获取多书籍详情 合并请求调用
         HashMap<String, String> map = new HashMap<>();
         map.put("book_id", bookId);
-        return accountService.getBookDetails(getUrlString(Urls.getBookDetail,map));
+        return accountService.getBookDetails(getUrlString(Urls.getBookDetail, map));
     }
 
     public void getCategoryType() {
         HashMap<String, String> map = new HashMap<>();
-        Call<CategoryTypeResp> call = accountService.getCategoryType(getUrlString(Urls.getCategoryType,map));
+        Call<CategoryTypeResp> call = accountService.getCategoryType(getUrlString(Urls.getCategoryType, map));
         call.enqueue(new ServiceCallback<>(GetCategoryTypeEvent.class));
     }
 
     public void getHotSearch() {
         HashMap<String, String> map = new HashMap<>();
-        Call<HotSearchResp> call = accountService.getHotSearch(getUrlString(Urls.getHotSearch,map));
+        Call<HotSearchResp> call = accountService.getHotSearch(getUrlString(Urls.getHotSearch, map));
         call.enqueue(new ServiceCallback<>(HotSearchEvent.class));
     }
 
-
-    public void getBookArticle(String bookId,String hasContent,String page,String limit) {
+    public void getBookArticle(String bookId, String hasContent, String page, String limit) {
         HashMap<String, String> map = new HashMap<>();
         map.put("book_id", bookId);
         map.put("has_content", hasContent);
         map.put("page", page);
         map.put("limit", limit);
-        Call<BookArticleResp> call = accountService.getBookArticle(getUrlString(Urls.getBookArticle,map));
+        Call<BookArticleResp> call = accountService.getBookArticle(getUrlString(Urls.getBookArticle, map));
         call.enqueue(new ServiceCallback<>(BookArticleEvent.class));
     }
 
 
-    public void getSearchBookList(String category_id,String key,int page) {
+    public void getSearchBookList(String category_id, String key, int page) {
         HashMap<String, String> map = new HashMap<>();
         if (!TextUtils.isEmpty(category_id)) {
             map.put("category_id", category_id);
-        }else {
+        } else {
             map.put("category_id", "0");
         }
-        if (!TextUtils.isEmpty(key)){
+        if (!TextUtils.isEmpty(key)) {
             map.put("key", key);
         }
         map.put("page", String.valueOf(page));
-        Call<SearchResp> call = accountService.getSearchList(getUrlString(Urls.getBookList,map));
+        Call<SearchResp> call = accountService.getSearchList(getUrlString(Urls.getBookList, map));
         call.enqueue(new ServiceCallback<>(SearchListEvent.class));
     }
 
     public void getRecommendList(String listType, Callback<RecommendListResp> callback) {
         HashMap<String, String> map = new HashMap<>();
         map.put("type", listType);
-        Call<RecommendListResp> call = accountService.getRecommendList(getUrlString(Urls.getRecommendList,map));
+        Call<RecommendListResp> call = accountService.getRecommendList(getUrlString(Urls.getRecommendList, map));
         call.enqueue(callback);
 
     }
@@ -151,14 +149,14 @@ public class AccountManager {
         if (!TextUtils.isEmpty(String.valueOf(page))) {
             map.put("page", String.valueOf(page));
         }
-        if (limit!=0){
+        if (limit != 0) {
             map.put("limit", String.valueOf(limit));
         }
-        Call<RankByUpadateResp> call = accountService.getRankByUpdate(getUrlString(Urls.getRankByUpdate,map));
+        Call<RankByUpadateResp> call = accountService.getRankByUpdate(getUrlString(Urls.getRankByUpdate, map));
         call.enqueue(callback);
     }
 
-    public void getRankList(String type, String sex, String dateType, String page, Callback<RankByUpadateResp> callback){
+    public void getRankList(String type, String sex, String dateType, String page, Callback<RankByUpadateResp> callback) {
         HashMap<String, String> map = new HashMap<>();
         map.put("type", type);
         map.put("gender", sex);
@@ -168,7 +166,7 @@ public class AccountManager {
         call.enqueue(callback);
     }
 
-    public void checkVersion(int versionCode){
+    public void checkVersion(int versionCode) {
         HashMap<String, String> map = new HashMap<>();
         map.put("version", String.valueOf(versionCode));
 //        map.put("shell", Constant.shell);
@@ -176,7 +174,7 @@ public class AccountManager {
         call.enqueue(new ServiceCallback<>(VersionEvent.class));
     }
 
-    public void addSign(String bookId,String articleId,String content){
+    public void addSign(String bookId, String articleId, String content) {
         HashMap<String, String> map = new HashMap<>();
         map.put("book_id", bookId);
         map.put("article_id", articleId);
@@ -185,23 +183,23 @@ public class AccountManager {
         call.enqueue(new ServiceCallback<>(AddBookSignEvent.class));
     }
 
-    public void deleteSign(String signIds){
+    public void deleteSign(String signIds) {
         HashMap<String, String> map = new HashMap<>();
         map.put("sign_ids", signIds);
         Call<ErrorResponse> call = accountService.deleteSign(Urls.deleteSign, mapToBody(map));
         call.enqueue(new ServiceCallback<>(DeleteBookSignEvent.class));
     }
 
-    public void getSignList(String bookId){
+    public void getSignList(String bookId) {
         HashMap<String, String> map = new HashMap<>();
         map.put("book_id", bookId);
         Call<MarkResp> call = accountService.getSignList(getUrlString(Urls.getBookSign, map));
         call.enqueue(new ServiceCallback<>(GetBookSignEvent.class));
     }
 
-    public void login(Context mContext){
+    public void login(Context mContext) {
         HashMap<String, String> map = new HashMap<>();
-        Log.e("getUniquePsuedoID", "login: "+ PhoneUtils.getUniquePsuedoID());
+        Log.e("getUniquePsuedoID", "login: " + PhoneUtils.getUniquePsuedoID());
         map.put("code", PhoneUtils.getUniquePsuedoID());
         Call<UidResp> call = accountService.login(Urls.login, mapToBody(map));
         call.enqueue(new ServiceCallback<>(LoginEvent.class));
@@ -209,7 +207,7 @@ public class AccountManager {
 
     private Subscription mChapterSub;
 
-    public void getBookArticleDetail(String bookId,List<TxtChapter> bookChapters){
+    public void getBookArticleDetail(String bookId, List<TxtChapter> bookChapters) {
         int size = bookChapters.size();
         //取消上次的任务，防止多次加载
         if (mChapterSub != null) {
@@ -231,46 +229,46 @@ public class AccountManager {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<ChapterInfoBean>() {
-                            String title = titles.poll();
+                               String title = titles.poll();
 
-                            @Override
-                            public void onSubscribe(Subscription s) {
-                                s.request(Integer.MAX_VALUE);
-                                mChapterSub = s;
-                            }
+                               @Override
+                               public void onSubscribe(Subscription s) {
+                                   s.request(Integer.MAX_VALUE);
+                                   mChapterSub = s;
+                               }
 
-                            @Override
-                            public void onNext(ChapterInfoBean chapterInfoBean) {
-                                //存储数据
-                                BookRepository.getInstance().saveChapterInfo(
-                                        bookId, title, chapterInfoBean.getBody()
-                                );
-                                EventManager.Companion.getInstance().postEvent(new FinishChapterEvent());
-                                //将获取到的数据进行存储
-                                title = titles.poll();
-                            }
+                               @Override
+                               public void onNext(ChapterInfoBean chapterInfoBean) {
+                                   //存储数据
+                                   BookRepository.getInstance().saveChapterInfo(
+                                           bookId, title, chapterInfoBean.getBody()
+                                   );
+                                   EventManager.Companion.getInstance().postEvent(new FinishChapterEvent());
+                                   //将获取到的数据进行存储
+                                   title = titles.poll();
+                               }
 
-                            @Override
-                            public void onError(Throwable t) {
-                                //只有第一个加载失败才会调用errorChapter
-                                if (bookChapters.get(0).getTitle().equals(title)) {
-                                    EventManager.Companion.getInstance().postEvent(new ErrorChapterEvent());
-                                }
-                                LogUtils.e(t);
-                            }
+                               @Override
+                               public void onError(Throwable t) {
+                                   //只有第一个加载失败才会调用errorChapter
+                                   if (bookChapters.get(0).getTitle().equals(title)) {
+                                       EventManager.Companion.getInstance().postEvent(new ErrorChapterEvent());
+                                   }
+                                   LogUtils.e(t);
+                               }
 
-                            @Override
-                            public void onComplete() {
-                            }
-                        }
+                               @Override
+                               public void onComplete() {
+                               }
+                           }
                 );
     }
 
     /**
      * 注意这里用的是同步请求
      */
-    public Single<ChapterInfoBean> getChapterInfo(String id){
-        HashMap<String,String> map = new HashMap<>();
+    public Single<ChapterInfoBean> getChapterInfo(String id) {
+        HashMap<String, String> map = new HashMap<>();
         map.put("article_id", id);
         return accountService.getBookArticleDetail(getUrlString(Urls.getDetail, map))
                 .map(bean -> bean.getArticle().get(0));
@@ -308,7 +306,7 @@ public class AccountManager {
     /**
      * 减少请求info类的数量,直接用map替代实体类，返回body
      */
-    private RequestBody mapToBody(HashMap<String,String> map){
+    private RequestBody mapToBody(HashMap<String, String> map) {
         return RequestBody.create(MediaType.parse("application/json; charset=utf-8"), ServiceGenerator.formatResponse(map));
     }
 

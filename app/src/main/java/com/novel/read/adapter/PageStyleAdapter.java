@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.mango.mangolib.event.EventManager;
 import com.novel.read.R;
-import com.novel.read.event.SetAdsBgEvent;
 import com.novel.read.widget.page.PageLoader;
 import com.novel.read.widget.page.PageStyle;
 
@@ -49,7 +48,6 @@ public class PageStyleAdapter extends RecyclerView.Adapter<PageStyleAdapter.Page
             currentChecked = i;
             notifyDataSetChanged();
             mPageLoader.setPageStyle(PageStyle.values()[i]);
-            EventManager.Companion.getInstance().postEvent(new SetAdsBgEvent());
         });
     }
 
