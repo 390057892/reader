@@ -84,7 +84,6 @@ public class NovelMainActivity extends NovelBaseActivity {
         mStackFragment = StackFragment.newInstance();
         mMoreFragment = MoreFragment.newInstance();
 
-
         //计算apk的启动次数
         int count = SpUtil.getIntValue(Constant.InstallCount, 0);
         SpUtil.setIntValue(Constant.InstallCount, count + 1);
@@ -236,8 +235,6 @@ public class NovelMainActivity extends NovelBaseActivity {
         }
 
     }
-
-
 
     @Override
     protected void onDestroy() {
