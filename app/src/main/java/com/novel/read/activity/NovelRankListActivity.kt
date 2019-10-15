@@ -24,8 +24,8 @@ class NovelRankListActivity : NovelBaseActivity() {
     private var mList: MutableList<RankByUpadateResp.BookBean> = ArrayList()
     private var page = 1
     private var loadSize: Int = 0
-    private var type: String? = null
-    private var sex: String? = null
+    private var type: String = ""
+    private var sex: String = ""
 
     override val layoutId: Int get() = R.layout.activity_rank_list
 

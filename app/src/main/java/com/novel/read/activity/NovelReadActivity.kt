@@ -74,7 +74,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
     private val isRegistered = false
 
     private var mCollBook: CollBookBean? = null
-    private var mBookId: String? = null
+    private var mBookId: String = ""
 
     @SuppressLint("HandlerLeak")
     private val mHandler = object : Handler() {

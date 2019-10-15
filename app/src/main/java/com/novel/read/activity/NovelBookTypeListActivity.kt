@@ -63,7 +63,7 @@ class NovelBookTypeListActivity : NovelBaseActivity() {
     }
 
     private fun getData() {
-        AccountManager.getInstance().getSearchBookList(mCategoryId, "", page)
+        mCategoryId?.let { AccountManager.getInstance().getSearchBookList(it, "", page) }
     }
 
     @Subscribe

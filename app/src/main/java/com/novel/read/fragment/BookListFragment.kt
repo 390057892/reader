@@ -21,9 +21,9 @@ class BookListFragment : NovelBaseFragment() {
 
     private var mAdapter: RankListAdapter? = null
     private var mList: MutableList<RankByUpadateResp.BookBean> = ArrayList()
-    private var sex: String? = null
-    private var dateType: String? = null
-    private var type: String? = null
+    private var sex: String = ""
+    private var dateType: String = ""
+    private var type: String = ""
     private var page = 1
     private var loadSize: Int = 0
 

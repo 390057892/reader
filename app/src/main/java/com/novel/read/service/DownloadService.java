@@ -308,7 +308,7 @@ public class DownloadService extends BaseService {
         final int[] result = {LOAD_NORMAL};
 
         //问题:(这里有个问题，就是body其实比较大，如何获取数据流而不是对象，)是不是直接使用OkHttpClient交互会更好一点
-        Disposable disposable = AccountManager.getInstance()
+        Disposable disposable = AccountManager.Companion.getInstance()
                 .getChapterInfo(bean.getId())
                 //表示在当前环境下执行
                 .subscribe(

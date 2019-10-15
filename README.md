@@ -28,7 +28,7 @@ Kt、AndroidX、Retrofit、Okhttp3、Glide、LitePal等
 | --- | --- | --- |
 | <img src="https://github.com/390057892/reader/blob/master/screenshot/%E8%AE%BE%E7%BD%AE.png?raw=true" width="280" alt="设置"/> | <img src="https://github.com/390057892/reader/blob/master/screenshot/%E6%90%9C%E7%B4%A2.png?raw=true" width="280" alt="搜索"/> | <img src="https://github.com/390057892/reader/blob/master/screenshot/%E9%98%85%E8%AF%BB%E9%A1%B5.png" width="280" alt="阅读页"/> |
 | <img src="https://github.com/390057892/reader/blob/master/screenshot/%E9%98%85%E8%AF%BB%E9%A1%B5%E8%8F%9C%E5%8D%95.png" width="280" alt="菜单"/> |  <img src="https://github.com/390057892/reader/blob/master/screenshot/%E4%B9%A6%E7%B1%8D%E7%9B%AE%E5%BD%95.png" width="280" alt="目录"/>  | <img src="https://github.com/390057892/reader/blob/master/screenshot/%E6%8F%92%E9%A1%B51.jpg" width="280" alt="插页"/>  |
-| <img src="https://github.com/390057892/reader/blob/master/screenshot/%E6%8F%92%E9%A1%B52.jpg" width="280" alt="插页2"/> |  |  | 
+| <img src="https://github.com/390057892/reader/blob/master/screenshot/%E6%8F%92%E9%A1%B52.jpg" width="280" alt="插页2"/> | https://github.com/390057892/reader/blob/master/screenshot/night.jpg | https://github.com/390057892/reader/blob/master/screenshot/edit.jpg | 
 
  
 
