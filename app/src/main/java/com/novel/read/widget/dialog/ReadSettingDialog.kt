@@ -39,6 +39,7 @@ class ReadSettingDialog(mActivity: Activity, private var mPageLoader: PageLoader
         initData()
         initWidget()
         initClick()
+        initPageMode()
     }
 
     //设置Dialog显示的位置
@@ -133,6 +134,27 @@ class ReadSettingDialog(mActivity: Activity, private var mPageLoader: PageLoader
             mPageLoader.setTextSize(mSettingManager!!.textSize)
         })
 
+        //Page Mode 切换
+        read_setting_rg_page_mode.setOnCheckedChangeListener { group, checkedId ->
+            val pageMode: PageMode = when (checkedId) {
+                R.id.read_setting_rb_simulation -> PageMode.SIMULATION
+                R.id.read_setting_rb_cover -> PageMode.COVER
+                R.id.read_setting_rb_scroll -> PageMode.SCROLL
+                R.id.read_setting_rb_none -> PageMode.NONE
+                else -> PageMode.SIMULATION
+            }
+            mPageLoader.setPageMode(pageMode)
+        }
+
+    }
+
+    private fun initPageMode() {
+        when (mPageMode) {
+            PageMode.SIMULATION -> read_setting_rb_simulation.isChecked = true
+            PageMode.COVER -> read_setting_rb_cover.isChecked = true
+            PageMode.NONE -> read_setting_rb_none.isChecked = true
+            PageMode. SCROLL -> read_setting_rb_scroll.isChecked = true
+        }
     }
 
     companion object {

@@ -1,111 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_setting"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/read_menu_color"
     android:layout_gravity="bottom"
+    android:background="@color/read_menu_color"
     android:gravity="bottom"
     android:orientation="vertical"
-    android:id="@+id/ll_setting"
     android:padding="5dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal">
 
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:text="@string/font"
             android:textColor="@color/smallColor"
-            android:textSize="16sp"
-            android:text="@string/font"/>
+            android:textSize="16sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_simple"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@drawable/text_color"
-            android:text="@string/simple_font"/>
+            android:text="@string/simple_font"
+            android:textColor="@drawable/text_color" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_trans"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@drawable/text_color"
-            android:text="@string/traditional_font"/>
+            android:text="@string/traditional_font"
+            android:textColor="@drawable/text_color" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal">
 
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:text="@string/font_size"
             android:textColor="@color/smallColor"
-            android:textSize="16sp"
-            android:text="@string/font_size"/>
+            android:textSize="16sp" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/read_setting_tv_font_minus"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_font_min"/>
+            android:layout_weight="1"
+            android:src="@drawable/ic_font_min" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/read_setting_tv_font_plus"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="center"
-            android:src="@drawable/ic_font_add"/>
+            android:src="@drawable/ic_font_add" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/font_size"
+            android:textColor="@color/smallColor"
+            android:textSize="16sp" />
+
+        <RadioGroup
+            android:id="@+id/read_setting_rg_page_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/read_setting_rb_simulation"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="18dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/simulation"
+                android:textColor="@drawable/text_color"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/read_setting_rb_cover"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="18dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/cover"
+                android:textColor="@drawable/text_color"
+                android:textSize="14sp" />
+
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/read_setting_rb_scroll"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="18dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/scroll"
+                android:textColor="@drawable/text_color"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/read_setting_rb_none"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/none"
+                android:textColor="@drawable/text_color"
+                android:textSize="14sp" />
+        </RadioGroup>
+
+
+    </LinearLayout>
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="@string/font_bg"
             android:textColor="@color/smallColor"
-            android:textSize="16sp"
-            android:text="@string/font_bg"/>
+            android:textSize="16sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/read_setting_rv_bg"
             android:layout_width="0dp"
-            android:layout_weight="4"
             android:layout_height="40dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
+            android:layout_weight="4"
             android:scrollbars="none" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

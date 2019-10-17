@@ -142,6 +142,12 @@
 
     <string name="good_text">如果您觉得我们做的还不错请给我们一个五星好评鼓励一下</string>
 
+    <!--  翻页  -->
+    <string name="simulation">仿真</string>
+    <string name="cover">覆盖</string>
+    <string name="scroll">滚动</string>
+    <string name="none">无</string>
+
     <!--DownloadTask:书籍下载-->
     <string name="nb.download.add_succeed">成功添加到下载列表</string>
     <string name="nb.download.exist">该任务已存在</string>

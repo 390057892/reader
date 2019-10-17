@@ -40,8 +40,13 @@ dependencies {
     api rootProject.ext.dependencies["glide"]
     api rootProject.ext.dependencies["litepal"]
 
+    //adapter
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
+
+    //繁简转换库
     api files('libs/ZHConverter.jar')
 
+    //伸缩布局
     api 'com.google.android:flexbox:0.3.1'
 
     // RxJava
