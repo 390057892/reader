@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/tv_recommend"
-        android:layout_width="60dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorTitle"
         android:padding="10dp"
