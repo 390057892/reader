@@ -142,6 +142,7 @@
     <string name="good_text">如果您覺得我們做的還不錯請給我們壹個五星好評鼓勵壹下</string>
 
     <!--  翻页  -->
+    <string name="page_mode">翻页</string>
     <string name="simulation">仿真</string>
     <string name="cover">覆盖</string>
     <string name="scroll">滚动</string>
