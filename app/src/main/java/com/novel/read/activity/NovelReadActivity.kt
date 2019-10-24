@@ -155,7 +155,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
             toggleMenu(false)
         }
 
-        Log.e(TAG, "mBookId: " + mBookId!!)
+        Log.e(TAG, "mBookId: $mBookId")
         if (isCollected) {
             mPageLoader.collBook.bookChapters =
                 BookRepository.getInstance().getBookChaptersInRx(mBookId)
