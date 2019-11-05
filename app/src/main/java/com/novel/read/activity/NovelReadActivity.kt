@@ -279,7 +279,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
 
         read_tv_brief.setOnClickListener {
             val intent = Intent(this, NovelBookDetailActivity::class.java)
-            intent.putExtra(Constant.Bundle.BookId, Integer.valueOf(mBookId!!))
+            intent.putExtra(Constant.Bundle.BookId, Integer.valueOf(mBookId))
             startActivity(intent)
         }
 
@@ -391,12 +391,12 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
             tvBookReadMode.text = resources.getString(R.string.book_read_mode_day)
             val drawable = ContextCompat.getDrawable(this, R.drawable.ic_read_menu_moring)
             tvBookReadMode.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)
-            cl_layout.setBackgroundColor(resources.getColor(R.color.nb_read_bg_night))
+            cl_layout.setBackgroundColor(ContextCompat.getColor(this,R.color.nb_read_bg_night))
         } else {
             tvBookReadMode.text = resources.getString(R.string.book_read_mode_day)
             val drawable = ContextCompat.getDrawable(this, R.drawable.ic_read_menu_night)
             tvBookReadMode.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)
-            cl_layout.setBackgroundColor(resources.getColor(ReadSettingManager.getInstance().pageStyle.bgColor))
+            cl_layout.setBackgroundColor(ContextCompat.getColor(this,ReadSettingManager.getInstance().pageStyle.bgColor))
         }
     }
 
@@ -566,7 +566,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
         }
         Log.e(TAG, "onBackPressed: " + mCollBook!!.bookChapters.isEmpty())
 
-        if (!mCollBook!!.isLocal && !isCollected && !mCollBook!!.bookChapters.isEmpty()) {
+        if (!mCollBook!!.isLocal && !isCollected && mCollBook!!.bookChapters.isNotEmpty()) {
             val alertDialog = AlertDialog.Builder(this)
                 .setTitle(getString(R.string.add_book))
                 .setMessage(getString(R.string.like_book))

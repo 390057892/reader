@@ -21,7 +21,7 @@ import com.novel.read.utlis.GlideImageLoader;
 import java.util.List;
 
 /**
- * create by 赵利君 on 2019/6/19
+ * create by zlj on 2019/6/19
  * describe:
  */
 public class HumanAdapter extends RecyclerView.Adapter<HumanAdapter.ViewHolder> {
