@@ -34,24 +34,19 @@ public class ServiceGenerator {
         return new OkHttpClient()
                 .newBuilder()
                 .addInterceptor(new CommonHeadersInterceptor())
-                .connectTimeout(30, TimeUnit.SECONDS)
-                .writeTimeout(30, TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(15, TimeUnit.SECONDS)
+                .writeTimeout(15, TimeUnit.SECONDS)
+                .readTimeout(15, TimeUnit.SECONDS)
                 .build();
     }
 
     private ServiceGenerator() {
     }
 
-    public static <S> S createService(Class<S> serviceClass) {
-        return createService(serviceClass);
-    }
-
     public static <S> S createService(Class<S> serviceClass, final MyRequestType type) {
         Retrofit retrofit = builderTEXT.build();
         return retrofit.create(serviceClass);
     }
-
 
     public static String formatResponse(Object obj) {
         return gson.toJson(obj);

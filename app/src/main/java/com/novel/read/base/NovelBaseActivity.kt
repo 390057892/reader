@@ -17,8 +17,7 @@ import com.novel.read.utlis.StatusBarUtil
  * describe:
  */
 abstract class NovelBaseActivity : AppCompatActivity() {
-    var isCheckNet = true//是否检查网络连接
-    var isNetworkChange = false//获取网络是否连接
+
     private var mNowMode: Boolean = false
 
     protected abstract val layoutId: Int

@@ -5,6 +5,8 @@ import com.common_lib.base.utils.SecurityUtils;
 import com.novel.read.constants.Constant;
 import com.novel.read.utlis.SpUtil;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -16,6 +18,7 @@ import okhttp3.Response;
  */
 public class CommonHeadersInterceptor implements Interceptor {
 
+    @NotNull
     @Override
     public Response intercept(@NonNull Interceptor.Chain chain) throws IOException {
         Request request = chain.request();

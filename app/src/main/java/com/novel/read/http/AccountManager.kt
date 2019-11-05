@@ -51,13 +51,10 @@ import java.util.Map
 
 class AccountManager private constructor() {
 
-    private val accountService: AccountService
+    private val accountService: AccountService =
+        ServiceGenerator.createService(AccountService::class.java, MyRequestType.URL_TEXT)
 
     private var mChapterSub: Subscription? = null
-
-    init {
-        accountService = ServiceGenerator.createService(AccountService::class.java, MyRequestType.URL_TEXT)
-    }
 
     fun getRecommendBook(bookId: String, limit: String) {
         val map = HashMap<String, String>()

@@ -66,10 +66,7 @@ class ManFragment : NovelBaseFragment() {
 
     private inner class HumanCallBack : Callback<RecommendListResp> {
 
-        override fun onResponse(
-            call: Call<RecommendListResp>,
-            response: Response<RecommendListResp>
-        ) {
+        override fun onResponse(call: Call<RecommendListResp>, response: Response<RecommendListResp>) {
             if (response.isSuccessful && response.body() != null) {
                 mHumanList.clear()
                 mHumanList.addAll(response.body()!!.list)
@@ -80,16 +77,13 @@ class ManFragment : NovelBaseFragment() {
         }
 
         override fun onFailure(call: Call<RecommendListResp>, t: Throwable) {
-
+            swipe.showError()
         }
     }
 
     private inner class EditCallBack : Callback<RecommendListResp> {
 
-        override fun onResponse(
-            call: Call<RecommendListResp>,
-            response: Response<RecommendListResp>
-        ) {
+        override fun onResponse(call: Call<RecommendListResp>, response: Response<RecommendListResp>) {
             if (response.isSuccessful && response.body() != null) {
                 mEditList.clear()
                 mEditList.addAll(response.body()!!.list)
@@ -107,10 +101,7 @@ class ManFragment : NovelBaseFragment() {
 
     private inner class HotSearchCallBack : Callback<RecommendListResp> {
 
-        override fun onResponse(
-            call: Call<RecommendListResp>,
-            response: Response<RecommendListResp>
-        ) {
+        override fun onResponse(call: Call<RecommendListResp>, response: Response<RecommendListResp>) {
             swipe.showFinish()
             if (response.isSuccessful && response.body() != null) {
                 mRankList.clear()

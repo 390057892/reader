@@ -17,10 +17,10 @@ object Urls {
     internal const val getRecommendList = "api/rank/getRecommendList/" //获取推荐列表
     internal const val getRankByUpdate = "api/rank/getRankByUpdate/" //最新更新
     internal const val getRankList = "api/rank/getRankList/" //获取排行榜
-    internal const val checkVersion = " api/version/checkVersion/" //检测新版本
-    internal const val addBookSign = " api/sign/addBookSign/" //添加书签
-    internal const val getBookSign = " api/sign/getBookSignList/" //获取书签
-    internal const val deleteSign = " api/sign/deleteSign/" //获取书签
+    internal const val checkVersion = "api/version/checkVersion/" //检测新版本
+    internal const val addBookSign = "api/sign/addBookSign/" //添加书签
+    internal const val getBookSign = "api/sign/getBookSignList/" //获取书签
+    internal const val deleteSign = "api/sign/deleteSign/" //获取书签
 
     internal const val login = "api/login/checkLogin"//登录
 

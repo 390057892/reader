@@ -101,12 +101,6 @@ object Constant {
         }
     }
 
-    interface HasImage {
-        companion object {
-            const val has = 1
-        }
-    }
-
     interface RequestCode {
         companion object {
             const val REQUEST_READ = 1

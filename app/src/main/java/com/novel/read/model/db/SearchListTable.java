@@ -8,7 +8,7 @@ import org.litepal.crud.LitePalSupport;
 import java.io.Serializable;
 
 /**
- * create by 赵利君 on 2019/6/19
+ * create by zlj on 2019/6/19
  * describe:
  */
 public class SearchListTable extends LitePalSupport implements Serializable {

@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+@SuppressLint("SimpleDateFormat")
 public class DateUtli {
 
     private static final int HOUR_OF_DAY = 24;
@@ -25,26 +26,13 @@ public class DateUtli {
 
     public static String dateConvert(long timesamp, int flag) {
         timesamp = timesamp * 1000;
-        String result = "";
+        String result;
         Calendar todayCalendar = Calendar.getInstance();
         Calendar otherCalendar = Calendar.getInstance();
         otherCalendar.setTimeInMillis(timesamp);
 
         String timeFormat = "M月d日";
         String yearTimeFormat = "yyyy年M月d日";
-        String am_pm = "";
-        int hour = otherCalendar.get(Calendar.HOUR_OF_DAY);
-        if (hour >= 0 && hour < 6) {
-            am_pm = "凌晨";
-        } else if (hour >= 6 && hour < 12) {
-            am_pm = "早上";
-        } else if (hour == 12) {
-            am_pm = "中午";
-        } else if (hour > 12 && hour < 18) {
-            am_pm = "下午";
-        } else if (hour >= 18) {
-            am_pm = "晚上";
-        }
 
         boolean yearTemp = todayCalendar.get(Calendar.YEAR) == otherCalendar.get(Calendar.YEAR);
         if (yearTemp) {
@@ -100,35 +88,24 @@ public class DateUtli {
 
     /**
      * 当天的显示时间格式
-     *
-     * @param time
-     * @return
      */
-    public static String getHourAndMin(long time) {
+    private static String getHourAndMin(long time) {
         SimpleDateFormat format = new SimpleDateFormat("HH:mm");
         return format.format(new Date(time));
     }
 
     /**
      * 不同一周的显示时间格式
-     *
-     * @param time
-     * @param timeFormat
-     * @return
      */
-    public static String getTime(long time, String timeFormat) {
+    private static String getTime(long time, String timeFormat) {
         SimpleDateFormat format = new SimpleDateFormat(timeFormat);
         return format.format(new Date(time));
     }
 
     /**
      * 不同年的显示时间格式
-     *
-     * @param time
-     * @param yearTimeFormat
-     * @return
      */
-    public static String getYearTime(long time, String yearTimeFormat) {
+    private static String getYearTime(long time, String yearTimeFormat) {
         SimpleDateFormat format = new SimpleDateFormat(yearTimeFormat);
         return format.format(new Date(time));
     }
