@@ -70,11 +70,6 @@ public class DownloadTaskBean extends LitePalSupport {
 
     public List<BookChapterBean> getBookChapterList() {
         if (bookChapterList == null) {
-
-//            BookChapterBeanDao targetDao = daoSession.getBookChapterBeanDao();
-//            List<BookChapterBean> bookChapterListNew = targetDao
-//                    ._queryDownloadTaskBean_BookChapterList(taskName);
-
             List<BookChapterBean> bookChapterListNew = LitePal
                     .where("taskName=?", taskName).find(BookChapterBean.class);
 

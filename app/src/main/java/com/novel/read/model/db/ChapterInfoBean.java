@@ -1,9 +1,5 @@
 package com.novel.read.model.db;
 
-/**
- * Created by newbiechen on 17-5-10.
- */
-
 public class ChapterInfoBean {
     /**
      * title : 第一章 他叫白小纯

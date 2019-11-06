@@ -347,8 +347,8 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
                 )
             ) { _, which ->
                 when (which) {
-                    0 //50章
-                    -> {
+                    0 -> {
+                        //50章
                         val last = currentChapter + 50
                         if (last > mCollBook!!.bookChapters.size) {
                             downLoadCache(mCollBook!!.bookChapters, mCollBook!!.bookChapters.size)
@@ -356,16 +356,15 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
                             downLoadCache(mCollBook!!.bookChapters, last)
                         }
                     }
-                    1 //后面所有
-                    -> {
+                    1 -> {
+                        //后面所有
                         val lastBeans = ArrayList<BookChapterBean>()
                         for (i in currentChapter until mCollBook!!.bookChapters.size) {
                             lastBeans.add(mCollBook!!.bookChapters[i])
                         }
                         downLoadCache(lastBeans, mCollBook!!.bookChapters.size - currentChapter)
                     }
-                    2 //所有
-                    -> downLoadCache(mCollBook!!.bookChapters, mCollBook!!.bookChapters.size)
+                    2 -> downLoadCache(mCollBook!!.bookChapters, mCollBook!!.bookChapters.size) //所有
                     else -> {
                     }
                 }
@@ -391,12 +390,17 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
             tvBookReadMode.text = resources.getString(R.string.book_read_mode_day)
             val drawable = ContextCompat.getDrawable(this, R.drawable.ic_read_menu_moring)
             tvBookReadMode.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)
-            cl_layout.setBackgroundColor(ContextCompat.getColor(this,R.color.nb_read_bg_night))
+            cl_layout.setBackgroundColor(ContextCompat.getColor(this, R.color.nb_read_bg_night))
         } else {
             tvBookReadMode.text = resources.getString(R.string.book_read_mode_day)
             val drawable = ContextCompat.getDrawable(this, R.drawable.ic_read_menu_night)
             tvBookReadMode.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)
-            cl_layout.setBackgroundColor(ContextCompat.getColor(this,ReadSettingManager.getInstance().pageStyle.bgColor))
+            cl_layout.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    ReadSettingManager.getInstance().pageStyle.bgColor
+                )
+            )
         }
     }
 

@@ -17,5 +17,7 @@
         <mapping class="com.novel.read.model.db.ChapterInfoBean" />
         <!--章节详情表-->
         <mapping class="com.novel.read.model.db.DownloadTaskBean" />
+        <!--书签表-->
+        <mapping class="com.novel.read.model.db.BookSignTable" />
     </list>
 </litepal>

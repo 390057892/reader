@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by newbiechen on 17-5-8.
  * 收藏的书籍
  */
 public class CollBookBean extends LitePalSupport implements Serializable {
