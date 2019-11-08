@@ -28,13 +28,16 @@ import com.novel.read.adapter.MarkAdapter
 import com.novel.read.base.NovelBaseActivity
 import com.novel.read.constants.Constant
 import com.novel.read.constants.Constant.ResultCode.Companion.RESULT_IS_COLLECTED
-import com.novel.read.event.*
+import com.novel.read.event.BookArticleEvent
+import com.novel.read.event.ErrorChapterEvent
+import com.novel.read.event.FinishChapterEvent
+import com.novel.read.event.RxBus
 import com.novel.read.http.AccountManager
 import com.novel.read.model.db.BookChapterBean
+import com.novel.read.model.db.BookSignTable
 import com.novel.read.model.db.CollBookBean
 import com.novel.read.model.db.DownloadTaskBean
 import com.novel.read.model.db.dbManage.BookRepository
-import com.novel.read.model.protocol.MarkResp
 import com.novel.read.service.DownloadMessage
 import com.novel.read.service.DownloadService
 import com.novel.read.utlis.BrightnessUtils
@@ -53,6 +56,9 @@ import kotlinx.android.synthetic.main.layout_light.*
 import kotlinx.android.synthetic.main.layout_read_mark.*
 import java.util.*
 
+/**
+ * 阅读页📕
+ */
 class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListener {
 
     private var mCategoryAdapter: CategoryAdapter? = null
@@ -60,7 +66,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
     private var mCurrentChapter: TxtChapter? = null //当前章节
     private var currentChapter = 0
     private var mMarkAdapter: MarkAdapter? = null
-    private val mMarks = ArrayList<MarkResp.SignBean>()
+    private val mMarks = ArrayList<BookSignTable>()
     private lateinit var mPageLoader: PageLoader
     private var mTopInAnim: Animation? = null
     private var mTopOutAnim: Animation? = null
@@ -298,8 +304,13 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
         tvAddMark.setOnClickListener {
             if (mCurrentChapter != null) {
                 mMarkAdapter!!.edit = false
-                AccountManager.getInstance()
+                if (BookRepository.getInstance().getSignById(mCurrentChapter!!.chapterId)) {
+                    ToastUtils.showNormalToast(this, getString(R.string.sign_exist))
+                    return@setOnClickListener
+                }
+                BookRepository.getInstance()
                     .addSign(mBookId, mCurrentChapter!!.chapterId, mCurrentChapter!!.title)
+                updateMark()
             }
         }
 
@@ -307,7 +318,8 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
             if (mMarkAdapter!!.edit) {
                 val sign = mMarkAdapter!!.selectList
                 if (sign != "") {
-                    AccountManager.getInstance().deleteSign(sign)
+                    BookRepository.getInstance().deleteSign(sign)
+                    updateMark()
                 }
                 mMarkAdapter!!.edit = false
             } else {
@@ -478,9 +490,8 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
 
     @Subscribe
     fun getBookArticle(event: BookArticleEvent) {
-        Log.e(TAG, "getBookArticle: ")
         if (event.isFail) {
-
+            //获取章节失败处理
         } else {
             val chapterBeans = event.result!!.chapterBean
             mPageLoader.collBook.bookChapters = chapterBeans
@@ -511,38 +522,9 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
     }
 
     private fun updateMark() {
-        AccountManager.getInstance().getSignList(mBookId)
-    }
-
-    @Subscribe
-    fun addSign(event: AddBookSignEvent) {
-        if (event.isFail) {
-            ToastUtils.showNormalToast(this, "添加书签失败,请检查网络设置")
-        } else {
-            ToastUtils.showNormalToast(this, "添加书签成功")
-            updateMark()
-        }
-    }
-
-    @Subscribe
-    fun deleteSigin(event: DeleteBookSignEvent) {
-        if (event.isFail) {
-            ToastUtils.showNormalToast(this, event.er!!.msg)
-        } else {
-            ToastUtils.showNormalToast(this, event.result!!.msg)
-            updateMark()
-        }
-    }
-
-    @Subscribe
-    fun getSignList(event: GetBookSignEvent) {
-        if (event.isFail) {
-            ToastUtils.showNormalToast(this, "获取书签失败,请检查网络设置")
-        } else {
-            mMarks.clear()
-            mMarks.addAll(event.result!!.sign)
-            mMarkAdapter!!.notifyDataSetChanged()
-        }
+        mMarks.clear()
+        mMarks.addAll(BookRepository.getInstance().getSign(mBookId))
+        mMarkAdapter!!.notifyDataSetChanged()
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
@@ -597,7 +579,6 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
         val result = Intent()
         result.putExtra(RESULT_IS_COLLECTED, isCollected)
         setResult(Activity.RESULT_OK, result)
-        // 退出
         super.onBackPressed()
     }
 
@@ -632,12 +613,6 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
     }
 
     override fun onDownloadChange(pos: Int, status: Int, msg: String) {
-        //        DownloadTaskBean bean = mDownloadAdapter.getItem(pos);
-        //        bean.setStatus(status);
-        //        if (DownloadTaskBean.STATUS_LOADING == status){
-        //            bean.setCurrentChapter(Integer.valueOf(msg));
-        //        }
-        //        mDownloadAdapter.notifyItemChanged(pos);
         Log.e(TAG, "onDownloadChange: $pos $status $msg")
 
         if (msg == getString(R.string.download_success) || msg == getString(R.string.download_error)) {
@@ -662,9 +637,6 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
 
 
     override fun onDownloadResponse(pos: Int, status: Int) {
-        //        DownloadTaskBean bean = mDownloadAdapter.getItem(pos);
-        //        bean.setStatus(status);
-        //        mDownloadAdapter.notifyItemChanged(pos);
         Log.e(TAG, "onDownloadResponse: $pos $status")
     }
 

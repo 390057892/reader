@@ -89,6 +89,7 @@
     <string name="delete">删除</string>
     <string name="add_bookmark">新增書籤</string>
     <string name="clear_bookmark">清除</string>
+    <string name="sign_exist">当前章节书签已存在</string>
     <string name="like_book">喜歡本書就加入書架吧</string>
     <string name="please_add_book">請先添加書籍</string>
 
@@ -147,10 +148,10 @@
     <string name="none">无</string>
 
     <!--DownloadTask:书籍下载-->
-    <string name="nb.download.add_succeed">成功添加到下載列表</string>
-    <string name="nb.download.exist">該任務已存在</string>
-    <string name="nb.download.load_all">以緩存全部章節</string>
-    <string name="nb.download.progress">%1$d/%2$d</string>
-    <string name="nb.download.chapter_scope">(%1$d-%2$d章)</string>
+    <string name="download_add_succeed">成功添加到下載列表</string>
+    <string name="download_exist">該任務已存在</string>
+    <string name="download_load_all">以緩存全部章節</string>
+    <string name="download_progress">%1$d/%2$d</string>
+    <string name="download_chapter_scope">(%1$d-%2$d章)</string>
 
 </resources>

@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.novel.read.R;
+import com.novel.read.model.db.BookSignTable;
 import com.novel.read.model.protocol.MarkResp;
 
 import java.util.List;
@@ -19,10 +20,10 @@ import java.util.List;
 public class MarkAdapter extends RecyclerView.Adapter{
 
     private Context mContext;
-    private List<MarkResp.SignBean> mList;
+    private List<BookSignTable> mList;
     private boolean edit;
 
-    public MarkAdapter(List<MarkResp.SignBean> mList) {
+    public MarkAdapter(List<BookSignTable> mList) {
         this.mList = mList;
     }
 
@@ -52,7 +53,7 @@ public class MarkAdapter extends RecyclerView.Adapter{
                 ((ViewHolder) viewHolder).mCheck.setVisibility(View.GONE);
             }
             ((ViewHolder) viewHolder).mTvMark.setText(mList.get(i).getContent());
-            ((ViewHolder) viewHolder).mCheck.setChecked(mList.get(i).isEdit());
+            ((ViewHolder) viewHolder).mCheck.setChecked(mList.get(i).getEdit());
         }
     }
 
@@ -84,11 +85,11 @@ public class MarkAdapter extends RecyclerView.Adapter{
     public String getSelectList() {
         StringBuilder signs = new StringBuilder();
         for (int i = 0; i < mList.size(); i++) {
-            if (mList.get(i).isEdit()) {
-                if (signs.equals("")){
-                    signs.append(mList.get(i).getId());
+            if (mList.get(i).getEdit()) {
+                if (signs.toString().equals("")){
+                    signs.append(mList.get(i).getArticleId());
                 }else {
-                    signs.append(",").append(mList.get(i).getId());
+                    signs.append(",").append(mList.get(i).getArticleId());
                 }
             }
         }

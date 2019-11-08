@@ -6,6 +6,7 @@ import android.util.Log;
 import com.novel.read.constants.Constant;
 import com.novel.read.model.db.BookChapterBean;
 import com.novel.read.model.db.BookRecordBean;
+import com.novel.read.model.db.BookSignTable;
 import com.novel.read.model.db.ChapterInfoBean;
 import com.novel.read.model.db.CollBookBean;
 import com.novel.read.model.db.DownloadTaskBean;
@@ -35,7 +36,7 @@ import io.reactivex.SingleOnSubscribe;
 
 /**
  * Created by newbiechen on 17-5-8.
- * 存储关于书籍内容的信息(CollBook(收藏书籍),BookChapter(书籍列表),ChapterInfo(书籍章节),BookRecord(记录))
+ * 存储关于书籍内容的信息(CollBook(收藏书籍),BookChapter(书籍列表),ChapterInfo(书籍章节),BookRecord(记录),BookSignTable书签)
  */
 
 public class BookRepository {
@@ -59,15 +60,6 @@ public class BookRepository {
     //存储已收藏书籍
     public void saveCollBookWithAsync(CollBookBean bean) {
 
-//        bean.saveAsync().listen(new SaveCallback() {
-//            @Override
-//            public void onFinish(boolean success) {
-//                System.out.println(success);
-//            }
-//        });
-//        LitePal.saveAll(bean.getBookChapters());
-//        bean.saveOrUpdate("bookId=?", bean.getId());
-//        bean.saveOrUpdateAsync("bookId=?", bean.getId());
         bean.saveOrUpdate("bookId=?", bean.getId());
         for (int i = 0; i < bean.getBookChapters().size(); i++) {
             bean.getBookChapters().get(i).setCollBookBean(bean);
@@ -78,7 +70,6 @@ public class BookRepository {
                 Log.e(TAG, "saveCollBookWithAsync: " + success);
             }
         });
-//        LitePal.saveAll(bean.getBookChapters());
     }
 
     /**
@@ -105,32 +96,20 @@ public class BookRepository {
     }
 
     public void saveCollBook(CollBookBean bean) {
-//        mCollBookDao.insertOrReplace(bean);
         ContentValues values = new ContentValues();
         values.put("isUpdate", bean.isUpdate());
         values.put("lastRead", bean.getLastRead());
         values.put("lastChapter", bean.getLastChapter());
         LitePal.updateAll(CollBookBean.class, values, "bookId=?", bean.getId());
-//        bean.setBookChapters(new ArrayList<>());
-//        bean.saveOrUpdate("bookId=?", bean.getId());
-//        for (int i = 0; i < bean.getBookChapters().size(); i++) {
-//            bean.getBookChapters().get(i).setCollBookBean(bean);
-//        }
-//        LitePal.saveAllAsync(bean.getBookChapters()).listen(new SaveCallback() {
-//            @Override
-//            public void onFinish(boolean success) {
-//                Log.e(TAG, "saveCollBookWithAsync: " + success);
-//            }
-//        });
     }
 
     public void saveCollBooks(List<CollBookBean> beans) {
-        for (int i = 0; i <beans.size() ; i++) {
+        for (int i = 0; i < beans.size(); i++) {
             ContentValues values = new ContentValues();
             values.put("isUpdate", beans.get(i).isUpdate());
             values.put("lastRead", beans.get(i).getLastRead());
             values.put("lastChapter", beans.get(i).getLastChapter());
-            values.put("updated",beans.get(i).getUpdated());
+            values.put("updated", beans.get(i).getUpdated());
             LitePal.updateAll(CollBookBean.class, values, "bookId=?", beans.get(i).getId());
         }
     }
@@ -141,25 +120,11 @@ public class BookRepository {
      * @param beans
      */
     public void saveBookChaptersWithAsync(List<BookChapterBean> beans, CollBookBean collBookBean) {
-
-//        //先删除旧的章节，再异步储存新的章节
-//        LitePal.deleteAll(BookChapterBean.class, "bookId=?", collBookBean.getId());
         collBookBean.saveOrUpdate("bookId=?", collBookBean.getId());
-        for (int i = 0; i <collBookBean.getBookChapters().size() ; i++) {
+        for (int i = 0; i < collBookBean.getBookChapters().size(); i++) {
             collBookBean.getBookChapters().get(i).setCollBookBean(collBookBean);
             collBookBean.getBookChapters().get(i).saveOrUpdateAsync("bookId=?", collBookBean.getId());
-
         }
-
-//        LitePal.saveAllAsync(beans).listen(new SaveCallback() {
-//            @Override
-//            public void onFinish(boolean success) {
-//                if (success) {
-//
-//                }
-//                Log.d(TAG, "saveBookChaptersWithAsync: " + "进行存储" + success);
-//            }
-//        });
     }
 
     /**
@@ -185,8 +150,6 @@ public class BookRepository {
     }
 
     public void saveBookRecord(BookRecordBean bean) {
-//        mSession.getBookRecordBeanDao()
-//                .insertOrReplace(bean);
         bean.saveOrUpdateAsync("bookId=?", bean.getBookId()).listen(new SaveCallback() {
             @Override
             public void onFinish(boolean success) {
@@ -207,10 +170,6 @@ public class BookRepository {
 
 
     public List<CollBookBean> getCollBooks() {
-//        return mCollBookDao
-//                .queryBuilder()
-//                .orderDesc(CollBookBeanDao.Properties.LastRead)
-//                .list();
         List<CollBookBean> collBookBeans;
         if (SpUtil.getBooleanValue(Constant.BookSort, false)) { //默认根据阅读时间排序
             collBookBeans = LitePal.order("updated desc").find(CollBookBean.class);
@@ -223,17 +182,6 @@ public class BookRepository {
 
     //获取书籍列表
     public List<BookChapterBean> getBookChaptersInRx(String bookId) {
-//        return Single.create(new SingleOnSubscribe<List<BookChapterBean>>() {
-//            @Override
-//            public void subscribe(SingleEmitter<List<BookChapterBean>> e) throws Exception {
-//                List<BookChapterBean> beans = mSession
-//                        .getBookChapterBeanDao()
-//                        .queryBuilder()
-//                        .where(BookChapterBeanDao.Properties.BookId.eq(bookId))
-//                        .list();
-//                e.onSuccess(beans);
-//            }
-//        });
         List<CollBookBean> bookBeans = LitePal.where("bookId=?", bookId).find(CollBookBean.class, true);
         if (bookBeans != null && bookBeans.size() > 0) {
             return bookBeans.get(0).getBookChapters();
@@ -244,10 +192,6 @@ public class BookRepository {
 
     //获取阅读记录
     public BookRecordBean getBookRecord(String bookId) {
-//        return mSession.getBookRecordBeanDao()
-//                .queryBuilder()
-//                .where(BookRecordBeanDao.Properties.BookId.eq(bookId))
-//                .unique();
         List<BookRecordBean> beans = LitePal.where("bookId=?", bookId).find(BookRecordBean.class);
         if (beans != null && beans.size() > 0) {
             return beans.get(0);
@@ -344,28 +288,55 @@ public class BookRepository {
 
 
     public void saveDownloadTask(DownloadTaskBean bean) {
-        bean.saveOrUpdate("bookId=?",bean.getBookId());
+        bean.saveOrUpdate("bookId=?", bean.getBookId());
         CollBookBean collBookBean = bean.getCollBookBean();
-        for (int i = 0; i <bean.getBookChapters().size() ; i++) {
+        for (int i = 0; i < bean.getBookChapters().size(); i++) {
             bean.getBookChapters().get(i).setDownloadTaskBean(bean);
             bean.getBookChapters().get(i).setCollBookBean(collBookBean);
             bean.getBookChapters().get(i).saveOrUpdate("chapterId=?", bean.getBookChapters().get(i).getId());
 
         }
 
+    }
 
-//        //先删除旧的章节，再异步储存新的章节
-//        LitePal.deleteAll(BookChapterBean.class, "taskName=?",bean.getTaskName());
-//
-//        LitePal.saveAllAsync(bean.getBookChapters()).listen(new SaveCallback() {
-//            @Override
-//            public void onFinish(boolean success) {
-//                if (success) {
-//                    bean.setBookChapters(bean.getBookChapters());
-//                    bean.saveOrUpdate("taskName=?",bean.getTaskName());
-//                }
-//                Log.d(TAG, "saveBookChaptersWithAsync: " + "进行存储" + success);
-//            }
-//        });
+    /**
+     * 获取本地书签
+     *
+     * @param bookId 书籍Id
+     * @return 书签
+     */
+    public List<BookSignTable> getSign(String bookId) {
+        return LitePal.where("bookId=?", bookId).find(BookSignTable.class);
+    }
+
+    /**
+     * 添加书签
+     *
+     * @param bookId    bookId
+     * @param articleId articleId
+     * @param content   content
+     */
+    public void addSign(String bookId, String articleId, String content) {
+        BookSignTable bookSignTable = new BookSignTable(bookId, articleId, content);
+        bookSignTable.saveOrUpdate();
+    }
+
+    /**
+     * 删除书签
+     *
+     * @param articleId articleId
+     */
+    public void deleteSign(String articleId) {
+        LitePal.deleteAll(BookSignTable.class, "articleId=?", articleId);
+    }
+
+    /**
+     * 根据id查询书签是否存在
+     *
+     * @param articleId
+     */
+    public boolean getSignById(String articleId) {
+        List<BookSignTable> mList = LitePal.where("articleId=?", articleId).find(BookSignTable.class);
+        return mList.size() > 0;
     }
 }

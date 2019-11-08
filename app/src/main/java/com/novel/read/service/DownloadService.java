@@ -166,7 +166,7 @@ public class DownloadService extends BaseService {
                         //删除掉已经完成的章节
                         List<BookChapterBean> remainChapterBeans = newTask.getBookChapterList().subList(downloadTask.getLastChapter(), newTask.getLastChapter());
                         String taskName = newTask.getTaskName()
-                                + getString(R.string.nb_download_chapter_scope,
+                                + getString(R.string.download_chapter_scope,
                                 downloadTask.getLastChapter(), newTask.getLastChapter());
                         //重置任务
                         newTask.setBookChapters(remainChapterBeans);
@@ -187,7 +187,7 @@ public class DownloadService extends BaseService {
         //重置名字
         if (!isExist) {
             String taskName = newTask.getTaskName()
-                    + getString(R.string.nb_download_chapter_scope,
+                    + getString(R.string.download_chapter_scope,
                     1, newTask.getLastChapter());
             newTask.setTaskName(taskName);
             postMessage(getString(R.string.cache_success));

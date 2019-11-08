@@ -2,7 +2,7 @@
 <litepal>
     <dbname value="readDb" />
 
-    <version value="6" />
+    <version value="7" />
 
     <list>
         <!--搜索记录表-->
