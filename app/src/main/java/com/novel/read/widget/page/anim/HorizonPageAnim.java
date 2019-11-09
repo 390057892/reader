@@ -9,8 +9,8 @@ import android.view.ViewConfiguration;
 import com.novel.read.widget.page.PageAnimation;
 
 /**
- * Created by newbiechen on 17-7-24.
- * 横向动画的模板
+ * Created by zlj
+ * 横向动画
  */
 
 public abstract class HorizonPageAnim extends PageAnimation {

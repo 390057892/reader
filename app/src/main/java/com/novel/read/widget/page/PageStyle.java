@@ -6,10 +6,9 @@ import androidx.annotation.ColorRes;
 import com.novel.read.R;
 
 /**
- * Created by newbiechen on 2018/2/5.
- * 作用：页面的展示风格。
+ * Created by zlj
+ * 页面的展示风格。
  */
-
 public enum PageStyle {
     BG_0(R.color.nb_read_font_1, R.color.nb_read_bg_1),
     BG_1(R.color.nb_read_font_2, R.color.nb_read_bg_2),

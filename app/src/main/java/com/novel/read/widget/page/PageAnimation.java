@@ -8,10 +8,9 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Scroller;
 
 /**
- * Created by newbiechen on 17-7-24.
+ * Created by zlj
  * 翻页动画抽象类
  */
-
 public abstract class PageAnimation {
     //正在使用的View
     protected View mView;

@@ -91,7 +91,6 @@ class ReadSettingDialog(mActivity: Activity, private var mPageLoader: PageLoader
 
     }
 
-
     private fun getDrawable(drawRes: Int): Drawable? {
         return ContextCompat.getDrawable(context, drawRes)
     }

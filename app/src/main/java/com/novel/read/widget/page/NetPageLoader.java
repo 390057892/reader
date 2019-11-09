@@ -17,10 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by newbiechen on 17-5-29.
+ * Created by zlj
  * 网络页面加载器
  */
-
 public class NetPageLoader extends PageLoader {
     private static final String TAG = "PageFactory";
     private Context mContext;

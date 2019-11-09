@@ -35,13 +35,13 @@ public class StringUtils {
     }
 
     private static String deleteImgs(String content) {
-        if (content!=null&&!TextUtils.isEmpty(content)){
+        if (content != null && !TextUtils.isEmpty(content)) {
             // 去掉所有html元素,
             String str = content.replaceAll("\\&[a-zA-Z]{1,10};", "").replaceAll(
                     "<[^>]*>", "");
             str = str.replaceAll("[(/>)<]", "");
             return str;
-        }else {
+        } else {
             return "";
         }
     }

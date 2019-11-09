@@ -15,7 +15,8 @@ import android.os.Build;
 import android.view.View;
 
 /**
- * Created by newbiechen on 17-7-24.
+ * Created by zlj
+ * 仿真动画
  */
 
 public class SimulationPageAnim extends HorizonPageAnim {

@@ -5,7 +5,7 @@ import android.graphics.Rect;
 import android.view.View;
 
 /**
- * Created by newbiechen on 17-7-24.
+ * Created by zlj
  */
 
 public class SlidePageAnim extends HorizonPageAnim {

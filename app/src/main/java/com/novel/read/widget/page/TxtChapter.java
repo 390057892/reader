@@ -1,9 +1,8 @@
 package com.novel.read.widget.page;
 
 /**
- * Created by newbiechen on 17-7-1.
+ * Created by zlj
  */
-
 public class TxtChapter {
 
     //章节所属的小说(网络)
