@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.novel.read.R
 import com.novel.read.adapter.PageStyleAdapter
+import com.novel.read.utlis.ScreenUtils
 import com.novel.read.widget.page.PageLoader
 import com.novel.read.widget.page.PageMode
 import com.novel.read.widget.page.PageStyle
@@ -20,7 +21,7 @@ class ReadSettingDialog(mActivity: Activity, private var mPageLoader: PageLoader
     Dialog(mActivity, R.style.ReadSettingDialog) {
 
     private var mPageStyleAdapter: PageStyleAdapter? = null
-    private var mSettingManager: ReadSettingManager? = null
+    private var mSettingManager: ReadSettingManager = ReadSettingManager.getInstance()
 
     private var mPageMode: PageMode? = null
     private var mPageStyle: PageStyle? = null
@@ -53,15 +54,14 @@ class ReadSettingDialog(mActivity: Activity, private var mPageLoader: PageLoader
     }
 
     private fun initData() {
-        mSettingManager = ReadSettingManager.getInstance()
 
-        isBrightnessAuto = mSettingManager!!.isBrightnessAuto
-        mBrightness = mSettingManager!!.brightness
-        mTextSize = mSettingManager!!.textSize
-        isTextDefault = mSettingManager!!.isDefaultTextSize
-        mPageMode = mSettingManager!!.pageMode
-        mPageStyle = mSettingManager!!.pageStyle
-        convertType = mSettingManager!!.convertType
+        isBrightnessAuto = mSettingManager.isBrightnessAuto
+        mBrightness = mSettingManager.brightness
+        mTextSize = mSettingManager.textSize
+        isTextDefault = mSettingManager.isDefaultTextSize
+        mPageMode = mSettingManager.pageMode
+        mPageStyle = mSettingManager.pageStyle
+        convertType = mSettingManager.convertType
         if (convertType == 0) {
             tv_simple.isSelected = true
             tv_trans.isSelected = false
@@ -69,6 +69,7 @@ class ReadSettingDialog(mActivity: Activity, private var mPageLoader: PageLoader
             tv_simple.isSelected = false
             tv_trans.isSelected = true
         }
+        tv_size.text = "$mTextSize"
     }
 
     private fun initWidget() {
@@ -77,14 +78,14 @@ class ReadSettingDialog(mActivity: Activity, private var mPageLoader: PageLoader
 
     private fun setUpAdapter() {
         val drawables = arrayOf(
-            getDrawable(R.color.nb_read_bg_1),
-            getDrawable(R.color.nb_read_bg_2),
-            getDrawable(R.color.nb_read_bg_4),
-            getDrawable(R.color.nb_read_bg_5)
+            getDrawable(R.color.read_bg_one),
+            getDrawable(R.color.read_bg_two),
+            getDrawable(R.color.read_bg_four),
+            getDrawable(R.color.read_bg_five)
         )
 
         mPageStyleAdapter = PageStyleAdapter(listOf(*drawables), mPageLoader)
-        read_setting_rv_bg.layoutManager = GridLayoutManager(context, 5)
+        read_setting_rv_bg.layoutManager = GridLayoutManager(context, 4)
         read_setting_rv_bg.adapter = mPageStyleAdapter
 
         mPageStyleAdapter!!.setPageStyleChecked(mPageStyle!!)
@@ -98,17 +99,26 @@ class ReadSettingDialog(mActivity: Activity, private var mPageLoader: PageLoader
     private fun initClick() {
 
         //字体大小调节
-        read_setting_tv_font_minus.setOnClickListener { v ->
-            val fontSize = mSettingManager!!.textSize - 1
+        read_setting_tv_font_minus.setOnClickListener {
+            val fontSize = mSettingManager.textSize - 1
             if (fontSize < 0) {
                 return@setOnClickListener
             }
             mPageLoader.setTextSize(fontSize)
+            tv_size.text = "$fontSize"
         }
 
-        read_setting_tv_font_plus.setOnClickListener { v ->
-            val fontSize = mSettingManager!!.textSize + 1
+        read_setting_tv_font_plus.setOnClickListener {
+            val fontSize = mSettingManager.textSize + 1
             mPageLoader.setTextSize(fontSize)
+            tv_size.text = "$fontSize"
+        }
+
+        tv_font_default.setOnClickListener {
+            val fontSize = ScreenUtils.spToPx(16)
+            mSettingManager.textSize = fontSize
+            mPageLoader.setTextSize(fontSize)
+            tv_size.text = "$fontSize"
         }
 
         tv_simple.setOnClickListener(View.OnClickListener {
@@ -117,9 +127,9 @@ class ReadSettingDialog(mActivity: Activity, private var mPageLoader: PageLoader
             }
             tv_simple.isSelected = true
             tv_trans.isSelected = false
-            mSettingManager!!.convertType = 0
+            mSettingManager.convertType = 0
             convertType = 0
-            mPageLoader.setTextSize(mSettingManager!!.textSize)
+            mPageLoader.setTextSize(mSettingManager.textSize)
         })
 
         tv_trans.setOnClickListener(View.OnClickListener {
@@ -128,9 +138,9 @@ class ReadSettingDialog(mActivity: Activity, private var mPageLoader: PageLoader
             }
             tv_simple.isSelected = false
             tv_trans.isSelected = true
-            mSettingManager!!.convertType = 1
+            mSettingManager.convertType = 1
             convertType = 1
-            mPageLoader.setTextSize(mSettingManager!!.textSize)
+            mPageLoader.setTextSize(mSettingManager.textSize)
         })
 
         //Page Mode 切换
@@ -153,6 +163,9 @@ class ReadSettingDialog(mActivity: Activity, private var mPageLoader: PageLoader
             PageMode.COVER -> read_setting_rb_cover.isChecked = true
             PageMode.NONE -> read_setting_rb_none.isChecked = true
             PageMode. SCROLL -> read_setting_rb_scroll.isChecked = true
+            else -> {
+
+            }
         }
     }
 

@@ -12,7 +12,7 @@
         android:id="@+id/cl_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/nb.read.bg_1">
+        android:background="@color/read_bg_one">
 
 
         <com.google.android.material.appbar.AppBarLayout

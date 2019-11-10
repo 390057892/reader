@@ -296,7 +296,6 @@ public class BookRepository {
             bean.getBookChapters().get(i).saveOrUpdate("chapterId=?", bean.getBookChapters().get(i).getId());
 
         }
-
     }
 
     /**

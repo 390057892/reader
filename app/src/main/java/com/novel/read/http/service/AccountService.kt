@@ -7,7 +7,7 @@ import com.novel.read.model.protocol.CategoryTypeResp
 import com.novel.read.model.protocol.ChapterInfoPackage
 import com.novel.read.model.protocol.HotSearchResp
 import com.novel.read.model.protocol.MarkResp
-import com.novel.read.model.protocol.RankByUpadateResp
+import com.novel.read.model.protocol.RankByUpdateResp
 import com.novel.read.model.protocol.RecommendBookResp
 import com.novel.read.model.protocol.RecommendListResp
 import com.novel.read.model.protocol.SearchResp
@@ -62,11 +62,11 @@ interface AccountService {
 
     //获取最新排行
     @GET
-    fun getRankByUpdate(@Url url: String): Call<RankByUpadateResp>
+    fun getRankByUpdate(@Url url: String): Call<RankByUpdateResp>
 
     //获取排行
     @GET
-    fun getRankList(@Url url: String): Call<RankByUpadateResp>
+    fun getRankList(@Url url: String): Call<RankByUpdateResp>
 
     //获取新版本
     @GET

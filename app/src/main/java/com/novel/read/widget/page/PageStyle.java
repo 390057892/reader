@@ -10,12 +10,12 @@ import com.novel.read.R;
  * 页面的展示风格。
  */
 public enum PageStyle {
-    BG_0(R.color.nb_read_font_1, R.color.nb_read_bg_1),
-    BG_1(R.color.nb_read_font_2, R.color.nb_read_bg_2),
+    BG_0(R.color.read_font_one, R.color.read_bg_one),
+    BG_1(R.color.read_font_two, R.color.read_bg_two),
 //    BG_2(R.color.nb_read_font_3, R.color.nb_read_bg_3),
-    BG_3(R.color.nb_read_font_4, R.color.nb_read_bg_4),
-    BG_4(R.color.nb_read_font_5, R.color.nb_read_bg_5),
-    NIGHT(R.color.nb_read_font_night, R.color.nb_read_bg_night),;
+    BG_3(R.color.read_font_four, R.color.read_bg_four),
+    BG_4(R.color.read_font_five, R.color.read_bg_five),
+    NIGHT(R.color.read_font_night, R.color.read_bg_night),;
 
     private int fontColor;
     private int bgColor;

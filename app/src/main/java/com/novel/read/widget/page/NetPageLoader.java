@@ -67,23 +67,7 @@ public class NetPageLoader extends PageLoader {
                 + File.separator + chapter.title + FileUtils.SUFFIX_NB);
         if (!file.exists()) return null;
         Reader reader = new FileReader(file);
-        BufferedReader br = new BufferedReader(reader);
-//        StringBuilder text = new StringBuilder();
-//        String paragraph;
-//        while ((paragraph = br.readLine()) != null){
-//            text.append(paragraph);
-//        }
-////        String a = StringUtils.convertCC(text.toString(), mContext);
-//        byte[] by = text.toString().getBytes();
-//
-//        InputStream is = new ByteArrayInputStream(by);
-//
-//        InputStreamReader isr = new InputStreamReader(is);
-//
-//        br = new BufferedReader(isr);
-
-
-        return br;
+        return new BufferedReader(reader);
     }
 
     @Override

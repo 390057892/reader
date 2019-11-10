@@ -5,7 +5,6 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.common_lib.base.utils.ToastUtils
 import com.mango.mangolib.event.EventManager
 import com.novel.read.R
 import com.novel.read.adapter.LoveLyAdapter
@@ -21,6 +20,7 @@ import com.novel.read.http.AccountManager
 import com.novel.read.model.db.CollBookBean
 import com.novel.read.model.db.dbManage.BookRepository
 import com.novel.read.model.protocol.RecommendBookResp
+import com.novel.read.showToast
 import com.novel.read.utlis.DateUtli
 import com.novel.read.utlis.GlideImageLoader
 import com.squareup.otto.Subscribe
@@ -152,7 +152,7 @@ class NovelBookDetailActivity : NovelBaseActivity(), View.OnClickListener {
     fun getArticle(event: BookArticleEvent) {
         if (event.isFail) {
             dismiss()
-            ToastUtils.showNormalToast(this, getString(R.string.net_error))
+            showToast(getString(R.string.net_error))
         } else {
             //存储收藏
             var success = false
@@ -172,12 +172,12 @@ class NovelBookDetailActivity : NovelBaseActivity(), View.OnClickListener {
                         isCollected = true
                     } else {
                         LitePal.deleteAll(CollBookBean::class.java, "bookId =?", mCollBookBean!!.id)
-                        ToastUtils.showNormalToast(this, getString(R.string.net_error))
+                        showToast(getString(R.string.net_error))
                     }
                     dismiss()
                 }
             } else {
-                ToastUtils.showNormalToast(this, getString(R.string.net_error))
+                showToast(getString(R.string.net_error))
                 dismiss()
             }
         }

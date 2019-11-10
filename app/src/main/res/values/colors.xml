@@ -28,28 +28,29 @@
 
     <color name="transparent">#00000000</color>
 
-    <color name="read_menu_color">#C4C4C4</color>
+    <color name="read_menu_color">#FFFDF6</color>
     <color name="read_menu_trans_color">#FCC4C4C4</color>
     <color name="light_red">#EC4A48</color>
+    <color name="light_yellow">#B87324</color>
 
     <!--read-->
-    <color name="nb.read.bg_1">#EFEFF7</color>
-    <color name="nb.read.bg_2">#CCEBCC</color>
-    <color name="nb.read.bg_4">#CEC29C</color>
-    <color name="nb.read.bg_5">#001C27</color>
-    <color name="nb.read.bg_6">#DDCEC29C</color>
+    <color name="read_bg_one">#EFEFF7</color>
+    <color name="read_bg_two">#CCEBCC</color>
+    <color name="read_bg_four">#CEC29C</color>
+    <color name="read_bg_five">#001C27</color>
+    <color name="read_bg_six">#DDCEC29C</color>
 
 
-    <color name="nb.read.font_1">#383429</color>
-    <color name="nb.read.font_2">#2F332D</color>
-    <color name="nb.read.font_3">#92918C</color>
-    <color name="nb.read.font_4">#2C2C2C</color>
-    <color name="nb.read.font_5">#627176</color>
+    <color name="read_font_one">#383429</color>
+    <color name="read_font_two">#2F332D</color>
+    <color name="read_font_three">#92918C</color>
+    <color name="read_font_four">#2C2C2C</color>
+    <color name="read_font_five">#627176</color>
 
-    <color name="nb.read.bg.night">#000000</color>
-    <color name="nb.read.font_night">#99ffffff</color>
+    <color name="read_bg_night">#000000</color>
+    <color name="read_font_night">#99ffffff</color>
 
-    <color name="nb.read.menu.bg">#191919</color>
-    <color name="nb.read.menu.text">#CBCBCB</color>
-    <color name="nb.read.bar.translucent">#88000000</color>
+    <color name="read_menu_bg">#191919</color>
+    <color name="read_menu_text">#CBCBCB</color>
+    <color name="read_bar_translucent">#88000000</color>
 </resources>

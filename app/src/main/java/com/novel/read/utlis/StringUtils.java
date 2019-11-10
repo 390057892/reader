@@ -11,9 +11,6 @@ public class StringUtils {
 
     /**
      * 将文本中的半角字符，转换成全角字符
-     *
-     * @param input
-     * @return
      */
     public static String halfToFull(String input) {
         input = deleteImgs(input);

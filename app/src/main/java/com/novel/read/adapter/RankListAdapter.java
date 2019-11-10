@@ -18,7 +18,7 @@ import com.novel.read.adapter.holder.EmptyHolder;
 import com.novel.read.adapter.holder.MoreHolder;
 import com.novel.read.constants.Constant;
 import com.novel.read.inter.OnLoadMoreListener;
-import com.novel.read.model.protocol.RankByUpadateResp;
+import com.novel.read.model.protocol.RankByUpdateResp;
 import com.novel.read.utlis.GlideImageLoader;
 
 import java.util.List;
@@ -27,7 +27,7 @@ import static com.novel.read.constants.Constant.COMMENT_SIZE;
 public class RankListAdapter extends RecyclerView.Adapter {
 
 
-    private List<RankByUpadateResp.BookBean> mList;
+    private List<RankByUpdateResp.BookBean> mList;
     private Context mContext;
     private final int VALUE_ITEM = 100; //正常item
     private final int EMPTY_ITEM = 101; //空白item
@@ -38,7 +38,7 @@ public class RankListAdapter extends RecyclerView.Adapter {
     private int visibleThreshold = 1;
     private OnLoadMoreListener mOnLoadMoreListener;
 
-    public RankListAdapter(List<RankByUpadateResp.BookBean> mList,RecyclerView recyclerView) {
+    public RankListAdapter(List<RankByUpdateResp.BookBean> mList, RecyclerView recyclerView) {
         this.mList = mList;
         if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
             final LinearLayoutManager llMangager = (LinearLayoutManager) recyclerView.getLayoutManager();
@@ -94,7 +94,7 @@ public class RankListAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
         if (viewHolder instanceof ViewHolder){
-            RankByUpadateResp.BookBean bookBean = mList.get(i);
+            RankByUpdateResp.BookBean bookBean = mList.get(i);
             ((ViewHolder) viewHolder).tvBookName.setText(bookBean.getTitle());
             ((ViewHolder) viewHolder).tvBookAuthor.setText(bookBean.getAuthor());
             ((ViewHolder) viewHolder).tvBookDescription.setText(bookBean.getDescription());

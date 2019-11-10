@@ -11,7 +11,7 @@ import java.util.List;
  * create by 赵利君 on 2019/6/20
  * describe:
  */
-public class RankByUpadateResp implements Serializable {
+public class RankByUpdateResp implements Serializable {
 
 
     private List<BookBean> book;

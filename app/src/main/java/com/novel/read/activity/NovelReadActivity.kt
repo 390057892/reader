@@ -20,7 +20,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.common_lib.base.utils.ToastUtils
 import com.mango.mangolib.event.EventManager
 import com.novel.read.R
 import com.novel.read.adapter.CategoryAdapter
@@ -40,6 +39,7 @@ import com.novel.read.model.db.DownloadTaskBean
 import com.novel.read.model.db.dbManage.BookRepository
 import com.novel.read.service.DownloadMessage
 import com.novel.read.service.DownloadService
+import com.novel.read.showToast
 import com.novel.read.utlis.BrightnessUtils
 import com.novel.read.utlis.ScreenUtils
 import com.novel.read.utlis.SpUtil
@@ -305,7 +305,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
             if (mCurrentChapter != null) {
                 mMarkAdapter!!.edit = false
                 if (BookRepository.getInstance().getSignById(mCurrentChapter!!.chapterId)) {
-                    ToastUtils.showNormalToast(this, getString(R.string.sign_exist))
+                    showToast(getString(R.string.sign_exist))
                     return@setOnClickListener
                 }
                 BookRepository.getInstance()
@@ -402,7 +402,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
             tvBookReadMode.text = resources.getString(R.string.book_read_mode_day)
             val drawable = ContextCompat.getDrawable(this, R.drawable.ic_read_menu_moring)
             tvBookReadMode.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)
-            cl_layout.setBackgroundColor(ContextCompat.getColor(this, R.color.nb_read_bg_night))
+            cl_layout.setBackgroundColor(ContextCompat.getColor(this, R.color.read_bg_night))
         } else {
             tvBookReadMode.text = resources.getString(R.string.book_read_mode_day)
             val drawable = ContextCompat.getDrawable(this, R.drawable.ic_read_menu_night)
@@ -619,7 +619,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
             //下载成功或失败后隐藏下载视图
             if (ll_download != null) {
                 ll_download.visibility = GONE
-                ToastUtils.showNormalToast(this, msg)
+                showToast(msg)
             }
         } else {
             if (ll_download != null) {
@@ -642,7 +642,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
 
     @Subscribe
     fun onDownLoadEvent(message: DownloadMessage) {
-        ToastUtils.showNormalToast(this, message.message)
+        showToast(message.message)
     }
 
     companion object {

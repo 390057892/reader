@@ -8,7 +8,7 @@ import com.novel.read.constants.Constant
 import com.novel.read.constants.Constant.COMMENT_SIZE
 import com.novel.read.http.AccountManager
 import com.novel.read.inter.OnLoadMoreListener
-import com.novel.read.model.protocol.RankByUpadateResp
+import com.novel.read.model.protocol.RankByUpdateResp
 import kotlinx.android.synthetic.main.activity_rank_list.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,7 +21,7 @@ import java.util.*
 class NovelRankListActivity : NovelBaseActivity() {
 
     private var mAdapter: RankListAdapter? = null
-    private var mList: MutableList<RankByUpadateResp.BookBean> = ArrayList()
+    private var mList: MutableList<RankByUpdateResp.BookBean> = ArrayList()
     private var page = 1
     private var loadSize: Int = 0
     private var type: String = ""
@@ -53,7 +53,7 @@ class NovelRankListActivity : NovelBaseActivity() {
                 } else {
                     if (loadSize >= COMMENT_SIZE) {
                         mAdapter!!.isLoadingMore = true
-                        mList.add(RankByUpadateResp.BookBean())
+                        mList.add(RankByUpdateResp.BookBean())
                         mAdapter!!.notifyDataSetChanged()
                         page++
                         getData()
@@ -67,9 +67,9 @@ class NovelRankListActivity : NovelBaseActivity() {
         AccountManager.getInstance().getRankList(type, sex, Constant.DateTyp.Week, page.toString(), RankCallBack())
     }
 
-    private inner class RankCallBack : Callback<RankByUpadateResp> {
+    private inner class RankCallBack : Callback<RankByUpdateResp> {
 
-        override fun onResponse(call: Call<RankByUpadateResp>, response: Response<RankByUpadateResp>) {
+        override fun onResponse(call: Call<RankByUpdateResp>, response: Response<RankByUpdateResp>) {
             if (response.isSuccessful) {
                 if (response.body() != null) {
                     loadSize = response.body()!!.book.size
@@ -88,7 +88,7 @@ class NovelRankListActivity : NovelBaseActivity() {
             }
         }
 
-        override fun onFailure(call: Call<RankByUpadateResp>, t: Throwable) {
+        override fun onFailure(call: Call<RankByUpdateResp>, t: Throwable) {
 
         }
     }

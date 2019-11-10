@@ -24,7 +24,7 @@ import com.novel.read.http.service.AccountService
 import com.novel.read.model.db.ChapterInfoBean
 import com.novel.read.model.db.dbManage.BookRepository
 import com.novel.read.model.protocol.BookDetailResp
-import com.novel.read.model.protocol.RankByUpadateResp
+import com.novel.read.model.protocol.RankByUpdateResp
 import com.novel.read.model.protocol.RecommendListResp
 import com.novel.read.utlis.LogUtils
 import com.novel.read.utlis.PhoneUtils
@@ -122,7 +122,7 @@ class AccountManager private constructor() {
 
     }
 
-    fun getRankByUpdate(page: Int, limit: Int, callback: Callback<RankByUpadateResp>) {
+    fun getRankByUpdate(page: Int, limit: Int, callback: Callback<RankByUpdateResp>) {
         val map = HashMap<String, String>()
         if (!TextUtils.isEmpty(page.toString())) {
             map["page"] = page.toString()
@@ -139,7 +139,7 @@ class AccountManager private constructor() {
         sex: String,
         dateType: String,
         page: String,
-        callback: Callback<RankByUpadateResp>
+        callback: Callback<RankByUpdateResp>
     ) {
         val map = HashMap<String, String>()
         map["type"] = type
@@ -248,7 +248,7 @@ class AccountManager private constructor() {
         val map = HashMap<String, String>()
         map["article_id"] = id
         return accountService.getBookArticleDetail(getUrlString(Urls.getDetail, map))
-            .map { bean -> bean.article[0] }
+            .map { bean -> bean.article?.get(0) }
     }
 
     /**

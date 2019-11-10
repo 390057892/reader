@@ -26,9 +26,6 @@ public class TxtPage {
         if (lines == null) {
             return new ArrayList<>();
         }
-//        for (int i = 0; i <lines.size() ; i++) {
-//            lines.set(i, StringUtils.convertCC(lines.get(i), MyApp.getContext()));
-//        }
         return lines;
     }
 

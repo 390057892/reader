@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * 这个类是用来解析Object属性的
- * Created by alex on 16/7/4.
+ * Created by zlj
  */
 public class ObjectAnalysisUtils {
     private static ObjectAnalysisUtils instance = null;
