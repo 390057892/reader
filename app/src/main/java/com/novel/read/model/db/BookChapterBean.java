@@ -5,7 +5,7 @@ import org.litepal.crud.LitePalSupport;
 import java.io.Serializable;
 
 /**
- * Created by newbiechen on 17-5-10.
+ * Created by zlj
  * 书的章节链接(作为下载的进度数据)
  * 同时作为网络章节和本地章节 (没有找到更好分离两者的办法)
  */

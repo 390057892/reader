@@ -21,10 +21,10 @@ import com.novel.read.model.db.BookRecordBean
 import com.novel.read.model.db.CollBookBean
 import com.novel.read.model.db.dbManage.BookRepository
 import com.novel.read.model.protocol.BookDetailResp
+import com.novel.read.showToast
 import com.novel.read.utlis.LocalManageUtil
 import com.novel.read.utlis.RxUtils
 import com.novel.read.utlis.SpUtil
-import com.novel.read.utlis.ToastUtil
 import com.squareup.otto.Subscribe
 import io.reactivex.Single
 import io.reactivex.SingleObserver
@@ -88,7 +88,7 @@ class BookFragment : NovelBaseFragment() {
                     )
                 }
                 R.id.edit_book -> if (mList.size == 0) { //没书的时候提醒用户不能编辑
-                    ToastUtil.show(activity, getString(R.string.please_add_book))
+                    activity!!.showToast(getString(R.string.please_add_book))
                 } else {
                     mAdapter!!.setEdit(true)
                     tv_cancel.visibility = View.VISIBLE
@@ -135,7 +135,7 @@ class BookFragment : NovelBaseFragment() {
                     Log.e("count", "setOnClick: $count")
                 }
             }
-            ToastUtil.show(activity, getString(R.string.delete_success))
+            activity!!.showToast( getString(R.string.delete_success))
             EventManager.instance.postEvent(HideBottomBarEvent(false))
             updateBook(UpdateBookEvent())
         }

@@ -13,7 +13,7 @@ import com.novel.read.activity.NovelSettingActivity
 import com.novel.read.base.NovelBaseFragment
 import com.novel.read.constants.Constant
 import com.novel.read.event.ReStartEvent
-import com.novel.read.utlis.ToastUtil
+import com.novel.read.showToast
 import com.novel.read.utlis.VersionUtil
 import com.novel.read.widget.dialog.AppraiseDialog
 import com.squareup.otto.Subscribe
@@ -55,7 +55,7 @@ class MoreFragment : NovelBaseFragment() {
         tv_appraise.setOnClickListener {
             val dialog = AppraiseDialog(activity!!)
             dialog.appraiseDialog(View.OnClickListener {
-                goToMarket(activity!!, VersionUtil.getPackage(activity))
+                goToMarket(activity!!, VersionUtil.getPackage(activity!!))
                 dialog.dismiss()
             })
             dialog.show()
@@ -113,7 +113,7 @@ class MoreFragment : NovelBaseFragment() {
                 if (goToMarket.resolveActivity(context.packageManager) != null) { //有浏览器
                     context.startActivity(goToMarket)
                 } else {
-                    ToastUtil.show(context, "未检测到Google应用商店")
+                    context.showToast("未检测到Google应用商店")
                 }
                 e.printStackTrace()
             }

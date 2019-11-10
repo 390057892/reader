@@ -1,12 +1,9 @@
 package com.novel.read.activity
 
 import android.annotation.SuppressLint
-import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
@@ -22,11 +19,8 @@ import com.novel.read.fragment.RecommendFragment
 import com.novel.read.fragment.StackFragment
 import com.novel.read.http.AccountManager
 import com.novel.read.model.db.dbManage.BookRepository
-import com.novel.read.utlis.DateUtli
+import com.novel.read.showToast
 import com.novel.read.utlis.SpUtil
-import com.novel.read.utlis.ToastUtil
-import com.novel.read.utlis.VersionUtil
-import com.novel.read.widget.dialog.AppraiseDialog
 import com.squareup.otto.Subscribe
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -130,7 +124,7 @@ class NovelMainActivity : NovelBaseActivity() {
                 val secondTime = System.currentTimeMillis()
                 if (secondTime - firstTime > 1000) {
                     firstTime = secondTime
-                    ToastUtil.show(this@NovelMainActivity, "再次点击退出界面")
+                    showToast("再次点击退出界面")
                 } else {
                     finish()
                 }

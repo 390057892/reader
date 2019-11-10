@@ -61,11 +61,7 @@ public class DateUtli {
                         if (dayOfMonth == todayOfMonth) {//表示是同一周
                             int dayOfWeek = otherCalendar.get(Calendar.DAY_OF_WEEK);
                             if (dayOfWeek != 1) {//判断当前是不是星期日     如想显示为：周日 12:09 可去掉此判断
-//                                if (flag==1) {
                                 result = dayNames[otherCalendar.get(Calendar.DAY_OF_WEEK) - 1];
-//                                }else{
-//                                    result = dayNames[otherCalendar.get(Calendar.DAY_OF_WEEK) - 1] + getHourAndMin(timesamp);
-//                                }
                             } else {
                                 result = getTime(timesamp, timeFormat);
                             }
