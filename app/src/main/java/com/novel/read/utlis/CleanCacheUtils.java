@@ -160,7 +160,6 @@ public class CleanCacheUtils {
                 LitePal.deleteAll(BookChapterBean.class);
             }
         } catch (Exception e) {
-            LogUtils.e(e.toString());
         }
     }
 

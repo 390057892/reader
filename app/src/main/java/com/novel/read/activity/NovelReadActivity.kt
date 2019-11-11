@@ -134,8 +134,8 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
         SystemBarUtils.transparentStatusBar(this)
         //隐藏StatusBar
         read_pv_page!!.post { this.hideSystemBar() }
-        read_abl_top_menu.setPadding(0, ScreenUtils.getStatusBarHeight(), 0, 0)
-        ll_download.setPadding(0, ScreenUtils.getStatusBarHeight(), 0, ScreenUtils.dpToPx(15))
+        read_abl_top_menu.setPadding(0, ScreenUtils.statusBarHeight, 0, 0)
+        ll_download.setPadding(0, ScreenUtils.statusBarHeight, 0, ScreenUtils.dpToPx(15))
 
         val lp = window.attributes
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {

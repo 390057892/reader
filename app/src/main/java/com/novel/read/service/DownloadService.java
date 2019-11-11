@@ -242,7 +242,7 @@ public class DownloadService extends BaseService {
                 }
 
                 //判断网络是否出问题
-                if (!NetworkUtils.isAvailable()) {
+                if (!NetworkUtils.INSTANCE.isAvailable()) {
                     //章节加载失败
                     result = LOAD_ERROR;
                     break;

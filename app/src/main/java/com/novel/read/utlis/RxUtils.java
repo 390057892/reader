@@ -9,10 +9,6 @@ import io.reactivex.SingleSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-/**
- * Created by newbiechen on 17-4-29.
- */
-
 public class RxUtils {
 
     public static <T> SingleSource<T> toSimpleSingle(Single<T> upstream){

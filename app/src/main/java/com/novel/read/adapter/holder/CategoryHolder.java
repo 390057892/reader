@@ -34,7 +34,7 @@ public class CategoryHolder extends ViewHolderImpl<TxtChapter> {
         mTvChapter.setSelected(false);
         mTvChapter.setTextColor(ContextCompat.getColor(getContext(),R.color.colorTitle));
         mTvChapter.setCompoundDrawablesWithIntrinsicBounds(drawable,null,null,null);
-        mTvChapter.setText(StringUtils.convertCC(value.getTitle()));
+        mTvChapter.setText(StringUtils.INSTANCE.convertCC(value.getTitle()));
 
     }
 

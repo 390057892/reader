@@ -183,8 +183,8 @@ class AccountManager private constructor() {
 
     fun login(mContext: Context) {
         val map = HashMap<String, String>()
-        Log.e("getUniquePsuedoID", "login: " + PhoneUtils.getUniquePsuedoID())
-        map["code"] = PhoneUtils.getUniquePsuedoID()
+        Log.e("getUniquePsuedoID", "login: " + PhoneUtils.uniquePsuedoID)
+        map["code"] = PhoneUtils.uniquePsuedoID
         val call = accountService.login(Urls.login, mapToBody(map))
         call.enqueue(ServiceCallback(LoginEvent::class.java))
     }
@@ -233,7 +233,6 @@ class AccountManager private constructor() {
                     if (bookChapters[0].title == title) {
                         EventManager.instance.postEvent(ErrorChapterEvent())
                     }
-                    LogUtils.e(t)
                 }
 
                 override fun onComplete() {}

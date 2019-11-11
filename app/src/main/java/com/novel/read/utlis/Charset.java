@@ -8,14 +8,14 @@ public enum Charset {
 	UTF16LE("UTF-16LE"),
 	UTF16BE("UTF-16BE"),
 	GBK("GBK");
-	
+
 	private String mName;
 	public static final byte BLANK = 0x0a;
 
 	private Charset(String name) {
 		mName = name;
 	}
-	
+
 	public String getName() {
 		return mName;
 	}

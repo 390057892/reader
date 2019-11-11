@@ -176,8 +176,8 @@ public abstract class PageLoader {
         mPageMode = mSettingManager.getPageMode();
         mPageStyle = mSettingManager.getPageStyle();
         // 初始化参数
-        mMarginWidth = ScreenUtils.dpToPx(DEFAULT_MARGIN_WIDTH);
-        mMarginHeight = ScreenUtils.dpToPx(DEFAULT_MARGIN_HEIGHT);
+        mMarginWidth = ScreenUtils.INSTANCE.dpToPx(DEFAULT_MARGIN_WIDTH);
+        mMarginHeight = ScreenUtils.INSTANCE.dpToPx(DEFAULT_MARGIN_HEIGHT);
         // 配置文字有关的参数
         setUpTextParams(mSettingManager.getTextSize());
     }
@@ -190,7 +190,7 @@ public abstract class PageLoader {
     private void setUpTextParams(int textSize) {
         // 文字大小
         mTextSize = textSize;
-        mTitleSize = mTextSize + ScreenUtils.spToPx(EXTRA_TITLE_SIZE);
+        mTitleSize = mTextSize + ScreenUtils.INSTANCE.spToPx(EXTRA_TITLE_SIZE);
         // 行间距(大小为字体的一半)
         mTextInterval = mTextSize / 2;
         mTitleInterval = mTitleSize / 2;
@@ -204,7 +204,7 @@ public abstract class PageLoader {
         mTipPaint = new Paint();
         mTipPaint.setColor(mTextColor);
         mTipPaint.setTextAlign(Paint.Align.LEFT); // 绘制的起始点
-        mTipPaint.setTextSize(ScreenUtils.spToPx(DEFAULT_TIP_SIZE)); // Tip默认的字体大小
+        mTipPaint.setTextSize(ScreenUtils.INSTANCE.spToPx(DEFAULT_TIP_SIZE)); // Tip默认的字体大小
         mTipPaint.setAntiAlias(true);
         mTipPaint.setSubpixelText(true);
 
@@ -742,7 +742,7 @@ public abstract class PageLoader {
 
     private void drawBackground(Bitmap bitmap, boolean isUpdate) {
         Canvas canvas = new Canvas(bitmap);
-        int tipMarginHeight = ScreenUtils.dpToPx(3);
+        int tipMarginHeight = ScreenUtils.INSTANCE.dpToPx(3);
         if (!isUpdate) {
             //绘制背景
             canvas.drawColor(mBgColor);
@@ -776,7 +776,7 @@ public abstract class PageLoader {
         } else {
             //擦除区域
             mBgPaint.setColor(mBgColor);
-            canvas.drawRect(mDisplayWidth >> 1, mDisplayHeight - mMarginHeight + ScreenUtils.dpToPx(2), mDisplayWidth, mDisplayHeight, mBgPaint);
+            canvas.drawRect(mDisplayWidth >> 1, mDisplayHeight - mMarginHeight + ScreenUtils.INSTANCE.dpToPx(2), mDisplayWidth, mDisplayHeight, mBgPaint);
         }
 
         //绘制电池
@@ -786,8 +786,8 @@ public abstract class PageLoader {
         int outFrameWidth = (int) mTipPaint.measureText("xxx");
         int outFrameHeight = (int) mTipPaint.getTextSize();
 
-        int polarHeight = ScreenUtils.dpToPx(6);
-        int polarWidth = ScreenUtils.dpToPx(2);
+        int polarHeight = ScreenUtils.INSTANCE.dpToPx(6);
+        int polarWidth = ScreenUtils.INSTANCE.dpToPx(2);
         int border = 1;
         int innerMargin = 1;
 
@@ -795,7 +795,7 @@ public abstract class PageLoader {
         int polarLeft = visibleRight - polarWidth;
         int polarTop = visibleBottom - (outFrameHeight + polarHeight) / 2;
         Rect polar = new Rect(polarLeft, polarTop, visibleRight,
-                polarTop + polarHeight - ScreenUtils.dpToPx(2));
+                polarTop + polarHeight - ScreenUtils.INSTANCE.dpToPx(2));
 
         mBatteryPaint.setStyle(Paint.Style.FILL);
         canvas.drawRect(polar, mBatteryPaint);
@@ -803,7 +803,7 @@ public abstract class PageLoader {
         //外框的制作
         int outFrameLeft = polarLeft - outFrameWidth;
         int outFrameTop = visibleBottom - outFrameHeight;
-        int outFrameBottom = visibleBottom - ScreenUtils.dpToPx(2);
+        int outFrameBottom = visibleBottom - ScreenUtils.INSTANCE.dpToPx(2);
         Rect outFrame = new Rect(outFrameLeft, outFrameTop, polarLeft, outFrameBottom);
 
         mBatteryPaint.setStyle(Paint.Style.STROKE);
@@ -822,7 +822,7 @@ public abstract class PageLoader {
         //底部的字显示的位置Y
         float y = mDisplayHeight - mTipPaint.getFontMetrics().bottom - tipMarginHeight;
         String time = DateUtli.dateConvert(System.currentTimeMillis(), Constant.FORMAT_TIME);
-        float x = outFrameLeft - mTipPaint.measureText(time) - ScreenUtils.dpToPx(4);
+        float x = outFrameLeft - mTipPaint.measureText(time) - ScreenUtils.INSTANCE.dpToPx(4);
         canvas.drawText(time, x, y, mTipPaint);
     }
 
@@ -1299,18 +1299,18 @@ public abstract class PageLoader {
         int titleLinesCount = 0;
         boolean showTitle = true; // 是否展示标题
         String paragraph = chapter.getTitle();//默认展示标题
-        String title = StringUtils.convertCC(chapter.getTitle());
+        String title = StringUtils.INSTANCE.convertCC(chapter.getTitle());
         String half;
         try {
             while (showTitle || (paragraph = br.readLine()) != null) {
                 half = paragraph;
-                paragraph = StringUtils.convertCC(paragraph);
+                paragraph = StringUtils.INSTANCE.convertCC(paragraph);
                 // 重置段落
                 if (!showTitle) {
                     paragraph = paragraph.replaceAll("\\s", "");
                     // 如果只有换行符，那么就不执行
                     if (paragraph.equals("")) continue;
-                    paragraph = StringUtils.halfToFull("  " + paragraph + "\n");
+                    paragraph = StringUtils.INSTANCE.halfToFull("  " + paragraph + "\n");
                 } else {
                     //设置 title 的顶部间距
                     rHeight -= mTitlePara;

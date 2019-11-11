@@ -83,7 +83,7 @@ public class BookDetailResp {
         }
 
         public String getDescription() {
-            return description == null ? "" : StringUtils.delete160(description);
+            return description == null ? "" : StringUtils.INSTANCE.delete160(description);
         }
 
         public void setDescription(String description) {

@@ -69,7 +69,7 @@ public class SearchResp implements Serializable {
         }
 
         public String getTitle() {
-            return title == null ? "" : StringUtils.convertCC(title);
+            return title == null ? "" : StringUtils.INSTANCE.convertCC(title);
         }
 
         public void setTitle(String title) {
@@ -93,7 +93,7 @@ public class SearchResp implements Serializable {
         }
 
         public String getDescription() {
-            return description == null ? "" : StringUtils.convertCC(StringUtils.delete160(description));
+            return description == null ? "" : StringUtils.INSTANCE.convertCC(StringUtils.INSTANCE.delete160(description));
         }
 
         public void setDescription(String description) {
@@ -117,7 +117,7 @@ public class SearchResp implements Serializable {
         }
 
         public String getAuthor() {
-            return author == null ? "" : StringUtils.convertCC(author);
+            return author == null ? "" : StringUtils.INSTANCE.convertCC(author);
         }
 
         public void setAuthor(String author) {

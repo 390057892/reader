@@ -55,7 +55,9 @@ class MoreFragment : NovelBaseFragment() {
         tv_appraise.setOnClickListener {
             val dialog = AppraiseDialog(activity!!)
             dialog.appraiseDialog(View.OnClickListener {
-                goToMarket(activity!!, VersionUtil.getPackage(activity!!))
+                val uri = Uri.parse("https://github.com/390057892/reader")
+                val intent = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(intent)
                 dialog.dismiss()
             })
             dialog.show()
@@ -100,25 +102,6 @@ class MoreFragment : NovelBaseFragment() {
             return fragment
         }
 
-        fun goToMarket(context: Context, packageName: String?) {
-            val uri = Uri.parse("market://details?id=" + packageName!!)
-            val goToMarket = Intent(Intent.ACTION_VIEW, uri)
-            val googlePlay = "com.android.vending"//这里对应的是谷歌商店，跳转别的商店改成对应的即可
-
-            goToMarket.setPackage(googlePlay)//这里对应的是谷歌商店，跳转别的商店改成对应的即可
-
-            try {
-                context.startActivity(goToMarket)
-            } catch (e: ActivityNotFoundException) {
-                if (goToMarket.resolveActivity(context.packageManager) != null) { //有浏览器
-                    context.startActivity(goToMarket)
-                } else {
-                    context.showToast("未检测到Google应用商店")
-                }
-                e.printStackTrace()
-            }
-
-        }
     }
 
     override fun onDestroy() {
