@@ -47,17 +47,17 @@ public class SimulationPageAnim extends HorizonPageAnim {
 
     boolean mIsRTandLB; // 是否属于右上左下
     private float mMaxLength ;
-    int[] mBackShadowColors;// 背面颜色组
-    int[] mFrontShadowColors;// 前面颜色组
-    GradientDrawable mBackShadowDrawableLR; // 有阴影的GradientDrawable
-    GradientDrawable mBackShadowDrawableRL;
-    GradientDrawable mFolderShadowDrawableLR;
-    GradientDrawable mFolderShadowDrawableRL;
+    private int[] mBackShadowColors;// 背面颜色组
+    private int[] mFrontShadowColors;// 前面颜色组
+    private GradientDrawable mBackShadowDrawableLR; // 有阴影的GradientDrawable
+    private GradientDrawable mBackShadowDrawableRL;
+    private GradientDrawable mFolderShadowDrawableLR;
+    private GradientDrawable mFolderShadowDrawableRL;
 
-    GradientDrawable mFrontShadowDrawableHBT;
-    GradientDrawable mFrontShadowDrawableHTB;
-    GradientDrawable mFrontShadowDrawableVLR;
-    GradientDrawable mFrontShadowDrawableVRL;
+    private GradientDrawable mFrontShadowDrawableHBT;
+    private GradientDrawable mFrontShadowDrawableHTB;
+    private GradientDrawable mFrontShadowDrawableVLR;
+    private GradientDrawable mFrontShadowDrawableVRL;
 
     Paint mPaint;
     public SimulationPageAnim(int w, int h, View view, OnPageChangeListener listener) {

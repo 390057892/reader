@@ -1,5 +1,6 @@
 package com.novel.read.activity
 
+import android.content.DialogInterface
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
@@ -169,16 +170,16 @@ class NovelSearchActivity : NovelBaseActivity() {
             saveKey()
         }
         head_history.setOnClickListener { view ->
-            DialogUtils.getInstance()
-                .showAlertDialog(
-                    this@NovelSearchActivity,
-                    getString(R.string.clear_search)
-                ) { dialogInterface, i ->
+
+            DialogUtils.getInstance().showAlertDialog(
+                this,
+                getString(R.string.clear_search),
+                dialogListener = DialogInterface.OnClickListener { dialog, which ->
                     LitePal.deleteAll(SearchListTable::class.java)
                     mHisList.clear()
                     mHisList.addAll(LitePal.order("saveTime desc").limit(5).find(SearchListTable::class.java))
                     mHisAdapter!!.notifyDataSetChanged()
-                }
+                })
         }
 
         tv_cancel.setOnClickListener {

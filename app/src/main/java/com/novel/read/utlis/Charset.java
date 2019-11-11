@@ -12,7 +12,7 @@ public enum Charset {
 	private String mName;
 	public static final byte BLANK = 0x0a;
 
-	private Charset(String name) {
+	Charset(String name) {
 		mName = name;
 	}
 
