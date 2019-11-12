@@ -15,13 +15,11 @@ import com.novel.read.widget.page.PageAnimation
 class CoverPageAnim(w: Int, h: Int, view: View, listener: PageAnimation.OnPageChangeListener) :
     HorizonPageAnim(w, h, view, listener) {
 
-    private val mSrcRect: Rect
-    private val mDestRect: Rect
+    private val mSrcRect: Rect = Rect(0, 0, mViewWidth, mViewHeight)
+    private val mDestRect: Rect = Rect(0, 0, mViewWidth, mViewHeight)
     private val mBackShadowDrawableLR: GradientDrawable
 
     init {
-        mSrcRect = Rect(0, 0, mViewWidth, mViewHeight)
-        mDestRect = Rect(0, 0, mViewWidth, mViewHeight)
         val mBackShadowColors = intArrayOf(0x66000000, 0x00000000)
         mBackShadowDrawableLR = GradientDrawable(
             GradientDrawable.Orientation.LEFT_RIGHT, mBackShadowColors
