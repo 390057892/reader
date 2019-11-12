@@ -39,11 +39,9 @@ public class LocalManageUtil {
 
     /**
      * 获取选择的语言设置
-     *
-     * @param context
-     * @return
+     * @param context context
      */
-    public static Locale getSetLanguageLocale(Context context) {
+    private static Locale getSetLanguageLocale(Context context) {
 
         switch (SpUtil.getInstance().getSelectLanguage()) {
 
@@ -59,7 +57,7 @@ public class LocalManageUtil {
 
     public static void saveSelectLanguage(Context context, int select) {
         SpUtil.getInstance().saveLanguage(select); //本地国际化
-        ReadSettingManager.getInstance().setConvertType(select); //网络数据国际化
+        ReadSettingManager.Companion.getInstance().setConvertType(select); //网络数据国际化
         setApplicationLanguage(context);
     }
 

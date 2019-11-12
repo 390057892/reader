@@ -8,7 +8,7 @@ import java.util.Locale;
 
 public class SpUtil {
 
-    static SharedPreferences sp;
+    private static SharedPreferences sp;
     private static SpUtil sInstance;
 
     public static void init(Context context) {
@@ -90,9 +90,6 @@ public class SpUtil {
         editor.clear();
         editor.apply();
     }
-
-
-
 
     private final String TAG_LANGUAGE = "language_select";
     private Locale systemCurrentLocal = Locale.ENGLISH;

@@ -398,7 +398,7 @@ public class LocalPageLoader extends PageLoader {
                         for (int i = 0; i < mChapterList.size(); ++i) {
                             TxtChapter chapter = mChapterList.get(i);
                             BookChapterBean bean = new BookChapterBean();
-                            bean.setId(MD5Utils.strToMd5By16(mBookFile.getAbsolutePath()
+                            bean.setId(MD5Utils.INSTANCE.strToMd5By16(mBookFile.getAbsolutePath()
                                     + File.separator + chapter.title)); // 将路径+i 作为唯一值
                             bean.setTitle(chapter.getTitle());
                             bean.setStart(chapter.getStart());

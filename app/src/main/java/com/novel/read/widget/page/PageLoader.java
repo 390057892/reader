@@ -171,7 +171,7 @@ public abstract class PageLoader {
 
     private void initData() {
         // 获取配置管理器
-        mSettingManager = ReadSettingManager.getInstance();
+        mSettingManager = ReadSettingManager.Companion.getInstance();
         // 获取配置参数
         mPageMode = mSettingManager.getPageMode();
         mPageStyle = mSettingManager.getPageStyle();
