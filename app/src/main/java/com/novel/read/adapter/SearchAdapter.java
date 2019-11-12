@@ -108,7 +108,7 @@ public class SearchAdapter extends RecyclerView.Adapter {
             ((BookHolder) viewHolder).tvBookName.setText(bookBean.getTitle());
             ((BookHolder) viewHolder).tvBookAuthor.setText(bookBean.getAuthor());
             ((BookHolder) viewHolder).tvBookDescription.setText(bookBean.getDescription());
-            GlideImageLoader.displayCornerImage(mContext, bookBean.getCover(), ((BookHolder) viewHolder).ivBook);
+            GlideImageLoader.INSTANCE.displayCornerImage(mContext, bookBean.getCover(), ((BookHolder) viewHolder).ivBook);
             viewHolder.itemView.setOnClickListener(view -> {
                 Intent intent = new Intent(mContext, NovelBookDetailActivity.class);
                 intent.putExtra(Constant.Bundle.BookId, bookBean.getId());

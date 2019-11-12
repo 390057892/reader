@@ -9,7 +9,7 @@ import com.novel.read.widget.page.PageAnimation
  * Created by zlj
  */
 
-class SlidePageAnim(w: Int, h: Int, view: View, listener: PageAnimation.OnPageChangeListener) :
+class SlidePageAnim(w: Int, h: Int, view: View, listener: OnPageChangeListener) :
     HorizonPageAnim(w, h, view, listener) {
 
     private val mSrcRect: Rect = Rect(0, 0, mViewWidth, mViewHeight)

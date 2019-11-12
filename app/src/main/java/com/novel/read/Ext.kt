@@ -1,6 +1,7 @@
 package com.novel.read
 
 import android.content.Context
+import android.widget.ImageView
 import android.widget.Toast
 
 fun Context.showToast(msg:String){

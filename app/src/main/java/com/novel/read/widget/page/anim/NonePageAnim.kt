@@ -9,7 +9,7 @@ import com.novel.read.widget.page.PageAnimation
  * 无
  */
 
-class NonePageAnim(w: Int, h: Int, view: View, listener: PageAnimation.OnPageChangeListener) :
+class NonePageAnim(w: Int, h: Int, view: View, listener: OnPageChangeListener) :
     HorizonPageAnim(w, h, view, listener) {
 
     override fun drawStatic(canvas: Canvas) {

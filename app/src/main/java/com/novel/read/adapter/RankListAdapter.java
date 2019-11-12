@@ -98,7 +98,7 @@ public class RankListAdapter extends RecyclerView.Adapter {
             ((ViewHolder) viewHolder).tvBookName.setText(bookBean.getTitle());
             ((ViewHolder) viewHolder).tvBookAuthor.setText(bookBean.getAuthor());
             ((ViewHolder) viewHolder).tvBookDescription.setText(bookBean.getDescription());
-            GlideImageLoader.displayCornerImage(mContext,bookBean.getCover(),((ViewHolder) viewHolder).ivBook);
+            GlideImageLoader.INSTANCE.displayCornerImage(mContext,bookBean.getCover(),((ViewHolder) viewHolder).ivBook);
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

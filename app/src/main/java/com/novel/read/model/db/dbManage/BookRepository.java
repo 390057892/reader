@@ -145,7 +145,7 @@ public class BookRepository {
             writer.flush();
         } catch (IOException e) {
             e.printStackTrace();
-            IOUtils.close(writer);
+            IOUtils.INSTANCE.close(writer);
         }
     }
 
@@ -219,7 +219,7 @@ public class BookRepository {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            IOUtils.close(reader);
+            IOUtils.INSTANCE.close(reader);
         }
 
         ChapterInfoBean bean = new ChapterInfoBean();

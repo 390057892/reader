@@ -6,6 +6,7 @@ import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -21,7 +22,6 @@ import com.novel.read.model.db.DownloadTaskBean;
 import com.novel.read.model.db.dbManage.BookManager;
 import com.novel.read.model.db.dbManage.BookRepository;
 import com.novel.read.utlis.LocalManageUtil;
-import com.novel.read.utlis.LogUtils;
 import com.novel.read.utlis.NetworkUtils;
 
 import java.util.ArrayList;
@@ -320,7 +320,7 @@ public class DownloadService extends BaseService {
                         },
                         e -> {
                             //当前进度加载错误（这里需要判断是什么问题，根据相应的问题做出相应的回答）
-                            LogUtils.e(e);
+                            Log.e(TAG, "loadChapter: " + e);
                             //设置加载结果
                             result[0] = LOAD_ERROR;
                         }

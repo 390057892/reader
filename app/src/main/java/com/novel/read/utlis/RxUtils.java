@@ -25,18 +25,6 @@ public class RxUtils {
         return new TwoTuple<T, R>(first, second);
     }
 
-//    public static <T> Single<DetailBean<T>> toCommentDetail(Single<T> detailSingle,
-//                                                Single<List<CommentBean>> bestCommentsSingle,
-//                                                Single<List<CommentBean>> commentsSingle){
-//        return Single.zip(detailSingle, bestCommentsSingle, commentsSingle,
-//                new Function3<T, List<CommentBean>, List<CommentBean>, DetailBean<T>>() {
-//                    @Override
-//                    public DetailBean<T> apply(T t, List<CommentBean> commentBeen,
-//                                               List<CommentBean> commentBeen2) throws Exception {
-//                        return new DetailBean<T>(t,commentBeen,commentBeen2);
-//                    }
-//                });
-//    }
 
     public static class TwoTuple<A, B> {
         public final A first;

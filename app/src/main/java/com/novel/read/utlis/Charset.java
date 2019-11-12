@@ -9,7 +9,7 @@ public enum Charset {
 	UTF16BE("UTF-16BE"),
 	GBK("GBK");
 
-	private String mName;
+	public String mName;
 	public static final byte BLANK = 0x0a;
 
 	Charset(String name) {

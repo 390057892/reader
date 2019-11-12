@@ -85,7 +85,7 @@ public class SearchResp implements Serializable {
         }
 
         public String getCover() {
-            return cover;
+            return cover == null ? "" : cover;
         }
 
         public void setCover(String cover) {

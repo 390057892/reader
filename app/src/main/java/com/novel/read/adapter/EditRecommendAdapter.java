@@ -49,7 +49,7 @@ public class EditRecommendAdapter extends RecyclerView.Adapter<EditRecommendAdap
         viewHolder.mTvDescription.setText(listBean.getDescription());
         viewHolder.mTvHumanNum.setText(listBean.getHot());
         viewHolder.mTvLoveNum.setText(listBean.getLike());
-        GlideImageLoader.displayCornerImage(mContext,listBean.getBook_cover(),viewHolder.mIvBook);
+        GlideImageLoader.INSTANCE.displayCornerImage(mContext,listBean.getBook_cover(),viewHolder.mIvBook);
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

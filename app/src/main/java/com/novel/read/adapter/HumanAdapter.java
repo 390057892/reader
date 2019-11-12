@@ -46,7 +46,7 @@ public class HumanAdapter extends RecyclerView.Adapter<HumanAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.mTvBookName.setText(mList.get(i).getBook_title());
         viewHolder.mTvAuthor.setText(mList.get(i).getAuthor());
-        GlideImageLoader.displayCornerImage(mContext,mList.get(i).getBook_cover(),viewHolder.mIvBook);
+        GlideImageLoader.INSTANCE.displayCornerImage(mContext,mList.get(i).getBook_cover(),viewHolder.mIvBook);
         viewHolder.itemView.setOnClickListener(view -> {
             Intent intent=new Intent(mContext, NovelBookDetailActivity.class);
             intent.putExtra(Constant.Bundle.BookId, mList.get(i).getBook_id());

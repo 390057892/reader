@@ -11,7 +11,7 @@ import com.novel.read.widget.page.PageAnimation
  * 仿真动画
  */
 
-class SimulationPageAnim(w: Int, h: Int, view: View, listener: PageAnimation.OnPageChangeListener) :
+class SimulationPageAnim(w: Int, h: Int, view: View, listener: OnPageChangeListener) :
     HorizonPageAnim(w, h, view, listener) {
 
     private var mCornerX = 1 // 拖拽点对应的页脚

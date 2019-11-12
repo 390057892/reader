@@ -15,7 +15,7 @@ import com.novel.read.widget.page.PageAnimation
 
 abstract class HorizonPageAnim(
     w: Int, h: Int, marginWidth: Int, marginHeight: Int,
-    view: View, listener: PageAnimation.OnPageChangeListener
+    view: View, listener: OnPageChangeListener
 ) : PageAnimation(w, h, marginWidth, marginHeight, view, listener) {
 
     protected var mCurBitmap: Bitmap
@@ -34,7 +34,7 @@ abstract class HorizonPageAnim(
     //是否没下一页或者上一页
     private var noNext = false
 
-    constructor(w: Int, h: Int, view: View, listener: PageAnimation.OnPageChangeListener) : this(
+    constructor(w: Int, h: Int, view: View, listener: OnPageChangeListener) : this(
         w,
         h,
         0,

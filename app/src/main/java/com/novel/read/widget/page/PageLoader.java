@@ -821,7 +821,7 @@ public abstract class PageLoader {
         //绘制当前时间
         //底部的字显示的位置Y
         float y = mDisplayHeight - mTipPaint.getFontMetrics().bottom - tipMarginHeight;
-        String time = DateUtli.dateConvert(System.currentTimeMillis(), Constant.FORMAT_TIME);
+        String time = DateUtli.INSTANCE.dateConvert(System.currentTimeMillis(), Constant.FORMAT_TIME);
         float x = outFrameLeft - mTipPaint.measureText(time) - ScreenUtils.INSTANCE.dpToPx(4);
         canvas.drawText(time, x, y, mTipPaint);
     }
@@ -1411,7 +1411,7 @@ public abstract class PageLoader {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            IOUtils.close(br);
+            IOUtils.INSTANCE.close(br);
         }
         return pages;
     }

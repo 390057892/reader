@@ -22,12 +22,12 @@ import io.reactivex.SingleEmitter;
 import io.reactivex.SingleOnSubscribe;
 
 /**
- * Created by newbiechen on 17-5-11.
+ * Created by zlj
  */
 
 public class FileUtils {
     //采用自己的格式去设置文件，防止文件被系统文件查询到
-    public static final String SUFFIX_NB = ".nb";
+    public static final String SUFFIX_NB = ".zlj";
     public static final String SUFFIX_TXT = ".txt";
     public static final String SUFFIX_EPUB = ".epub";
     public static final String SUFFIX_PDF = ".pdf";
@@ -126,7 +126,7 @@ public class FileUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
-            IOUtils.close(reader);
+            IOUtils.INSTANCE.close(reader);
         }
         return sb.toString();
     }
@@ -249,7 +249,7 @@ public class FileUtils {
                             continue;
                         else
                             break;
-                    } else if (0xE0 <= read && read <= 0xEF) {// 也有可能出错，但是几率较小
+                    } else if (0xE0 <= read) {// 也有可能出错，但是几率较小
                         read = bis.read();
                         if (0x80 <= read && read <= 0xBF) {
                             read = bis.read();
@@ -266,7 +266,7 @@ public class FileUtils {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            IOUtils.close(bis);
+            IOUtils.INSTANCE.close(bis);
         }
         return charset;
     }

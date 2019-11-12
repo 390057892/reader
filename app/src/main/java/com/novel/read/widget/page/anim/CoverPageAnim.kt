@@ -12,7 +12,7 @@ import com.novel.read.widget.page.PageAnimation
  * 覆盖动画
  */
 
-class CoverPageAnim(w: Int, h: Int, view: View, listener: PageAnimation.OnPageChangeListener) :
+class CoverPageAnim(w: Int, h: Int, view: View, listener: OnPageChangeListener) :
     HorizonPageAnim(w, h, view, listener) {
 
     private val mSrcRect: Rect = Rect(0, 0, mViewWidth, mViewHeight)

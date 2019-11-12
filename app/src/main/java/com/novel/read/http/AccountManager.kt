@@ -26,7 +26,6 @@ import com.novel.read.model.db.dbManage.BookRepository
 import com.novel.read.model.protocol.BookDetailResp
 import com.novel.read.model.protocol.RankByUpdateResp
 import com.novel.read.model.protocol.RecommendListResp
-import com.novel.read.utlis.LogUtils
 import com.novel.read.utlis.PhoneUtils
 import com.novel.read.widget.page.TxtChapter
 

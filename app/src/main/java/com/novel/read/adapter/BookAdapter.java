@@ -63,7 +63,7 @@ public class BookAdapter extends RecyclerView.Adapter {
                 } else {
                     ((ViewHolder) viewHolder).mIvGeng.setVisibility(View.GONE);
                 }
-                GlideImageLoader.displayCornerImage(mContext, mList.get(i).getCover(), ((ViewHolder) viewHolder).mIvBook);
+                GlideImageLoader.INSTANCE.displayCornerImage(mContext, mList.get(i).getCover(), ((ViewHolder) viewHolder).mIvBook);
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -92,7 +92,7 @@ public class BookAdapter extends RecyclerView.Adapter {
                     } else {
                         ((ViewHolder) viewHolder).mIvGeng.setVisibility(View.GONE);
                     }
-                    GlideImageLoader.displayCornerImage(mContext, mList.get(i).getCover(), ((ViewHolder) viewHolder).mIvBook);
+                    GlideImageLoader.INSTANCE.displayCornerImage(mContext, mList.get(i).getCover(), ((ViewHolder) viewHolder).mIvBook);
                     viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

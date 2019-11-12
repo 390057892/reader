@@ -10,6 +10,7 @@ public class SpUtil {
 
     static SharedPreferences sp;
     private static SpUtil sInstance;
+
     public static void init(Context context) {
         sp = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
     }

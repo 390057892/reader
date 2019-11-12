@@ -1,6 +1,7 @@
 package com.novel.read.widget.page;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.novel.read.constants.Constant;
 import com.novel.read.model.db.BookChapterBean;
@@ -10,7 +11,6 @@ import com.novel.read.utlis.Charset;
 import com.novel.read.utlis.DateUtli;
 import com.novel.read.utlis.FileUtils;
 import com.novel.read.utlis.IOUtils;
-import com.novel.read.utlis.LogUtils;
 import com.novel.read.utlis.MD5Utils;
 import com.novel.read.utlis.RxUtils;
 import com.novel.read.utlis.StringUtils;
@@ -258,7 +258,7 @@ public class LocalPageLoader extends PageLoader {
         }
 
         mChapterList = chapters;
-        IOUtils.close(bookStream);
+        IOUtils.INSTANCE.close(bookStream);
 
         System.gc();
         System.runFinalization();
@@ -284,7 +284,7 @@ public class LocalPageLoader extends PageLoader {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            IOUtils.close(bookStream);
+            IOUtils.INSTANCE.close(bookStream);
         }
 
         return new byte[0];
@@ -348,7 +348,7 @@ public class LocalPageLoader extends PageLoader {
         //获取文件编码
         mCharset = FileUtils.getCharset(mBookFile.getAbsolutePath());
 
-        String lastModified = DateUtli.dateConvert(mBookFile.lastModified(), Constant.FORMAT_BOOK_DATE);
+        String lastModified = DateUtli.INSTANCE.dateConvert(mBookFile.lastModified(), Constant.FORMAT_BOOK_DATE);
 
         // 判断文件是否已经加载过，并具有缓存
         if (!mCollBook.isUpdate() && mCollBook.getUpdated() != null
@@ -409,7 +409,7 @@ public class LocalPageLoader extends PageLoader {
                         mCollBook.setBookChapters(bookChapterBeanList);
                         mCollBook.setUpdated(lastModified);
 
-                        BookRepository.getInstance().saveBookChaptersWithAsync(bookChapterBeanList,mCollBook);
+                        BookRepository.getInstance().saveBookChaptersWithAsync(bookChapterBeanList, mCollBook);
                         BookRepository.getInstance().saveCollBook(mCollBook);
 
                         // 加载并显示当前章节
@@ -419,7 +419,7 @@ public class LocalPageLoader extends PageLoader {
                     @Override
                     public void onError(Throwable e) {
                         chapterError();
-                        LogUtils.d(TAG, "file load error:" + e.toString());
+                        Log.e(TAG, "file load error: " + e.toString());
                     }
                 });
     }

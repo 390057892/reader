@@ -53,7 +53,7 @@ public class StackAdapter extends RecyclerView.Adapter {
                 intent.putExtra(Constant.Bundle.mTitle, mList.get(i).getTitle());
                 mContext.startActivity(intent);
             });
-            GlideImageLoader.displayCornerImage(mContext, mList.get(i).getCover(), ((ViewHolder) viewHolder).mIvType, R.drawable.ic_type_default);
+            GlideImageLoader.INSTANCE.displayCornerImage(mContext, mList.get(i).getCover(), ((ViewHolder) viewHolder).mIvType, R.drawable.ic_type_default);
         }
     }
 

@@ -47,7 +47,7 @@ public class RankAdapter extends RecyclerView.Adapter<RankAdapter.ViewHolder>{
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.mTvBookName.setText(mList.get(i).getBook_title());
         viewHolder.mTvAuthor.setText(mList.get(i).getAuthor());
-        GlideImageLoader.displayCornerImage(mContext,mList.get(i).getBook_cover(),viewHolder.mIvBook);
+        GlideImageLoader.INSTANCE.displayCornerImage(mContext,mList.get(i).getBook_cover(),viewHolder.mIvBook);
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

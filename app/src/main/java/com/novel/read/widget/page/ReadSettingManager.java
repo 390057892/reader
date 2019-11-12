@@ -26,8 +26,6 @@ public class ReadSettingManager {
 
     private static volatile ReadSettingManager sInstance;
 
-    private SpUtil sharedPreUtils;
-
     public static ReadSettingManager getInstance() {
         if (sInstance == null) {
             synchronized (ReadSettingManager.class) {
@@ -40,7 +38,6 @@ public class ReadSettingManager {
     }
 
     private ReadSettingManager() {
-        sharedPreUtils = SpUtil.getInstance();
     }
 
     public void setPageStyle(PageStyle pageStyle) {

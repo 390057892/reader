@@ -22,7 +22,7 @@ import java.util.ArrayList
  */
 class ScrollPageAnim(
     w: Int, h: Int, marginWidth: Int, marginHeight: Int,
-    view: View, listener: PageAnimation.OnPageChangeListener
+    view: View, listener: OnPageChangeListener
 ) : PageAnimation(w, h, marginWidth, marginHeight, view, listener) {
     private var mVelocity: VelocityTracker? = null
 

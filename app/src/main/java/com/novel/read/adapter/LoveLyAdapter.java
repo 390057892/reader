@@ -46,7 +46,7 @@ public class LoveLyAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         if (viewHolder instanceof ViewHolder) {
             RecommendBookResp.BookBean bookBean = mList.get(i);
-            GlideImageLoader.displayCornerImage(mContext, bookBean.getCover(), ((ViewHolder) viewHolder).mIvBook);
+            GlideImageLoader.INSTANCE.displayCornerImage(mContext, bookBean.getCover(), ((ViewHolder) viewHolder).mIvBook);
             ((ViewHolder) viewHolder).mTvBookName.setText(bookBean.getTitle());
             ((ViewHolder) viewHolder).mTvBookAuthor.setText(mContext.getString(R.string.author_zhu,bookBean.getAuthor()));
             ((ViewHolder) viewHolder).mTvDescription.setText(bookBean.getDescription());
