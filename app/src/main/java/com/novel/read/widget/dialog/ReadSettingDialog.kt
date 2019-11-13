@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.layout_setting.*
 class ReadSettingDialog(mActivity: Activity, private var mPageLoader: PageLoader) :
     Dialog(mActivity, R.style.ReadSettingDialog) {
 
-    private var mPageStyleAdapter: PageStyleAdapter? = null
+    private lateinit var mPageStyleAdapter: PageStyleAdapter
     private var mSettingManager: ReadSettingManager = ReadSettingManager.getInstance()
 
     private var mPageMode: PageMode? = null
@@ -88,7 +88,7 @@ class ReadSettingDialog(mActivity: Activity, private var mPageLoader: PageLoader
         read_setting_rv_bg.layoutManager = GridLayoutManager(context, 4)
         read_setting_rv_bg.adapter = mPageStyleAdapter
 
-        mPageStyleAdapter!!.setPageStyleChecked(mPageStyle!!)
+        mPageStyleAdapter.setPageStyleChecked(mPageStyle!!)
 
     }
 

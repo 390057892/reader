@@ -35,13 +35,13 @@ import java.util.*
 class NovelSearchActivity : NovelBaseActivity() {
 
     private val mHotList = ArrayList<String>()
-    private var mHotAdapter: HotAdapter? = null
+    private lateinit var mHotAdapter: HotAdapter
 
     private var mHisList: MutableList<SearchListTable> = ArrayList()
-    private var mHisAdapter: HistoryAdapter? = null
+    private lateinit var mHisAdapter: HistoryAdapter
 
     private val mSearchList = ArrayList<SearchResp.BookBean>()
-    private var mSearchAdapter: SearchAdapter? = null
+    private lateinit var mSearchAdapter: SearchAdapter
 
     private var page = 1
     private var loadSize: Int = 0
@@ -76,15 +76,15 @@ class NovelSearchActivity : NovelBaseActivity() {
         mSearchAdapter = SearchAdapter(mSearchList, rlv_search)
         rlv_search.adapter = mSearchAdapter
 
-        mSearchAdapter!!.setOnLoadMoreListener(object : OnLoadMoreListener {
+        mSearchAdapter.setOnLoadMoreListener(object : OnLoadMoreListener {
             override fun onLoadMore() {
-                if (mSearchAdapter!!.isLoadingMore) {
+                if (mSearchAdapter.isLoadingMore) {
 
                 } else {
                     if (loadSize >= COMMENT_SIZE) {
-                        mSearchAdapter!!.isLoadingMore = true
+                        mSearchAdapter.isLoadingMore = true
                         mSearchList.add(SearchResp.BookBean())
-                        mSearchAdapter!!.notifyDataSetChanged()
+                        mSearchAdapter.notifyDataSetChanged()
                         page++
                         getData()
                     }
@@ -143,29 +143,29 @@ class NovelSearchActivity : NovelBaseActivity() {
         tv_search.setOnKeyListener { v, keyCode, event ->
             //修改回车键功能
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                mSearchAdapter!!.setHolderType(true)
+                mSearchAdapter.setHolderType(true)
                 saveKey()
                 return@setOnKeyListener true
             }
             false
         }
 
-        mHotAdapter!!.setOnItemClickListener { view, pos ->
-            mSearchAdapter!!.setHolderType(true)
+        mHotAdapter.setOnItemClickListener { view, pos ->
+            mSearchAdapter.setHolderType(true)
             refresh.visibility = View.VISIBLE
             tv_search.setText(mHotList[pos])
             saveKey()
         }
 
-        mHisAdapter!!.setOnItemClickListener { view, pos ->
-            mSearchAdapter!!.setHolderType(true)
+        mHisAdapter.setOnItemClickListener { view, pos ->
+            mSearchAdapter.setHolderType(true)
             refresh.visibility = View.VISIBLE
             tv_search.setText(mHisList[pos].key)
             saveKey()
         }
 
-        mSearchAdapter!!.setOnItemClickListener { view, pos ->
-            mSearchAdapter!!.setHolderType(true)
+        mSearchAdapter.setOnItemClickListener { view, pos ->
+            mSearchAdapter.setHolderType(true)
             tv_search.setText(mSearchList[pos].title)
             saveKey()
         }
@@ -178,7 +178,7 @@ class NovelSearchActivity : NovelBaseActivity() {
                     LitePal.deleteAll(SearchListTable::class.java)
                     mHisList.clear()
                     mHisList.addAll(LitePal.order("saveTime desc").limit(5).find(SearchListTable::class.java))
-                    mHisAdapter!!.notifyDataSetChanged()
+                    mHisAdapter.notifyDataSetChanged()
                 })
         }
 
@@ -200,13 +200,13 @@ class NovelSearchActivity : NovelBaseActivity() {
         searchListTable.saveOrUpdate("key=?", tv_search.text.toString().trim { it <= ' ' })
         mHisList.clear()
         mHisList.addAll(LitePal.order("saveTime desc").limit(5).find(SearchListTable::class.java))
-        mHisAdapter!!.notifyDataSetChanged()
+        mHisAdapter.notifyDataSetChanged()
     }
 
     override fun onBackPressed() {
         if (refresh.visibility == View.VISIBLE) {
             tv_search.setText("")
-            mSearchAdapter!!.setHolderType(false)
+            mSearchAdapter.setHolderType(false)
             page = 1
         } else {
             super.onBackPressed()
@@ -221,7 +221,7 @@ class NovelSearchActivity : NovelBaseActivity() {
         } else {
             mHotList.clear()
             mHotList.addAll(event.result!!.key)
-            mHotAdapter!!.notifyDataSetChanged()
+            mHotAdapter.notifyDataSetChanged()
         }
     }
 
@@ -232,15 +232,15 @@ class NovelSearchActivity : NovelBaseActivity() {
             refresh.showError()
         } else {
             loadSize = event.result!!.book.size
-            if (mSearchAdapter!!.isLoadingMore) {
+            if (mSearchAdapter.isLoadingMore) {
                 mSearchList.removeAt(mSearchList.size - 1)
                 mSearchList.addAll(event.result!!.book)
-                mSearchAdapter!!.notifyDataSetChanged()
-                mSearchAdapter!!.isLoadingMore = false
+                mSearchAdapter.notifyDataSetChanged()
+                mSearchAdapter.isLoadingMore = false
             } else {
                 mSearchList.clear()
                 mSearchList.addAll(event.result!!.book)
-                mSearchAdapter!!.notifyDataSetChanged()
+                mSearchAdapter.notifyDataSetChanged()
             }
         }
     }

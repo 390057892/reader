@@ -4,7 +4,7 @@ import com.novel.read.model.db.CollBookBean;
 import com.novel.read.utlis.StringUtils;
 
 /**
- * create by 赵利君 on 2019/6/18
+ * create by zlj on 2019/6/18
  * describe:
  */
 public class BookDetailResp {

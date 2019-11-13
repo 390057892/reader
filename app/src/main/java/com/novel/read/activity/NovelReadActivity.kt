@@ -61,11 +61,11 @@ import java.util.*
  */
 class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListener {
 
-    private var mCategoryAdapter: CategoryAdapter? = null
+    private lateinit var mCategoryAdapter: CategoryAdapter
     private val mChapters = ArrayList<TxtChapter>()
     private var mCurrentChapter: TxtChapter? = null //当前章节
     private var currentChapter = 0
-    private var mMarkAdapter: MarkAdapter? = null
+    private lateinit var mMarkAdapter: MarkAdapter
     private val mMarks = ArrayList<BookSignTable>()
     private lateinit var mPageLoader: PageLoader
     private var mTopInAnim: Animation? = null
@@ -194,7 +194,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
             object : PageLoader.OnPageChangeListener {
 
                 override fun onChapterChange(pos: Int) {
-                    mCategoryAdapter!!.setChapter(pos)
+                    mCategoryAdapter.setChapter(pos)
                     mCurrentChapter = mChapters[pos]
                     currentChapter = pos
                 }
@@ -207,7 +207,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
                 override fun onCategoryFinish(chapters: List<TxtChapter>) {
                     mChapters.clear()
                     mChapters.addAll(chapters)
-                    mCategoryAdapter!!.refreshItems(mChapters)
+                    mCategoryAdapter.refreshItems(mChapters)
                 }
 
                 override fun onPageCountChange(count: Int) {}
@@ -234,7 +234,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
         })
         read_tv_category.setOnClickListener {
             //移动到指定位置
-            if (mCategoryAdapter!!.count > 0) {
+            if (mCategoryAdapter.count > 0) {
                 rlv_list.setSelection(mPageLoader.chapterPos)
             }
             //切换菜单
@@ -303,7 +303,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
 
         tvAddMark.setOnClickListener {
             if (mCurrentChapter != null) {
-                mMarkAdapter!!.edit = false
+                mMarkAdapter.edit = false
                 if (BookRepository.getInstance().getSignById(mCurrentChapter!!.chapterId)) {
                     showToast(getString(R.string.sign_exist))
                     return@setOnClickListener
@@ -315,15 +315,15 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
         }
 
         tvClear.setOnClickListener {
-            if (mMarkAdapter!!.edit) {
-                val sign = mMarkAdapter!!.selectList
+            if (mMarkAdapter.edit) {
+                val sign = mMarkAdapter.selectList
                 if (sign != "") {
                     BookRepository.getInstance().deleteSign(sign)
                     updateMark()
                 }
-                mMarkAdapter!!.edit = false
+                mMarkAdapter.edit = false
             } else {
-                mMarkAdapter!!.edit = true
+                mMarkAdapter.edit = true
             }
         }
 
@@ -511,7 +511,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
             mHandler.sendEmptyMessage(WHAT_CHAPTER)
         }
         // 当完成章节的时候，刷新列表
-        mCategoryAdapter!!.notifyDataSetChanged()
+        mCategoryAdapter.notifyDataSetChanged()
     }
 
     @Subscribe
@@ -524,7 +524,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
     private fun updateMark() {
         mMarks.clear()
         mMarks.addAll(BookRepository.getInstance().getSign(mBookId))
-        mMarkAdapter!!.notifyDataSetChanged()
+        mMarkAdapter.notifyDataSetChanged()
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {

@@ -18,7 +18,7 @@ import java.util.*
 class NovelBookTypeListActivity : NovelBaseActivity() {
 
     private var mList: MutableList<SearchResp.BookBean> = ArrayList()
-    private var mAdapter: BookListAdapter? = null
+    private lateinit var mAdapter: BookListAdapter
     private var mCategoryId: String? = null
     private var mTitle: String? = null
     private var page = 1
@@ -36,15 +36,15 @@ class NovelBookTypeListActivity : NovelBaseActivity() {
         mAdapter = BookListAdapter(mList, rlv_type_list)
         rlv_type_list.adapter = mAdapter
 
-        mAdapter!!.setOnLoadMoreListener(object : OnLoadMoreListener {
+        mAdapter.setOnLoadMoreListener(object : OnLoadMoreListener {
             override fun onLoadMore() {
-                if (mAdapter!!.isLoadingMore) {
+                if (mAdapter.isLoadingMore) {
 
                 } else {
                     if (loadSize >= COMMENT_SIZE) {
-                        mAdapter!!.isLoadingMore = true
+                        mAdapter.isLoadingMore = true
                         mList.add(SearchResp.BookBean())
-                        mAdapter!!.notifyDataSetChanged()
+                        mAdapter.notifyDataSetChanged()
                         page++
                         getData()
                     }
@@ -73,15 +73,15 @@ class NovelBookTypeListActivity : NovelBaseActivity() {
             refresh.showError()
         } else {
             loadSize = event.result!!.book.size
-            if (mAdapter!!.isLoadingMore) {
+            if (mAdapter.isLoadingMore) {
                 mList.removeAt(mList.size - 1)
                 mList.addAll(event.result!!.book)
-                mAdapter!!.notifyDataSetChanged()
-                mAdapter!!.isLoadingMore = false
+                mAdapter.notifyDataSetChanged()
+                mAdapter.isLoadingMore = false
             } else {
                 mList.clear()
                 mList.addAll(event.result!!.book)
-                mAdapter!!.notifyDataSetChanged()
+                mAdapter.notifyDataSetChanged()
             }
         }
     }

@@ -30,7 +30,7 @@ import java.util.*
 
 class NovelBookDetailActivity : NovelBaseActivity(), View.OnClickListener {
 
-    private var mAdapter: LoveLyAdapter? = null
+    private lateinit var mAdapter: LoveLyAdapter
     private val mList = ArrayList<RecommendBookResp.BookBean>()
 
     private var mBookId: Int = 0
@@ -134,7 +134,7 @@ class NovelBookDetailActivity : NovelBaseActivity(), View.OnClickListener {
         } else {
             mList.clear()
             mList.addAll(event.result!!.book)
-            mAdapter!!.notifyDataSetChanged()
+            mAdapter.notifyDataSetChanged()
         }
     }
 

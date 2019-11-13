@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * create by 赵利君 on 2019/6/20
+ * create by zlj on 2019/6/20
  * describe:
  */
 public class RankByUpdateResp implements Serializable {

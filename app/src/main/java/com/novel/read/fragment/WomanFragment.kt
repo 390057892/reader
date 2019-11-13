@@ -24,11 +24,11 @@ import java.util.*
 
 class WomanFragment : NovelBaseFragment(), View.OnClickListener {
 
-    private var mHumanAdapter: HumanAdapter? = null
+    private lateinit var mHumanAdapter: HumanAdapter
     private val mHumanList = ArrayList<RecommendListResp.ListBean>()
-    private var mEditAdapter: EditRecommendAdapter? = null
+    private lateinit var mEditAdapter: EditRecommendAdapter
     private val mEditList = ArrayList<RecommendListResp.ListBean>()
-    private var mRankAdapter: RankAdapter? = null
+    private lateinit var mRankAdapter: RankAdapter
     private val mRankList = ArrayList<RecommendListResp.ListBean>()
 
     override fun getLayoutId(): Int {
@@ -100,7 +100,7 @@ class WomanFragment : NovelBaseFragment(), View.OnClickListener {
             if (response.isSuccessful && response.body() != null) {
                 mHumanList.clear()
                 mHumanList.addAll(response.body()!!.list)
-                mHumanAdapter!!.notifyDataSetChanged()
+                mHumanAdapter.notifyDataSetChanged()
 
             } else {
                 swipe.showError()
@@ -121,7 +121,7 @@ class WomanFragment : NovelBaseFragment(), View.OnClickListener {
             if (response.isSuccessful && response.body() != null) {
                 mEditList.clear()
                 mEditList.addAll(response.body()!!.list)
-                mEditAdapter!!.notifyDataSetChanged()
+                mEditAdapter.notifyDataSetChanged()
 
             } else {
                 swipe.showError()
@@ -143,7 +143,7 @@ class WomanFragment : NovelBaseFragment(), View.OnClickListener {
             if (response.isSuccessful && response.body() != null) {
                 mRankList.clear()
                 mRankList.addAll(response.body()!!.list)
-                mRankAdapter!!.notifyDataSetChanged()
+                mRankAdapter.notifyDataSetChanged()
             } else {
                 swipe.showError()
             }

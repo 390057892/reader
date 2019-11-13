@@ -15,7 +15,7 @@ import com.novel.read.model.db.SearchListTable;
 import java.util.List;
 
 /**
- * create by 赵利君 on 2019/6/17
+ * create by zlj on 2019/6/17
  * describe:
  */
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {

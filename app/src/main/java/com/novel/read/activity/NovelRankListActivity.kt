@@ -20,7 +20,7 @@ import java.util.*
  */
 class NovelRankListActivity : NovelBaseActivity() {
 
-    private var mAdapter: RankListAdapter? = null
+    private lateinit var mAdapter: RankListAdapter
     private var mList: MutableList<RankByUpdateResp.BookBean> = ArrayList()
     private var page = 1
     private var loadSize: Int = 0
@@ -46,15 +46,15 @@ class NovelRankListActivity : NovelBaseActivity() {
     override fun initData() {
         toolbar.setNavigationOnClickListener { finish() }
 
-        mAdapter!!.setOnLoadMoreListener(object : OnLoadMoreListener {
+        mAdapter.setOnLoadMoreListener(object : OnLoadMoreListener {
             override fun onLoadMore() {
-                if (mAdapter!!.isLoadingMore) {
+                if (mAdapter.isLoadingMore) {
 
                 } else {
                     if (loadSize >= COMMENT_SIZE) {
-                        mAdapter!!.isLoadingMore = true
+                        mAdapter.isLoadingMore = true
                         mList.add(RankByUpdateResp.BookBean())
-                        mAdapter!!.notifyDataSetChanged()
+                        mAdapter.notifyDataSetChanged()
                         page++
                         getData()
                     }
@@ -73,15 +73,15 @@ class NovelRankListActivity : NovelBaseActivity() {
             if (response.isSuccessful) {
                 if (response.body() != null) {
                     loadSize = response.body()!!.book.size
-                    if (mAdapter!!.isLoadingMore) {
+                    if (mAdapter.isLoadingMore) {
                         mList.removeAt(mList.size - 1)
                         mList.addAll(response.body()!!.book)
-                        mAdapter!!.notifyDataSetChanged()
-                        mAdapter!!.isLoadingMore = false
+                        mAdapter.notifyDataSetChanged()
+                        mAdapter.isLoadingMore = false
                     } else {
                         mList.clear()
                         mList.addAll(response.body()!!.book)
-                        mAdapter!!.notifyDataSetChanged()
+                        mAdapter.notifyDataSetChanged()
                     }
 
                 }

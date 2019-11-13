@@ -39,7 +39,7 @@ import java.util.*
  */
 class BookFragment : NovelBaseFragment() {
 
-    private var mAdapter: BookAdapter? = null
+    private lateinit var mAdapter: BookAdapter
     private val mList = ArrayList<CollBookBean>()
     private var isInit = true
 
@@ -90,7 +90,7 @@ class BookFragment : NovelBaseFragment() {
                 R.id.edit_book -> if (mList.size == 0) { //没书的时候提醒用户不能编辑
                     activity!!.showToast(getString(R.string.please_add_book))
                 } else {
-                    mAdapter!!.setEdit(true)
+                    mAdapter.setEdit(true)
                     tv_cancel.visibility = View.VISIBLE
                     tv_delete.visibility = View.VISIBLE
                     title_edit.visibility = View.VISIBLE
@@ -117,7 +117,7 @@ class BookFragment : NovelBaseFragment() {
                 for (i in mList.indices) {
                     mList[i].isSelect = true
                 }
-                mAdapter!!.notifyDataSetChanged()
+                mAdapter.notifyDataSetChanged()
             }
             true
         }
@@ -127,7 +127,7 @@ class BookFragment : NovelBaseFragment() {
         }
 
         tv_delete.setOnClickListener { view ->
-            val deleteList = mAdapter!!.selectList
+            val deleteList = mAdapter.selectList
             for (i in deleteList.indices) {
                 if (deleteList[i].isSaved) {
                     val count = deleteList[i].delete()
@@ -140,7 +140,7 @@ class BookFragment : NovelBaseFragment() {
             updateBook(UpdateBookEvent())
         }
 
-        mAdapter!!.setOnItemClickListener { view, pos ->
+        mAdapter.setOnItemClickListener { view, pos ->
             EventManager.instance.postEvent(
                 SwitchFragmentEvent()
             )
@@ -203,7 +203,7 @@ class BookFragment : NovelBaseFragment() {
         title_edit.visibility = View.GONE
         mList.clear()
         mList.addAll(BookRepository.getInstance().collBooks)
-        mAdapter!!.setEdit(false)
+        mAdapter.setEdit(false)
     }
 
     private fun update(collBookBeans: List<CollBookBean>?) { //检测书籍更新
@@ -250,7 +250,7 @@ class BookFragment : NovelBaseFragment() {
                 //跟原先比较
                 mList.clear()
                 mList.addAll(BookRepository.getInstance().collBooks)
-                mAdapter!!.notifyDataSetChanged()
+                mAdapter.notifyDataSetChanged()
             }
 
             override fun onError(e: Throwable) {}

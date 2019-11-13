@@ -5,6 +5,8 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.view.View
 import com.novel.read.widget.page.PageAnimation
+import kotlin.math.atan2
+import kotlin.math.hypot
 
 /**
  * Created by zlj
@@ -419,7 +421,7 @@ class SimulationPageAnim(w: Int, h: Int, view: View, listener: OnPageChangeListe
             mCurrentPageShadow = mFrontShadowDrawableHBT
         }
         rotateDegrees = Math.toDegrees(
-            Math.atan2(
+            atan2(
                 (mBezierControl2.y - mTouchY).toDouble(),
                 (mBezierControl2.x - mTouchX).toDouble()
             )
@@ -431,7 +433,7 @@ class SimulationPageAnim(w: Int, h: Int, view: View, listener: OnPageChangeListe
         else
             temp = mBezierControl2.y
 
-        val hmg = Math.hypot(mBezierControl2.x.toDouble(), temp.toDouble()).toInt()
+        val hmg = hypot(mBezierControl2.x.toDouble(), temp.toDouble()).toInt()
         if (hmg > mMaxLength)
             mCurrentPageShadow!!
                 .setBounds(

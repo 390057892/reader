@@ -21,8 +21,8 @@ import java.util.*
  */
 class StackFragment : NovelBaseFragment() {
 
-    private var mAdapter: StackAdapter? = null
-    private var mList: MutableList<CategoryTypeResp.CategoryBean>? = null
+    private lateinit var mAdapter: StackAdapter
+    private var mList: MutableList<CategoryTypeResp.CategoryBean> =ArrayList()
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_stack
@@ -30,7 +30,6 @@ class StackFragment : NovelBaseFragment() {
 
     override fun initView() {
         EventManager.instance.registerSubscriber(this)
-        mList = ArrayList()
         rlv_book_type.layoutManager = GridLayoutManager(activity, 2)
         mAdapter = StackAdapter(mList)
         rlv_book_type.adapter = mAdapter
@@ -58,9 +57,9 @@ class StackFragment : NovelBaseFragment() {
         if (event.isFail) {
             refresh.showError()
         } else {
-            mList!!.clear()
-            mList!!.addAll(event.result!!.category)
-            mAdapter!!.notifyDataSetChanged()
+            mList.clear()
+            mList.addAll(event.result!!.category)
+            mAdapter.notifyDataSetChanged()
         }
     }
 
