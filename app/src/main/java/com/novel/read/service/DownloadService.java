@@ -34,10 +34,6 @@ import java.util.concurrent.Executors;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 
-/**
- * Created by newbiechen on 17-5-10.
- */
-
 public class DownloadService extends BaseService {
     private static final String TAG = "DownloadService";
     //加载状态

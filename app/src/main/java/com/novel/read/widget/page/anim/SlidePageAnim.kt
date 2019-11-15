@@ -26,9 +26,9 @@ class SlidePageAnim(w: Int, h: Int, view: View, listener: OnPageChangeListener) 
     }
 
     override fun drawMove(canvas: Canvas) {
-        var dis = 0
+        var dis: Int
         when (mDirection) {
-            PageAnimation.Direction.NEXT -> {
+            Direction.NEXT -> {
                 //左半边的剩余区域
                 dis = (mScreenWidth - mStartX + mTouchX).toInt()
                 if (dis > mScreenWidth) {
@@ -68,9 +68,9 @@ class SlidePageAnim(w: Int, h: Int, view: View, listener: OnPageChangeListener) 
 
     override fun startAnim() {
         super.startAnim()
-        var dx = 0
+        val dx: Int
         when (mDirection) {
-            PageAnimation.Direction.NEXT -> if (isCancel) {
+            Direction.NEXT -> if (isCancel) {
                 var dis = (mScreenWidth - mStartX + mTouchX).toInt()
                 if (dis > mScreenWidth) {
                     dis = mScreenWidth

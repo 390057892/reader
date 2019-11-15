@@ -182,7 +182,7 @@ public class BookDetailResp {
         return collBookBean;
     }
 
-    public CollBookBean createCollBookBean(){
+    private CollBookBean createCollBookBean(){
         CollBookBean bean = new CollBookBean();
         bean.setId(String.valueOf(getBook().getId()));
         bean.setTitle(getBook().getTitle());
@@ -190,14 +190,10 @@ public class BookDetailResp {
         bean.setShortIntro(getBook().getDescription());
         bean.setCover(getBook().getCover());
         bean.setInclude_image(getBook().getInclude_image());
-//        bean.setHasCp(getBook().isHasCp());
-//        bean.setLatelyFollower(getBook().getLatelyFollower());
-//        bean.setRetentionRatio(Double.parseDouble(getBook().getRetentionRatio()));
         if (getLast_article()!=null){
             bean.setUpdated(String.valueOf(getLast_article().getCreate_time()));
             bean.setLastChapter(getLast_article().getTitle());
         }
-//        bean.setChaptersCount(getBook().getChaptersCount());
         return bean;
     }
 }

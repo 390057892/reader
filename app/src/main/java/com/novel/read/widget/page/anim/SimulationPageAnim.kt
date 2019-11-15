@@ -74,7 +74,7 @@ class SimulationPageAnim(w: Int, h: Int, view: View, listener: OnPageChangeListe
 
     override fun drawMove(canvas: Canvas) {
         when (mDirection) {
-            PageAnimation.Direction.NEXT -> {
+            Direction.NEXT -> {
                 calcPoints()
                 drawCurrentPageArea(canvas, mCurBitmap, mPath0)
                 drawNextPageAreaAndShadow(canvas, mNextBitmap)
@@ -108,13 +108,13 @@ class SimulationPageAnim(w: Int, h: Int, view: View, listener: OnPageChangeListe
         // dy 垂直方向滑动的距离，负值会使滚动向上滚动
         if (isCancel) {
 
-            if (mCornerX > 0 && mDirection == PageAnimation.Direction.NEXT) {
+            if (mCornerX > 0 && mDirection == Direction.NEXT) {
                 dx = (mScreenWidth - mTouchX).toInt()
             } else {
                 dx = -mTouchX.toInt()
             }
 
-            if (mDirection != PageAnimation.Direction.NEXT) {
+            if (mDirection != Direction.NEXT) {
                 dx = (-(mScreenWidth + mTouchX)).toInt()
             }
 
@@ -124,7 +124,7 @@ class SimulationPageAnim(w: Int, h: Int, view: View, listener: OnPageChangeListe
                 dy = -mTouchY.toInt() // 防止mTouchY最终变为0
             }
         } else {
-            if (mCornerX > 0 && mDirection == PageAnimation.Direction.NEXT) {
+            if (mCornerX > 0 && mDirection == Direction.NEXT) {
                 dx = -(mScreenWidth + mTouchX).toInt()
             } else {
                 dx = (mScreenWidth - mTouchX + mScreenWidth).toInt()
@@ -142,14 +142,14 @@ class SimulationPageAnim(w: Int, h: Int, view: View, listener: OnPageChangeListe
         super.setDirection(direction)
 
         when (direction) {
-            PageAnimation.Direction.PRE ->
+            Direction.PRE ->
                 //上一页滑动不出现对角
                 if (mStartX > mScreenWidth / 2) {
                     calcCornerXY(mStartX, mScreenHeight.toFloat())
                 } else {
                     calcCornerXY(mScreenWidth - mStartX, mScreenHeight.toFloat())
                 }
-            PageAnimation.Direction.NEXT -> if (mScreenWidth / 2 > mStartX) {
+            Direction.NEXT -> if (mScreenWidth / 2 > mStartX) {
                 calcCornerXY(mScreenWidth - mStartX, mStartY)
             }
         }
@@ -163,11 +163,11 @@ class SimulationPageAnim(w: Int, h: Int, view: View, listener: OnPageChangeListe
     override fun setTouchPoint(x: Float, y: Float) {
         super.setTouchPoint(x, y)
         //触摸y中间位置吧y变成屏幕高度
-        if (mStartY > mScreenHeight / 3 && mStartY < mScreenHeight * 2 / 3 || mDirection == PageAnimation.Direction.PRE) {
+        if (mStartY > mScreenHeight / 3 && mStartY < mScreenHeight * 2 / 3 || mDirection == Direction.PRE) {
             mTouchY = mScreenHeight.toFloat()
         }
 
-        if (mStartY > mScreenHeight / 3 && mStartY < mScreenHeight / 2 && mDirection == PageAnimation.Direction.NEXT) {
+        if (mStartY > mScreenHeight / 3 && mStartY < mScreenHeight / 2 && mDirection == Direction.NEXT) {
             mTouchY = 1f
         }
     }

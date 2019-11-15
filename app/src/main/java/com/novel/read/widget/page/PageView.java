@@ -24,8 +24,6 @@ import com.novel.read.widget.page.anim.SlidePageAnim;
  */
 public class PageView extends View {
 
-    private final static String TAG = "BookPageWidget";
-
     private int mViewWidth = 0; // 当前View的宽
     private int mViewHeight = 0; // 当前View的高
 

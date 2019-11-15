@@ -18,9 +18,7 @@ public class TxtPage {
         return title == null ? "" : title;
     }
 
-    public int getTitleLines() {
-        return titleLines;
-    }
+
 
     public List<String> getLines() {
         if (lines == null) {

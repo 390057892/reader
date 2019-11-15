@@ -874,7 +874,7 @@ public abstract class PageLoader {
             int para = mTextPara + (int) mTextPaint.getTextSize();
             int titleInterval = mTitleInterval + (int) mTitlePaint.getTextSize();
             int titlePara = mTitlePara + (int) mTextPaint.getTextSize();
-            String str = null;
+            String str;
 
             //对标题进行绘制
             for (int i = 0; i < mCurPage.titleLines; ++i) {

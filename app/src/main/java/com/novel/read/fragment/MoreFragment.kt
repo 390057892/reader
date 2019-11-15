@@ -101,7 +101,6 @@ class MoreFragment : NovelBaseFragment() {
             fragment.arguments = args
             return fragment
         }
-
     }
 
     override fun onDestroy() {

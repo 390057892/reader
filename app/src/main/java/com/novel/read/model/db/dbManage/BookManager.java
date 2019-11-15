@@ -53,7 +53,7 @@ public class BookManager {
             File file = getBookFile(bookId, chapterName);
             //TODO:数据加载默认utf-8(以后会增加判断),FileUtils采用Reader获取数据的，可能用byte会更好一点
             char[] array = FileUtils.getFileContent(file).toCharArray();
-            WeakReference<char[]> charReference = new WeakReference<char[]>(array);
+            WeakReference<char[]> charReference = new WeakReference<>(array);
             cache.size = array.length;
             cache.data = charReference;
             cacheMap.put(chapterName, cache);
@@ -167,9 +167,9 @@ public class BookManager {
 
     /**
      * 创建或获取存储文件
-     * @param folderName
-     * @param fileName
-     * @return
+     * @param folderName 文件夹
+     * @param fileName 文件
+     * @return 文件
      */
     public static File getBookFile(String folderName, String fileName){
         return FileUtils.getFile(Constant.BOOK_CACHE_PATH + folderName
@@ -186,7 +186,7 @@ public class BookManager {
      * 过)
      * @param folderName : bookId
      * @param fileName: chapterName
-     * @return
+     * @return 是否被缓存过
      */
     public static boolean isChapterCached(String folderName, String fileName){
         File file = new File(Constant.BOOK_CACHE_PATH + folderName

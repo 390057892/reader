@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by newbiechen on 17-5-11.
+ * Created by zlj
  */
 public class DownloadTaskBean extends LitePalSupport {
     public static final int STATUS_LOADING = 1;

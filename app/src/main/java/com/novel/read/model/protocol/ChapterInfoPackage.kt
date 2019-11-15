@@ -6,7 +6,7 @@ import java.io.Serializable
 
 class ChapterInfoPackage : Serializable {
 
-    var article: List<ChapterInfoBean>? = null
+    var article: List<ChapterInfoBean> = ArrayList()
 
 
 }

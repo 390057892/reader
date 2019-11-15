@@ -58,7 +58,7 @@ class NovelBookTypeListActivity : NovelBaseActivity() {
         refresh.setOnReloadingListener { this.getData() }
         getData()
         toolbar.title = mTitle
-        toolbar.setNavigationOnClickListener { view -> finish() }
+        toolbar.setNavigationOnClickListener { finish() }
 
     }
 

@@ -121,12 +121,12 @@ class BookFragment : NovelBaseFragment() {
             }
             true
         }
-        tv_cancel.setOnClickListener { view ->
+        tv_cancel.setOnClickListener {
             EventManager.instance.postEvent(HideBottomBarEvent(false))
             updateBook(UpdateBookEvent())
         }
 
-        tv_delete.setOnClickListener { view ->
+        tv_delete.setOnClickListener {
             val deleteList = mAdapter.selectList
             for (i in deleteList.indices) {
                 if (deleteList[i].isSaved) {
@@ -140,7 +140,7 @@ class BookFragment : NovelBaseFragment() {
             updateBook(UpdateBookEvent())
         }
 
-        mAdapter.setOnItemClickListener { view, pos ->
+        mAdapter.setOnItemClickListener { _, _ ->
             EventManager.instance.postEvent(
                 SwitchFragmentEvent()
             )

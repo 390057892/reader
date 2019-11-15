@@ -42,7 +42,6 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import retrofit2.Callback
-import java.util.Map
 
 /**
  * Created by zlj on 2017/2/14.

@@ -82,7 +82,7 @@ public class BookArticleResp implements Serializable {
         return bookChapterBean;
     }
 
-    public List<BookChapterBean> createChapterBean() {
+    private List<BookChapterBean> createChapterBean() {
         List<BookChapterBean> mList = new ArrayList<>();
         for (ArticleBean articleBean:getArticle()){
             mList.add(new BookChapterBean(String.valueOf(articleBean.getId()),articleBean.getTitle()));
