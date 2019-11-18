@@ -150,19 +150,23 @@ class NovelSearchActivity : NovelBaseActivity() {
             false
         }
 
-        mHotAdapter.setOnItemClickListener { view, pos ->
-            mSearchAdapter.setHolderType(true)
-            refresh.visibility = View.VISIBLE
-            tv_search.setText(mHotList[pos])
-            saveKey()
-        }
+        mHotAdapter.setOnItemClickListener(object :HotAdapter.OnItemClickListener{
+            override fun onItemClick(view: View, pos: Int) {
+                mSearchAdapter.setHolderType(true)
+                refresh.visibility = View.VISIBLE
+                tv_search.setText(mHotList[pos])
+                saveKey()
+            }
+        })
 
-        mHisAdapter.setOnItemClickListener { view, pos ->
-            mSearchAdapter.setHolderType(true)
-            refresh.visibility = View.VISIBLE
-            tv_search.setText(mHisList[pos].key)
-            saveKey()
-        }
+        mHisAdapter.setOnItemClickListener(object :HistoryAdapter.OnItemClickListener{
+            override fun onItemClick(view: View, pos: Int) {
+                mSearchAdapter.setHolderType(true)
+                refresh.visibility = View.VISIBLE
+                tv_search.setText(mHisList[pos].key)
+                saveKey()
+            }
+        })
 
         mSearchAdapter.setOnItemClickListener { view, pos ->
             mSearchAdapter.setHolderType(true)

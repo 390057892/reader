@@ -22,7 +22,7 @@ import java.util.*
 class StackFragment : NovelBaseFragment() {
 
     private lateinit var mAdapter: StackAdapter
-    private var mList: MutableList<CategoryTypeResp.CategoryBean> =ArrayList()
+    private var mList: MutableList<CategoryTypeResp.CategoryBean> = ArrayList()
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_stack
@@ -33,7 +33,6 @@ class StackFragment : NovelBaseFragment() {
         rlv_book_type.layoutManager = GridLayoutManager(activity, 2)
         mAdapter = StackAdapter(mList)
         rlv_book_type.adapter = mAdapter
-
     }
 
     override fun initData() {

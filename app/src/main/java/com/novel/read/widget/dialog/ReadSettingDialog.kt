@@ -84,7 +84,7 @@ class ReadSettingDialog(mActivity: Activity, private var mPageLoader: PageLoader
             getDrawable(R.color.read_bg_five)
         )
 
-        mPageStyleAdapter = PageStyleAdapter(listOf(*drawables), mPageLoader)
+        mPageStyleAdapter = PageStyleAdapter(listOf(*drawables) as List<Drawable>, mPageLoader)
         read_setting_rv_bg.layoutManager = GridLayoutManager(context, 4)
         read_setting_rv_bg.adapter = mPageStyleAdapter
 

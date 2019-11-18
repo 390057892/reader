@@ -155,5 +155,6 @@
     <string name="download_load_all">以緩存全部章節</string>
     <string name="download_progress">%1$d/%2$d</string>
     <string name="download_chapter_scope">(%1$d-%2$d章)</string>
+    <string name="load_end">已经到底了</string>
 
 </resources>

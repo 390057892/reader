@@ -317,7 +317,7 @@ public class BookRepository {
      */
     public void addSign(String bookId, String articleId, String content) {
         BookSignTable bookSignTable = new BookSignTable(bookId, articleId, content);
-        bookSignTable.saveOrUpdate();
+        bookSignTable.save();
     }
 
     /**

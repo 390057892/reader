@@ -32,7 +32,7 @@ public class SearchAdapter extends RecyclerView.Adapter {
     private final int BOOK_ITEM = 102; //书本item
     private final int EMPTY_ITEM = 101; //空白item
     private boolean book = false;
-    protected OnItemClickListener mClickListener;
+    private OnItemClickListener mClickListener;
 
     private final int PROCESS_ITEM = 103; //加载更多
     private boolean loadingMore;

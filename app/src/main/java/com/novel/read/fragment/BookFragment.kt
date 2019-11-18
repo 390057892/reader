@@ -135,16 +135,17 @@ class BookFragment : NovelBaseFragment() {
                     Log.e("count", "setOnClick: $count")
                 }
             }
-            activity!!.showToast( getString(R.string.delete_success))
+            activity!!.showToast(getString(R.string.delete_success))
             EventManager.instance.postEvent(HideBottomBarEvent(false))
             updateBook(UpdateBookEvent())
         }
 
-        mAdapter.setOnItemClickListener { _, _ ->
-            EventManager.instance.postEvent(
-                SwitchFragmentEvent()
-            )
-        }
+        mAdapter.setOnItemClickListener(object : BookAdapter.OnItemClickListener {
+            override fun onItemClick(view: View, pos: Int) {
+                EventManager.instance.postEvent(SwitchFragmentEvent())
+            }
+        })
+
 
     }
 

@@ -54,7 +54,6 @@ class BookListFragment : NovelBaseFragment() {
                 } else {
                     if (loadSize >= COMMENT_SIZE) {
                         mAdapter.isLoadingMore = true
-                        mList.add(RankByUpdateResp.BookBean())
                         mAdapter.notifyDataSetChanged()
                         page++
                         getData()
@@ -76,10 +75,9 @@ class BookListFragment : NovelBaseFragment() {
                 if (response.body() != null) {
                     loadSize = response.body()!!.book.size
                     if (mAdapter.isLoadingMore) {
-                        mList.removeAt(mList.size - 1)
+                        mAdapter.isLoadingMore = false
                         mList.addAll(response.body()!!.book)
                         mAdapter.notifyDataSetChanged()
-                        mAdapter.isLoadingMore = false
                     } else {
                         mList.clear()
                         mList.addAll(response.body()!!.book)

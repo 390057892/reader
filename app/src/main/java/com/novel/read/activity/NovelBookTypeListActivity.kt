@@ -21,7 +21,7 @@ class NovelBookTypeListActivity : NovelBaseActivity() {
     private lateinit var mAdapter: BookListAdapter
     private var mCategoryId: String? = null
     private var mTitle: String? = null
-    private var page = 1
+    private var page: Int = 1
     private var loadSize: Int = 0
 
     override val layoutId: Int get() = R.layout.activity_book_type_list
@@ -39,11 +39,10 @@ class NovelBookTypeListActivity : NovelBaseActivity() {
         mAdapter.setOnLoadMoreListener(object : OnLoadMoreListener {
             override fun onLoadMore() {
                 if (mAdapter.isLoadingMore) {
-
+                    rlv_type_list.stopScroll()
                 } else {
                     if (loadSize >= COMMENT_SIZE) {
                         mAdapter.isLoadingMore = true
-                        mList.add(SearchResp.BookBean())
                         mAdapter.notifyDataSetChanged()
                         page++
                         getData()
@@ -74,10 +73,9 @@ class NovelBookTypeListActivity : NovelBaseActivity() {
         } else {
             loadSize = event.result!!.book.size
             if (mAdapter.isLoadingMore) {
-                mList.removeAt(mList.size - 1)
+                mAdapter.isLoadingMore = false
                 mList.addAll(event.result!!.book)
                 mAdapter.notifyDataSetChanged()
-                mAdapter.isLoadingMore = false
             } else {
                 mList.clear()
                 mList.addAll(event.result!!.book)

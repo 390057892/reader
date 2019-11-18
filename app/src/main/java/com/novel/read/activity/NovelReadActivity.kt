@@ -308,8 +308,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
                     showToast(getString(R.string.sign_exist))
                     return@setOnClickListener
                 }
-                BookRepository.getInstance()
-                    .addSign(mBookId, mCurrentChapter!!.chapterId, mCurrentChapter!!.title)
+                BookRepository.getInstance().addSign(mBookId, mCurrentChapter!!.chapterId, mCurrentChapter!!.title)
                 updateMark()
             }
         }

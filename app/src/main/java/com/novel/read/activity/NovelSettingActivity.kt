@@ -33,10 +33,15 @@ class NovelSettingActivity : NovelBaseActivity(), View.OnClickListener {
 
     @SuppressLint("SetTextI18n")
     override fun initData() {
-        tv_language.text = resources.getStringArray(R.array.setting_dialog_language_choice)[SpUtil.getIntValue(Constant.Language, 1)]
+        tv_language.text =
+            resources.getStringArray(R.array.setting_dialog_language_choice)[SpUtil.getIntValue(
+                Constant.Language,
+                1
+            )]
         tv_version.text = "V" + VersionUtil.getPackageName(this)!!
         try {
-            val cacheSize = CleanCacheUtils.getInstance().getTotalCacheSize(this@NovelSettingActivity)
+            val cacheSize =
+                CleanCacheUtils.getInstance().getTotalCacheSize(this@NovelSettingActivity)
             tv_cache_num.text = cacheSize
         } catch (e: Exception) {
             e.printStackTrace()

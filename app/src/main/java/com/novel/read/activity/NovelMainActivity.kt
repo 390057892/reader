@@ -27,10 +27,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 class NovelMainActivity : NovelBaseActivity() {
 
     private var mCurrentFrag: Fragment? = null
-    private var mMainFragment: BookFragment? = null
-    private var mRecommendFragment: RecommendFragment? = null
-    private var mStackFragment: StackFragment? = null
-    private var mMoreFragment: MoreFragment? = null
+    private lateinit var mMainFragment: BookFragment
+    private lateinit var mRecommendFragment: RecommendFragment
+    private lateinit var mStackFragment: StackFragment
+    private lateinit var mMoreFragment: MoreFragment
 
     //记录用户首次点击返回键的时间
     private var firstTime: Long = 0
@@ -55,19 +55,19 @@ class NovelMainActivity : NovelBaseActivity() {
         bottom_bar.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.tab_one -> {
-                    switchFragment(mMainFragment!!)
+                    switchFragment(mMainFragment)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.tab_two -> {
-                    switchFragment(mRecommendFragment!!)
+                    switchFragment(mRecommendFragment)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.tab_three -> {
-                    switchFragment(mStackFragment!!)
+                    switchFragment(mStackFragment)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.tab_four -> {
-                    switchFragment(mMoreFragment!!)
+                    switchFragment(mMoreFragment)
                     return@setOnNavigationItemSelectedListener true
                 }
             }
@@ -75,7 +75,7 @@ class NovelMainActivity : NovelBaseActivity() {
         }
 
         if (BookRepository.getInstance().collBooks.size > 0) {
-            switchFragment(mMainFragment!!)
+            switchFragment(mMainFragment)
         } else {
             bottom_bar.selectedItemId = R.id.tab_two
         }
@@ -119,7 +119,7 @@ class NovelMainActivity : NovelBaseActivity() {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP) {
             if (!isVisible(bottom_bar)) {
                 bottom_bar.visibility = View.VISIBLE
-                mMainFragment!!.updateBook(UpdateBookEvent())
+                mMainFragment.updateBook(UpdateBookEvent())
             } else {
                 val secondTime = System.currentTimeMillis()
                 if (secondTime - firstTime > 1000) {
