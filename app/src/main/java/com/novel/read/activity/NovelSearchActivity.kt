@@ -83,7 +83,6 @@ class NovelSearchActivity : NovelBaseActivity() {
                 } else {
                     if (loadSize >= COMMENT_SIZE) {
                         mSearchAdapter.isLoadingMore = true
-                        mSearchList.add(SearchResp.BookBean())
                         mSearchAdapter.notifyDataSetChanged()
                         page++
                         getData()
@@ -168,11 +167,14 @@ class NovelSearchActivity : NovelBaseActivity() {
             }
         })
 
-        mSearchAdapter.setOnItemClickListener { view, pos ->
-            mSearchAdapter.setHolderType(true)
-            tv_search.setText(mSearchList[pos].title)
-            saveKey()
-        }
+        mSearchAdapter.setOnItemClickListener(object :SearchAdapter.OnItemClickListener{
+            override fun onItemClick(view: View, pos: Int) {
+                mSearchAdapter.setHolderType(true)
+                tv_search.setText(mSearchList[pos].title)
+                saveKey()
+            }
+        })
+
         head_history.setOnClickListener { view ->
 
             DialogUtils.getInstance().showAlertDialog(
@@ -237,10 +239,9 @@ class NovelSearchActivity : NovelBaseActivity() {
         } else {
             loadSize = event.result!!.book.size
             if (mSearchAdapter.isLoadingMore) {
-                mSearchList.removeAt(mSearchList.size - 1)
+                mSearchAdapter.isLoadingMore = false
                 mSearchList.addAll(event.result!!.book)
                 mSearchAdapter.notifyDataSetChanged()
-                mSearchAdapter.isLoadingMore = false
             } else {
                 mSearchList.clear()
                 mSearchList.addAll(event.result!!.book)
