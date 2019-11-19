@@ -16,7 +16,7 @@ import com.novel.read.R
 
 
 /**
- * create by 赵利君 on 2018/11/21
+ * create by zlj on 2018/11/21
  * describe:
  */
 object GlideImageLoader {

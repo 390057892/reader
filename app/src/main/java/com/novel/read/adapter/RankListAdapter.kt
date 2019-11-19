@@ -31,12 +31,12 @@ class RankListAdapter( val mList: List<RankByUpdateResp.BookBean>, recyclerView:
 
     init {
         if (recyclerView.layoutManager is LinearLayoutManager) {
-            val llMangager = recyclerView.layoutManager as LinearLayoutManager?
+            val manager = recyclerView.layoutManager as LinearLayoutManager?
             recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
-                    totalItemCount = llMangager!!.itemCount
-                    lastVisibleItem = llMangager.findLastVisibleItemPosition()
+                    totalItemCount = manager!!.itemCount
+                    lastVisibleItem = manager.findLastVisibleItemPosition()
                     if (!isLoadingMore && totalItemCount == lastVisibleItem + visibleThreshold && totalItemCount >= COMMENT_SIZE) {
                         if (mOnLoadMoreListener != null) {
                             mOnLoadMoreListener!!.onLoadMore()
@@ -44,7 +44,6 @@ class RankListAdapter( val mList: List<RankByUpdateResp.BookBean>, recyclerView:
                     }
                 }
             })
-
         }
     }
 
@@ -97,7 +96,7 @@ class RankListAdapter( val mList: List<RankByUpdateResp.BookBean>, recyclerView:
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (position == itemCount - 1) {
+        if (mList.isNotEmpty() && position == itemCount - 1) {
             return PROCESS_ITEM
         }
         return when {

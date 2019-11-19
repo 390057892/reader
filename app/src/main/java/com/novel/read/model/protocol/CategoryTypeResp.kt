@@ -20,6 +20,6 @@ class CategoryTypeResp : Serializable {
         var id: Int = 0
         var title: String = ""
             get() = StringUtils.convertCC(field)
-        var cover: String? = null
+        var cover: String = ""
     }
 }

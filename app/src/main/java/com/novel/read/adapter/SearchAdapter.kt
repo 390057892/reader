@@ -9,18 +9,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.novel.read.R
 import com.novel.read.activity.NovelBookDetailActivity
 import com.novel.read.adapter.holder.EmptyHolder
 import com.novel.read.adapter.holder.MoreHolder
 import com.novel.read.constants.Constant
+import com.novel.read.constants.Constant.COMMENT_SIZE
 import com.novel.read.inter.OnLoadMoreListener
 import com.novel.read.model.protocol.SearchResp
 import com.novel.read.utlis.GlideImageLoader
-import com.novel.read.constants.Constant.COMMENT_SIZE
 
-class SearchAdapter(private val mList: List<SearchResp.BookBean>, recyclerView: RecyclerView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SearchAdapter(private val mList: List<SearchResp.BookBean>, recyclerView: RecyclerView) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var mContext: Context? = null
 
@@ -35,12 +35,12 @@ class SearchAdapter(private val mList: List<SearchResp.BookBean>, recyclerView: 
 
     init {
         if (recyclerView.layoutManager is LinearLayoutManager) {
-            val llMangager = recyclerView.layoutManager as LinearLayoutManager?
+            val manager = recyclerView.layoutManager as LinearLayoutManager?
             recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
-                    totalItemCount = llMangager!!.itemCount
-                    lastVisibleItem = llMangager.findLastVisibleItemPosition()
+                    totalItemCount = manager!!.itemCount
+                    lastVisibleItem = manager.findLastVisibleItemPosition()
                     if (!isLoadingMore && totalItemCount == lastVisibleItem + visibleThreshold && totalItemCount >= COMMENT_SIZE) {
                         if (mOnLoadMoreListener != null) {
                             mOnLoadMoreListener!!.onLoadMore()
@@ -63,19 +63,23 @@ class SearchAdapter(private val mList: List<SearchResp.BookBean>, recyclerView: 
         val view: View
         when (i) {
             VALUE_ITEM -> {
-                view = LayoutInflater.from(mContext).inflate(R.layout.rlv_item_search, viewGroup, false)
+                view = LayoutInflater.from(mContext)
+                    .inflate(R.layout.rlv_item_search, viewGroup, false)
                 return ViewHolder(view)
             }
             BOOK_ITEM -> {
-                view = LayoutInflater.from(mContext).inflate(R.layout.rlv_item_book_list_search, viewGroup, false)
+                view = LayoutInflater.from(mContext)
+                    .inflate(R.layout.rlv_item_book_list_search, viewGroup, false)
                 return BookHolder(view)
             }
             EMPTY_ITEM -> {
-                view = LayoutInflater.from(mContext).inflate(R.layout.rlv_empty_view, viewGroup, false)
+                view =
+                    LayoutInflater.from(mContext).inflate(R.layout.rlv_empty_view, viewGroup, false)
                 return EmptyHolder(view)
             }
             PROCESS_ITEM -> {
-                view = LayoutInflater.from(mContext).inflate(R.layout.load_more_layout, viewGroup, false)
+                view = LayoutInflater.from(mContext)
+                    .inflate(R.layout.load_more_layout, viewGroup, false)
                 return MoreHolder(view)
             }
             else -> throw IllegalArgumentException()
@@ -87,7 +91,12 @@ class SearchAdapter(private val mList: List<SearchResp.BookBean>, recyclerView: 
             is ViewHolder -> {
                 val bookBean = mList[i]
                 viewHolder.mTvBookName.text = bookBean.title
-                viewHolder.itemView.setOnClickListener { view -> mClickListener!!.onItemClick(view, i) }
+                viewHolder.itemView.setOnClickListener { view ->
+                    mClickListener!!.onItemClick(
+                        view,
+                        i
+                    )
+                }
             }
             is BookHolder -> {
                 val bookBean = mList[i]
@@ -108,11 +117,11 @@ class SearchAdapter(private val mList: List<SearchResp.BookBean>, recyclerView: 
     override fun getItemCount(): Int {
         return if (mList.isEmpty()) {
             1
-        } else mList.size+1
+        } else mList.size + 1
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (position == itemCount - 1) {
+        if (mList.isNotEmpty() && position == itemCount - 1) {
             return PROCESS_ITEM
         }
 

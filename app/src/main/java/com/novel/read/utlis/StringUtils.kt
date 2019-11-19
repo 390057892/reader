@@ -1,6 +1,5 @@
 package com.novel.read.utlis
 
-import android.content.Context
 import android.text.TextUtils
 import com.novel.read.widget.page.ReadSettingManager.Companion.SHARED_READ_CONVERT_TYPE
 

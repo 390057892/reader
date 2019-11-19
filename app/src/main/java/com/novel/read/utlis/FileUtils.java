@@ -132,7 +132,7 @@ public class FileUtils {
     }
 
     //判断是否挂载了SD卡
-    public static boolean isSdCardExist(){
+    private static boolean isSdCardExist(){
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())){
             return true;
         }
@@ -224,16 +224,6 @@ public class FileUtils {
                 charset = Charset.UTF8;
                 checked = true;
             }
-            /*
-             * 不支持 UTF16LE 和 UTF16BE
-            else if (first3Bytes[0] == (byte) 0xFF && first3Bytes[1] == (byte) 0xFE) {
-                charset = Charset.UTF16LE;
-                checked = true;
-            } else if (first3Bytes[0] == (byte) 0xFE
-                    && first3Bytes[1] == (byte) 0xFF) {
-                charset = Charset.UTF16BE;
-                checked = true;
-            } else */
 
             bis.mark(0);
             if (!checked) {

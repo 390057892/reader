@@ -5,13 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.jetbrains.annotations.NotNull;
+
 public abstract class ViewHolderImpl<T> implements IViewHolder<T> {
     private View view;
     private Context context;
-    /****************************************************/
+
     protected abstract int getItemLayoutId();
 
-
+    @NotNull
     @Override
     public View createItemView(ViewGroup parent) {
         view = LayoutInflater.from(parent.getContext())

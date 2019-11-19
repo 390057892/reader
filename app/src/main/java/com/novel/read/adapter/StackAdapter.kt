@@ -42,7 +42,7 @@ class StackAdapter(private val mList: List<CategoryTypeResp.CategoryBean>) : Rec
             }
             GlideImageLoader.displayCornerImage(
                 mContext!!,
-                mList[i].cover!!,
+                mList[i].cover,
                 viewHolder.mIvType,
                 R.drawable.ic_type_default
             )
