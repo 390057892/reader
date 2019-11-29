@@ -21,7 +21,6 @@ import kotlin.properties.Delegates
 
 /**
  * create by zlj on 2019/6/10
- * describe:
  */
 class MyApp : Application() {
 
