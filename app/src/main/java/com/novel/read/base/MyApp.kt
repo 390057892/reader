@@ -60,5 +60,4 @@ class MyApp : Application() {
             private set
     }
 
-
 }
