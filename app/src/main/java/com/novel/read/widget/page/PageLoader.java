@@ -60,7 +60,7 @@ public abstract class PageLoader {
     public static final int STATUS_PARSE_ERROR = 6;     // 本地文件解析错误(暂未被使用)
     public static final int STATUS_CATEGORY_EMPTY = 7;  // 获取到的目录为空
     // 默认的显示参数配置
-    private static final int DEFAULT_MARGIN_HEIGHT = 28;
+    private static final int DEFAULT_MARGIN_HEIGHT = 50;
     private static final int DEFAULT_MARGIN_WIDTH = 15;
     private static final int DEFAULT_TIP_SIZE = 12;
     private static final int EXTRA_TITLE_SIZE = 4;
@@ -902,9 +902,9 @@ public abstract class PageLoader {
             //对内容进行绘制
             for (int i = mCurPage.titleLines; i < mCurPage.lines.size(); ++i) {
                 str = mCurPage.getLines().get(i);
-                if (i == 0) {
-                    top = top + 15;
-                }
+//                if (i == 0) {
+//                    top = top + 15;
+//                }
 
                 canvas.drawText(str, mMarginWidth, top, mTextPaint);
 
