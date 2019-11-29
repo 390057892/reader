@@ -79,7 +79,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
     private var isFullScreen = false
     private val isRegistered = false
 
-    private var mCollBook: CollBookBean? = null
+    private lateinit var mCollBook: CollBookBean
     private var mBookId: String = ""
 
     @SuppressLint("HandlerLeak")
@@ -114,7 +114,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
         EventManager.instance.registerSubscriber(this)
         mCollBook = intent.getSerializableExtra(EXTRA_COLL_BOOK) as CollBookBean
         isCollected = intent.getBooleanExtra(EXTRA_IS_COLLECTED, false)
-        mBookId = mCollBook!!.id
+        mBookId = mCollBook.id
         initService()
         // 如果 API < 18 取消硬件加速
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -168,7 +168,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
             // 刷新章节列表
             mPageLoader.refreshChapterList()
             // 如果是网络小说并被标记更新的，则从网络下载目录
-            if (mCollBook!!.isUpdate && !mCollBook!!.isLocal) {
+            if (mCollBook.isUpdate && !mCollBook.isLocal) {
                 AccountManager.getInstance().getBookArticle(mBookId, "2", "1", "10000")
             }
         } else {
@@ -177,7 +177,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
     }
 
     override fun initData() {
-        tv_book_name.text = mCollBook!!.title
+        tv_book_name.text = mCollBook.title
         mCategoryAdapter = CategoryAdapter()
         rlv_list.adapter = mCategoryAdapter
         rlv_list.isFastScrollEnabled = true
@@ -331,8 +331,8 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
                 //设置为已收藏
                 isCollected = true
                 //设置阅读时间
-                mCollBook!!.lastRead = System.currentTimeMillis().toString()
-                BookRepository.getInstance().saveCollBookWithAsync(mCollBook!!)
+                mCollBook.lastRead = System.currentTimeMillis().toString()
+                BookRepository.getInstance().saveCollBookWithAsync(mCollBook)
             }
             showDownLoadDialog()
 
@@ -361,21 +361,21 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
                     0 -> {
                         //50章
                         val last = currentChapter + 50
-                        if (last > mCollBook!!.bookChapters.size) {
-                            downLoadCache(mCollBook!!.bookChapters, mCollBook!!.bookChapters.size)
+                        if (last > mCollBook.bookChapters.size) {
+                            downLoadCache(mCollBook.bookChapters, mCollBook.bookChapters.size)
                         } else {
-                            downLoadCache(mCollBook!!.bookChapters, last)
+                            downLoadCache(mCollBook.bookChapters, last)
                         }
                     }
                     1 -> {
                         //后面所有
                         val lastBeans = ArrayList<BookChapterBean>()
-                        for (i in currentChapter until mCollBook!!.bookChapters.size) {
-                            lastBeans.add(mCollBook!!.bookChapters[i])
+                        for (i in currentChapter until mCollBook.bookChapters.size) {
+                            lastBeans.add(mCollBook.bookChapters[i])
                         }
-                        downLoadCache(lastBeans, mCollBook!!.bookChapters.size - currentChapter)
+                        downLoadCache(lastBeans, mCollBook.bookChapters.size - currentChapter)
                     }
-                    2 -> downLoadCache(mCollBook!!.bookChapters, mCollBook!!.bookChapters.size) //所有
+                    2 -> downLoadCache(mCollBook.bookChapters, mCollBook.bookChapters.size) //所有
                     else -> {
                     }
                 }
@@ -386,8 +386,8 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
 
     private fun downLoadCache(beans: List<BookChapterBean>, size: Int) {
         val task = DownloadTaskBean()
-        task.taskName = mCollBook!!.title
-        task.bookId = mCollBook!!.id
+        task.taskName = mCollBook.title
+        task.bookId = mCollBook.id
         task.bookChapters = beans //计算要缓存的章节
         task.currentChapter = currentChapter
         task.lastChapter = size
@@ -491,15 +491,16 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
     fun getBookArticle(event: BookArticleEvent) {
         if (event.isFail) {
             //获取章节失败处理
+            Log.e(TAG, event.er!!.msg)
         } else {
             val chapterBeans = event.result!!.chapterBean
             mPageLoader.collBook.bookChapters = chapterBeans
             mPageLoader.refreshChapterList()
 
             // 如果是目录更新的情况，那么就需要存储更新数据
-            if (mCollBook!!.isUpdate && isCollected) {
+            if (mCollBook.isUpdate && isCollected) {
                 BookRepository.getInstance()
-                    .saveBookChaptersWithAsync(event.result!!.chapterBean, mCollBook!!)
+                    .saveBookChaptersWithAsync(event.result!!.chapterBean, mCollBook)
             }
         }
     }
@@ -549,9 +550,9 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
             read_dl_slide.closeDrawer(GravityCompat.START)
             return
         }
-        Log.e(TAG, "onBackPressed: " + mCollBook!!.bookChapters.isEmpty())
+        Log.e(TAG, "onBackPressed: " + mCollBook.bookChapters.isEmpty())
 
-        if (!mCollBook!!.isLocal && !isCollected && mCollBook!!.bookChapters.isNotEmpty()) {
+        if (!mCollBook.isLocal && !isCollected && mCollBook.bookChapters.isNotEmpty()) {
             val alertDialog = AlertDialog.Builder(this)
                 .setTitle(getString(R.string.add_book))
                 .setMessage(getString(R.string.like_book))
@@ -559,9 +560,9 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
                     //设置为已收藏
                     isCollected = true
                     //设置阅读时间
-                    mCollBook!!.lastRead = System.currentTimeMillis().toString()
+                    mCollBook.lastRead = System.currentTimeMillis().toString()
 
-                    BookRepository.getInstance().saveCollBookWithAsync(mCollBook!!)
+                    BookRepository.getInstance().saveCollBookWithAsync(mCollBook)
 
                     exit()
                 }

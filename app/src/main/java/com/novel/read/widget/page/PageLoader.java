@@ -60,7 +60,7 @@ public abstract class PageLoader {
     public static final int STATUS_PARSE_ERROR = 6;     // 本地文件解析错误(暂未被使用)
     public static final int STATUS_CATEGORY_EMPTY = 7;  // 获取到的目录为空
     // 默认的显示参数配置
-    private static final int DEFAULT_MARGIN_HEIGHT = 50;
+    private static final int DEFAULT_MARGIN_HEIGHT = 45;
     private static final int DEFAULT_MARGIN_WIDTH = 15;
     private static final int DEFAULT_TIP_SIZE = 12;
     private static final int EXTRA_TITLE_SIZE = 4;
