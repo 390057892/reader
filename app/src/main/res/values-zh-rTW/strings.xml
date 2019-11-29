@@ -46,6 +46,7 @@
     <string name="book_detail">圖書詳情</string>
     <string name="lovely">猜妳喜歡</string>
     <string name="already_add">已加入</string>
+    <string name="go_read">继续閱讀</string>
     <string name="add_book">加入書架</string>
     <string name="start_read">開始閱讀</string>
     <string name="popularity">人氣</string>

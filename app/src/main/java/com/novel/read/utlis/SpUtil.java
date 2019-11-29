@@ -100,7 +100,7 @@ public class SpUtil {
     }
 
     public int getSelectLanguage() {
-        return getIntValue(TAG_LANGUAGE, 1);
+        return getIntValue(TAG_LANGUAGE, 0);
     }
 
     public Locale getSystemCurrentLocal() {

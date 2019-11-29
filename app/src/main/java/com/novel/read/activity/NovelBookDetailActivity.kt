@@ -3,6 +3,7 @@ package com.novel.read.activity
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mango.mangolib.event.EventManager
@@ -39,8 +40,7 @@ class NovelBookDetailActivity : NovelBaseActivity(), View.OnClickListener {
 
     private var mProgressDialog: ProgressDialog? = null
 
-    override val layoutId: Int
-        get() = R.layout.activity_book_detail
+    override val layoutId: Int get() = R.layout.activity_book_detail
 
     override fun initView() {
         mBookId = intent.getIntExtra(Constant.Bundle.BookId, 0)
@@ -120,7 +120,7 @@ class NovelBookDetailActivity : NovelBaseActivity(), View.OnClickListener {
             if (mCollBookBean != null) {
                 isCollected = true
                 tv_add_book.text = resources.getString(R.string.already_add)
-                tv_start_read.text = "继续阅读"
+                tv_start_read.text = resources.getString(R.string.go_read)
             } else {
                 mCollBookBean = event.result!!.collBookBean
             }
@@ -130,7 +130,7 @@ class NovelBookDetailActivity : NovelBaseActivity(), View.OnClickListener {
     @Subscribe
     fun getRecommendBook(event: GetRecommendBookEvent) {
         if (event.isFail) {
-
+            Log.e("getRecommendBook", event.er?.msg)
         } else {
             mList.clear()
             mList.addAll(event.result!!.book)
@@ -202,7 +202,7 @@ class NovelBookDetailActivity : NovelBaseActivity(), View.OnClickListener {
 
             if (isCollected) {
                 tv_add_book.text = resources.getString(R.string.already_add)
-                tv_start_read.text = "继续阅读"
+                tv_start_read.text = resources.getString(R.string.go_read)
             }
         }
     }

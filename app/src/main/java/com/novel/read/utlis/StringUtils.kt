@@ -54,7 +54,7 @@ object StringUtils {
 
     //繁簡轉換
     fun convertCC(input: String): String {
-        val convertType = SpUtil.getIntValue(SHARED_READ_CONVERT_TYPE, 1)
+        val convertType = SpUtil.getIntValue(SHARED_READ_CONVERT_TYPE, 0)
 
         if (input.isEmpty())
             return ""
