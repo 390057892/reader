@@ -80,7 +80,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
     private val isRegistered = false
 
     private lateinit var mCollBook: CollBookBean
-    private var mBookId: String = ""
+    private lateinit var mBookId: String
 
     @SuppressLint("HandlerLeak")
     private val mHandler = object : Handler() {
@@ -174,6 +174,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
         } else {
             AccountManager.getInstance().getBookArticle(mBookId, "2", "1", "10000")
         }
+
     }
 
     override fun initData() {

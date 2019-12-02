@@ -128,11 +128,12 @@ class BookFragment : NovelBaseFragment() {
 
         tv_delete.setOnClickListener {
             val deleteList = mAdapter.selectList
-            for (i in deleteList.indices) {
-                if (deleteList[i].isSaved) {
-                    val count = deleteList[i].delete()
-                    LitePal.deleteAll(BookRecordBean::class.java, "bookId=?", mList[i].id)
-                    Log.e("count", "setOnClick: $count")
+            val iterator = deleteList.iterator()
+            while (iterator.hasNext()) {
+                val collBookBean = iterator.next()
+                if (collBookBean.isSaved) {
+                    collBookBean.delete()
+                    LitePal.deleteAll(BookRecordBean::class.java, "bookId=?", collBookBean.id)
                 }
             }
             activity!!.showToast(getString(R.string.delete_success))
