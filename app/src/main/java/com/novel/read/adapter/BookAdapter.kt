@@ -18,7 +18,7 @@ import com.novel.read.utlis.GlideImageLoader
 import java.util.ArrayList
 
 class BookAdapter(private val mList: List<CollBookBean>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var mContext: Context? = null
+    private lateinit var mContext: Context
 
     private var mClickListener: OnItemClickListener? = null
     private var mEdit: Boolean = false
@@ -35,9 +35,7 @@ class BookAdapter(private val mList: List<CollBookBean>) : RecyclerView.Adapter<
         }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): RecyclerView.ViewHolder {
-        if (mContext == null) {
-            mContext = viewGroup.context
-        }
+        mContext = viewGroup.context
         val view: View
         if (i == VALUE_ITEM) {
             view = LayoutInflater.from(mContext).inflate(R.layout.rlv_item_book, viewGroup, false)
@@ -61,7 +59,7 @@ class BookAdapter(private val mList: List<CollBookBean>) : RecyclerView.Adapter<
                 } else {
                     viewHolder.mIvGeng.visibility = View.GONE
                 }
-                GlideImageLoader.displayCornerImage(mContext!!, mList[i].cover, viewHolder.mIvBook)
+                GlideImageLoader.displayCornerImage(mContext, mList[i].cover, viewHolder.mIvBook)
                 viewHolder.itemView.setOnClickListener {
                     viewHolder.mIvCheck.isSelected = !mList[i].isSelect
                     mList[i].isSelect = !mList[i].isSelect
@@ -88,7 +86,7 @@ class BookAdapter(private val mList: List<CollBookBean>) : RecyclerView.Adapter<
                         viewHolder.mIvGeng.visibility = View.GONE
                     }
                     GlideImageLoader.displayCornerImage(
-                        mContext!!,
+                        mContext,
                         mList[i].cover,
                         viewHolder.mIvBook
                     )
@@ -96,7 +94,7 @@ class BookAdapter(private val mList: List<CollBookBean>) : RecyclerView.Adapter<
                         val intent = Intent(mContext, NovelReadActivity::class.java)
                         intent.putExtra(NovelReadActivity.EXTRA_IS_COLLECTED, true)
                         intent.putExtra(NovelReadActivity.EXTRA_COLL_BOOK, mList[i])
-                        mContext!!.startActivity(intent)
+                        mContext.startActivity(intent)
                     }
                 }
             }

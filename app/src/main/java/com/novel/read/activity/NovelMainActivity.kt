@@ -26,7 +26,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class NovelMainActivity : NovelBaseActivity() {
 
-    private var mCurrentFrag: Fragment? = null
+    private lateinit var mCurrentFrag: Fragment
     private lateinit var mMainFragment: BookFragment
     private lateinit var mRecommendFragment: RecommendFragment
     private lateinit var mStackFragment: StackFragment
@@ -34,11 +34,6 @@ class NovelMainActivity : NovelBaseActivity() {
 
     //记录用户首次点击返回键的时间
     private var firstTime: Long = 0
-
-    @SuppressLint("MissingSuperCall")
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-    }
 
     override val layoutId: Int get() =  R.layout.activity_main
 
@@ -84,13 +79,10 @@ class NovelMainActivity : NovelBaseActivity() {
     private fun switchFragment(targetFragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         if (!targetFragment.isAdded) {
-            //第一次使用switchFragment()时currentFragment为null，所以要判断一下
-            if (mCurrentFrag != null) {
-                transaction.hide(mCurrentFrag!!)
-            }
+            transaction.hide(mCurrentFrag)
             transaction.add(R.id.fl_content, targetFragment, targetFragment.javaClass.name)
         } else {
-            transaction.hide(mCurrentFrag!!).show(targetFragment)
+            transaction.hide(mCurrentFrag).show(targetFragment)
         }
         mCurrentFrag = targetFragment
         transaction.commit()
