@@ -31,8 +31,6 @@ dependencies {
 
     //网络请求
     api rootProject.ext.dependencies["okhttp"]
-    //上传文件 监听进度 配合okHttp使用
-    api 'io.github.lizhangqu:coreprogress:1.0.2'
 
     api rootProject.ext.dependencies["retrofit2"]
     api rootProject.ext.dependencies["retrofit2_gson"]

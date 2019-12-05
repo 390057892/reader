@@ -18,7 +18,6 @@ import com.novel.read.constants.Constant.COMMENT_SIZE
 import com.novel.read.inter.OnLoadMoreListener
 import com.novel.read.model.protocol.SearchResp
 import com.novel.read.utlis.GlideImageLoader
-import io.github.lizhangqu.coreprogress.ProgressHelper
 
 class BookListAdapter(private val mList: List<SearchResp.BookBean>, recyclerView: RecyclerView) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var mContext: Context? = null
