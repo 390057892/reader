@@ -63,7 +63,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
 
     private lateinit var mCategoryAdapter: CategoryAdapter
     private val mChapters = ArrayList<TxtChapter>()
-    private var mCurrentChapter: TxtChapter? = null //当前章节
+    private lateinit var mCurrentChapter: TxtChapter //当前章节
     private var currentChapter = 0
     private lateinit var mMarkAdapter: MarkAdapter
     private val mMarks = ArrayList<BookSignTable>()
@@ -73,7 +73,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
     private var mBottomInAnim: Animation? = null
     private var mBottomOutAnim: Animation? = null
 
-    private var mSettingDialog: ReadSettingDialog? = null
+    private lateinit var mSettingDialog: ReadSettingDialog
     private var isCollected = false // isFromSDCard
     private var isNightMode = false
     private var isFullScreen = false
@@ -133,7 +133,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
         //半透明化StatusBar
         SystemBarUtils.transparentStatusBar(this)
         //隐藏StatusBar
-        read_pv_page!!.post { this.hideSystemBar() }
+        read_pv_page.post { this.hideSystemBar() }
         read_abl_top_menu.setPadding(0, ScreenUtils.statusBarHeight, 0, 0)
         ll_download.setPadding(0, ScreenUtils.statusBarHeight, 0, ScreenUtils.dpToPx(15))
 
@@ -195,9 +195,13 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
             object : PageLoader.OnPageChangeListener {
 
                 override fun onChapterChange(pos: Int) {
-                    mCategoryAdapter.setChapter(pos)
-                    mCurrentChapter = mChapters[pos]
-                    currentChapter = pos
+                    var index: Int = pos
+                    if (pos >= mChapters.size) {
+                        index = mChapters.size - 1
+                    }
+                    mCategoryAdapter.setChapter(index)
+                    mCurrentChapter = mChapters[index]
+                    currentChapter = index
                 }
 
                 override fun requestChapters(requestChapters: List<TxtChapter>) {
@@ -256,7 +260,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
             ll_light.visibility = GONE
             rlReadMark.visibility = GONE
             toggleMenu(false)
-            mSettingDialog!!.show()
+            mSettingDialog.show()
         }
 
         read_setting_sb_brightness.setOnSeekBarChangeListener(object :
@@ -303,15 +307,13 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
         }
 
         tvAddMark.setOnClickListener {
-            if (mCurrentChapter != null) {
-                mMarkAdapter.edit = false
-                if (BookRepository.getInstance().getSignById(mCurrentChapter!!.chapterId)) {
-                    showToast(getString(R.string.sign_exist))
-                    return@setOnClickListener
-                }
-                BookRepository.getInstance().addSign(mBookId, mCurrentChapter!!.chapterId, mCurrentChapter!!.title)
-                updateMark()
+            mMarkAdapter.edit = false
+            if (BookRepository.getInstance().getSignById(mCurrentChapter.chapterId)) {
+                showToast(getString(R.string.sign_exist))
+                return@setOnClickListener
             }
+            BookRepository.getInstance().addSign(mBookId, mCurrentChapter.chapterId, mCurrentChapter.title)
+            updateMark()
         }
 
         tvClear.setOnClickListener {
@@ -426,8 +428,8 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
         if (read_abl_top_menu.visibility == VISIBLE) {
             toggleMenu(true)
             return true
-        } else if (mSettingDialog!!.isShowing) {
-            mSettingDialog!!.dismiss()
+        } else if (mSettingDialog.isShowing) {
+            mSettingDialog.dismiss()
             return true
         }
         return false
@@ -500,8 +502,7 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
 
             // 如果是目录更新的情况，那么就需要存储更新数据
             if (mCollBook.isUpdate && isCollected) {
-                BookRepository.getInstance()
-                    .saveBookChaptersWithAsync(event.result!!.chapterBean, mCollBook)
+                BookRepository.getInstance().saveBookChaptersWithAsync(chapterBeans, mCollBook)
             }
         }
     }
@@ -544,8 +545,8 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
                 toggleMenu(true)
                 return
             }
-        } else if (mSettingDialog!!.isShowing) {
-            mSettingDialog!!.dismiss()
+        } else if (mSettingDialog.isShowing) {
+            mSettingDialog.dismiss()
             return
         } else if (read_dl_slide.isDrawerOpen(GravityCompat.START)) {
             read_dl_slide.closeDrawer(GravityCompat.START)

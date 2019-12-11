@@ -120,11 +120,18 @@ public class BookRepository {
      * @param beans
      */
     public void saveBookChaptersWithAsync(List<BookChapterBean> beans, CollBookBean collBookBean) {
+        LitePal.deleteAll(CollBookBean.class, "bookId=?", collBookBean.getId());
+        collBookBean.setBookChapters(beans);
         collBookBean.saveOrUpdate("bookId=?", collBookBean.getId());
         for (int i = 0; i < collBookBean.getBookChapters().size(); i++) {
             collBookBean.getBookChapters().get(i).setCollBookBean(collBookBean);
-            collBookBean.getBookChapters().get(i).saveOrUpdateAsync("bookId=?", collBookBean.getId());
         }
+        LitePal.saveAllAsync(collBookBean.getBookChapters()).listen(new SaveCallback() {
+            @Override
+            public void onFinish(boolean success) {
+                Log.e(TAG, "saveCollBookWithAsync: " + success);
+            }
+        });
     }
 
     /**
