@@ -38,7 +38,7 @@ class NovelBookDetailActivity : NovelBaseActivity(), View.OnClickListener {
     private var isCollected = false
     private var mCollBookBean: CollBookBean? = null
 
-    private var mProgressDialog: ProgressDialog? = null
+    private lateinit var mProgressDialog: ProgressDialog
 
     override val layoutId: Int get() = R.layout.activity_book_detail
 
@@ -47,6 +47,7 @@ class NovelBookDetailActivity : NovelBaseActivity(), View.OnClickListener {
         rlv_lovely.layoutManager = LinearLayoutManager(this)
         mAdapter = LoveLyAdapter(mList)
         rlv_lovely.adapter = mAdapter
+        mProgressDialog = ProgressDialog(this)
     }
 
     override fun initData() {
@@ -73,11 +74,8 @@ class NovelBookDetailActivity : NovelBaseActivity(), View.OnClickListener {
                     tv_add_book.text = resources.getString(R.string.add_book)
                     isCollected = false
                 } else {
-                    if (mProgressDialog == null) {
-                        mProgressDialog = ProgressDialog(this)
-                        mProgressDialog!!.setTitle("正在添加到书架中")
-                    }
-                    mProgressDialog!!.show()
+                    mProgressDialog.setTitle("正在添加到书架中")
+                    mProgressDialog.show()
                     AccountManager.getInstance()
                         .getBookArticle(mBookId.toString(), "2", "1", "100000")
 
@@ -185,9 +183,7 @@ class NovelBookDetailActivity : NovelBaseActivity(), View.OnClickListener {
     }
 
     private fun dismiss() {
-        if (mProgressDialog != null) {
-            mProgressDialog!!.dismiss()
-        }
+        mProgressDialog.dismiss()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

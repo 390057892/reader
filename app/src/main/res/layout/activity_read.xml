@@ -2,9 +2,9 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/read_dl_slide"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/read_dl_slide"
     tools:context=".activity.NovelReadActivity">
 
 
@@ -43,21 +43,21 @@
                         android:id="@+id/read_tv_brief"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
                         android:layout_toStartOf="@id/read_tv_community"
                         android:drawableStart="@drawable/ic_book_detail"
-                        android:text="@string/brief"
-                        android:gravity="center"
                         android:drawablePadding="10dp"
-                        android:layout_marginEnd="10dp"/>
+                        android:gravity="center"
+                        android:text="@string/brief" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/read_tv_community"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
+                        android:drawableStart="@drawable/ic_label"
                         android:drawablePadding="10dp"
                         android:gravity="center"
-                        android:drawableStart="@drawable/ic_label"
                         android:text="@string/label" />
                 </RelativeLayout>
             </androidx.appcompat.widget.Toolbar>
@@ -72,27 +72,29 @@
             tools:visibility="gone" />
 
 
-        <include layout="@layout/layout_download"
+        <include
+            layout="@layout/layout_download"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <include
             layout="@layout/layout_light"
-            app:layout_constraintBottom_toTopOf="@+id/read_ll_bottom_menu"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/read_ll_bottom_menu" />
 
-        <include layout="@layout/layout_read_mark"
-            app:layout_constraintBottom_toTopOf="@+id/read_ll_bottom_menu"
+        <include
+            layout="@layout/layout_read_mark"
             android:layout_width="match_parent"
-            android:layout_height="190dp" />
+            android:layout_height="190dp"
+            app:layout_constraintBottom_toTopOf="@+id/read_ll_bottom_menu" />
 
         <!--<include-->
-            <!--layout="@layout/layout_setting"-->
-            <!--app:layout_constraintBottom_toTopOf="@+id/read_ll_bottom_menu"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content" />-->
+        <!--layout="@layout/layout_setting"-->
+        <!--app:layout_constraintBottom_toTopOf="@+id/read_ll_bottom_menu"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
 
         <!--底部页面-->
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -174,12 +176,18 @@
             android:text="@string/contents"
             android:textColor="@color/black"
             android:textSize="20sp" />
-
-        <ListView
-            android:id="@+id/rlv_list"
+        <!--   这里用ListView是因为它带有旁边的滚动条,加RelativeLayout是解决ListView偶尔无法滚动问题    -->
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"/>
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ListView
+                android:id="@+id/rlv_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical" />
+        </RelativeLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -188,8 +196,8 @@
         android:id="@+id/iv_guide"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_guide"
         android:scaleType="fitXY"
-        android:visibility="gone"/>
+        android:src="@drawable/ic_guide"
+        android:visibility="gone" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

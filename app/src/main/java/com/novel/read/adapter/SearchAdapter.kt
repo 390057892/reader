@@ -92,10 +92,7 @@ class SearchAdapter(private val mList: List<SearchResp.BookBean>, recyclerView: 
                 val bookBean = mList[i]
                 viewHolder.mTvBookName.text = bookBean.title
                 viewHolder.itemView.setOnClickListener { view ->
-                    mClickListener!!.onItemClick(
-                        view,
-                        i
-                    )
+                    mClickListener!!.onItemClick(view, i)
                 }
             }
             is BookHolder -> {
@@ -157,7 +154,6 @@ class SearchAdapter(private val mList: List<SearchResp.BookBean>, recyclerView: 
     fun setOnItemClickListener(mListener: OnItemClickListener) {
         this.mClickListener = mListener
     }
-
 
     interface OnItemClickListener {
         fun onItemClick(view: View, pos: Int)

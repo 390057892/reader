@@ -595,7 +595,6 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
         super.onDestroy()
         EventManager.instance.unregisterSubscriber(this)
         mPageLoader.closeBook()
-//        mPageLoader = null
         unbindService(mConn)
         unregisterReceiver(mReceiver)
     }
