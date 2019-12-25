@@ -10,8 +10,10 @@ import com.novel.read.adapter.HumanAdapter
 import com.novel.read.adapter.RankAdapter
 import com.novel.read.base.NovelBaseFragment
 import com.novel.read.constants.Constant
+import com.novel.read.dp2px
 import com.novel.read.http.AccountManager
 import com.novel.read.model.protocol.RecommendListResp
+import com.novel.read.utlis.EvenItemDecoration
 import kotlinx.android.synthetic.main.fragment_man.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,9 +37,12 @@ class ManFragment : NovelBaseFragment() {
     override fun initView() {
         EventManager.instance.registerSubscriber(this)
 
-        rlv_pop.layoutManager = GridLayoutManager(activity, 3)
         mHumanAdapter = HumanAdapter(mHumanList)
-        rlv_pop.adapter = mHumanAdapter
+        rlv_pop.apply {
+            layoutManager = GridLayoutManager(activity, 3)
+            adapter = mHumanAdapter
+            addItemDecoration(EvenItemDecoration(activity!!.dp2px(10), 3))
+        }
 
         val linearLayoutManager = LinearLayoutManager(activity)
         linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
@@ -45,9 +50,12 @@ class ManFragment : NovelBaseFragment() {
         mEditAdapter = EditRecommendAdapter(mEditList)
         rlv_recommend.adapter = mEditAdapter
 
-        rlv_update.layoutManager = GridLayoutManager(activity, 3)
         mRankAdapter = RankAdapter(mRankList)
-        rlv_update.adapter = mRankAdapter
+        rlv_update.apply {
+            layoutManager = GridLayoutManager(activity, 3)
+            adapter = mRankAdapter
+            addItemDecoration(EvenItemDecoration(activity!!.dp2px(10), 3))
+        }
     }
 
     override fun initData() {
