@@ -161,18 +161,16 @@ class NovelReadActivity : NovelBaseActivity(), DownloadService.OnDownloadListene
             toggleMenu(false)
         }
 
-        Log.e(TAG, "mBookId: $mBookId")
         if (isCollected) {
-            mPageLoader.collBook.bookChapters =
-                BookRepository.getInstance().getBookChaptersInRx(mBookId)
+            mPageLoader.collBook.bookChapters = BookRepository.getInstance().getBookChaptersInRx(mBookId)
             // 刷新章节列表
             mPageLoader.refreshChapterList()
             // 如果是网络小说并被标记更新的，则从网络下载目录
             if (mCollBook.isUpdate && !mCollBook.isLocal) {
-                AccountManager.getInstance().getBookArticle(mBookId, "2", "1", "10000")
+                AccountManager.getInstance().getBookArticle(mBookId)
             }
         } else {
-            AccountManager.getInstance().getBookArticle(mBookId, "2", "1", "10000")
+            AccountManager.getInstance().getBookArticle(mBookId)
         }
 
     }

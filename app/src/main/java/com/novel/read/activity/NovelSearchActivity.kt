@@ -32,7 +32,7 @@ import kotlinx.android.synthetic.main.title_search.*
 import org.litepal.LitePal
 import java.util.*
 
-class NovelSearchActivity : NovelBaseActivity() {
+class NovelSearchActivity(override val layoutId: Int= R.layout.activity_search) : NovelBaseActivity() {
 
     private val mHotList = ArrayList<String>()
     private lateinit var mHotAdapter: HotAdapter
@@ -45,8 +45,6 @@ class NovelSearchActivity : NovelBaseActivity() {
 
     private var page = 1
     private var loadSize: Int = 0
-
-    override val layoutId: Int get() = R.layout.activity_search
 
     override fun initView() {
         EventManager.instance.registerSubscriber(this)

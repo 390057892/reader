@@ -18,7 +18,7 @@ import java.util.*
 /**
  * 推荐fragment中点击更多跳转来的。
  */
-class NovelRankListActivity : NovelBaseActivity() {
+class NovelRankListActivity(override val layoutId: Int= R.layout.activity_rank_list) : NovelBaseActivity() {
 
     private lateinit var mAdapter: RankListAdapter
     private var mList: MutableList<RankByUpdateResp.BookBean> = ArrayList()
@@ -26,8 +26,6 @@ class NovelRankListActivity : NovelBaseActivity() {
     private var loadSize: Int = 0
     private var type: String = ""
     private var sex: String = ""
-
-    override val layoutId: Int get() = R.layout.activity_rank_list
 
     override fun initView() {
         rlv_book_list.layoutManager = LinearLayoutManager(this)

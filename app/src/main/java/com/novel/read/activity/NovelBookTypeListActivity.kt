@@ -15,7 +15,7 @@ import com.squareup.otto.Subscribe
 import kotlinx.android.synthetic.main.activity_book_type_list.*
 import java.util.*
 
-class NovelBookTypeListActivity : NovelBaseActivity() {
+class NovelBookTypeListActivity(override val layoutId: Int = R.layout.activity_book_type_list) : NovelBaseActivity() {
 
     private var mList: MutableList<SearchResp.BookBean> = ArrayList()
     private lateinit var mAdapter: BookListAdapter
@@ -23,8 +23,6 @@ class NovelBookTypeListActivity : NovelBaseActivity() {
     private var mTitle: String? = null
     private var page: Int = 1
     private var loadSize: Int = 0
-
-    override val layoutId: Int get() = R.layout.activity_book_type_list
 
     override fun initView() {
         EventManager.instance.registerSubscriber(this)

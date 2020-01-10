@@ -24,7 +24,7 @@ import com.novel.read.utlis.SpUtil
 import com.squareup.otto.Subscribe
 import kotlinx.android.synthetic.main.activity_main.*
 
-class NovelMainActivity : NovelBaseActivity() {
+class NovelMainActivity(override val layoutId: Int = R.layout.activity_main) : NovelBaseActivity() {
 
     private lateinit var mCurrentFrag: Fragment
     private lateinit var mMainFragment: BookFragment
@@ -34,8 +34,6 @@ class NovelMainActivity : NovelBaseActivity() {
 
     //记录用户首次点击返回键的时间
     private var firstTime: Long = 0
-
-    override val layoutId: Int get() =  R.layout.activity_main
 
     override fun initView() {
         mCurrentFrag = Fragment()

@@ -86,7 +86,7 @@ class AccountManager private constructor() {
         call.enqueue(ServiceCallback(HotSearchEvent::class.java))
     }
 
-    fun getBookArticle(bookId: String, hasContent: String, page: String, limit: String) {
+    fun getBookArticle(bookId: String, hasContent: String="2", page: String="1", limit: String="100000") {
         val map = HashMap<String, String>()
         map["book_id"] = bookId
         map["has_content"] = hasContent

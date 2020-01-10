@@ -12,9 +12,7 @@ import com.novel.read.widget.VpTabLayout
 import kotlinx.android.synthetic.main.activity_recommend_book_list.*
 import java.util.*
 
-class NovelRecommendBookListActivity : NovelBaseActivity() {
-
-    override val layoutId: Int get() = R.layout.activity_recommend_book_list
+class NovelRecommendBookListActivity(override val layoutId: Int= R.layout.activity_recommend_book_list) : NovelBaseActivity() {
 
     override fun initView() {
         val fragmentList = ArrayList<Fragment>()

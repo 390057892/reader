@@ -29,18 +29,14 @@ import kotlinx.android.synthetic.main.activity_book_detail.*
 import org.litepal.LitePal
 import java.util.*
 
-class NovelBookDetailActivity : NovelBaseActivity(), View.OnClickListener {
+class NovelBookDetailActivity(override val layoutId: Int = R.layout.activity_book_detail) : NovelBaseActivity(), View.OnClickListener {
 
     private lateinit var mAdapter: LoveLyAdapter
     private val mList = ArrayList<RecommendBookResp.BookBean>()
-
     private var mBookId: Int = 0
     private var isCollected = false
     private var mCollBookBean: CollBookBean? = null
-
     private lateinit var mProgressDialog: ProgressDialog
-
-    override val layoutId: Int get() = R.layout.activity_book_detail
 
     override fun initView() {
         mBookId = intent.getIntExtra(Constant.Bundle.BookId, 0)
@@ -76,8 +72,7 @@ class NovelBookDetailActivity : NovelBaseActivity(), View.OnClickListener {
                 } else {
                     mProgressDialog.setTitle("正在添加到书架中")
                     mProgressDialog.show()
-                    AccountManager.getInstance()
-                        .getBookArticle(mBookId.toString(), "2", "1", "100000")
+                    AccountManager.getInstance().getBookArticle(mBookId.toString())
 
                 }
             R.id.tv_start_read ->

@@ -21,11 +21,9 @@ import com.novel.read.utlis.VersionUtil
 import com.squareup.otto.Subscribe
 import kotlinx.android.synthetic.main.activity_setting.*
 
-class NovelSettingActivity : NovelBaseActivity(), View.OnClickListener {
+class NovelSettingActivity(override val layoutId: Int = R.layout.activity_setting) : NovelBaseActivity(), View.OnClickListener {
 
     private var resp: VersionResp? = null
-
-    override val layoutId: Int get() = R.layout.activity_setting
 
     override fun initView() {
         EventManager.instance.registerSubscriber(this)
@@ -63,12 +61,7 @@ class NovelSettingActivity : NovelBaseActivity(), View.OnClickListener {
                 AlertDialog.Builder(this)
                     .setTitle(getString(R.string.clear_cache))
                     .setCancelable(true)
-                    .setMultiChoiceItems(
-                        arrayOf(
-                            getString(R.string.clear_cache),
-                            getString(R.string.clear_book)
-                        ), selected
-                    ) { _, which, isChecked -> selected[which] = isChecked }
+                    .setMultiChoiceItems(arrayOf(getString(R.string.clear_cache), getString(R.string.clear_book)), selected) { _, which, isChecked -> selected[which] = isChecked }
                     .setPositiveButton(getString(R.string.sure)) { dialog, _ ->
                         Thread {
                             CleanCacheUtils.getInstance()
@@ -89,7 +82,7 @@ class NovelSettingActivity : NovelBaseActivity(), View.OnClickListener {
                         }.start()
                         dialog.dismiss()
                     }
-                    .setNegativeButton(getString(R.string.cancel)) { dialog, which -> dialog.dismiss() }
+                    .setNegativeButton(getString(R.string.cancel)) { dialog, _ -> dialog.dismiss() }
                     .create().show()
             }
             R.id.tv_check ->
