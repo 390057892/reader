@@ -90,7 +90,7 @@
     <string name="delete">删除</string>
     <string name="add_bookmark">新增書籤</string>
     <string name="clear_bookmark">清除</string>
-    <string name="sign_exist">当前章节书签已存在</string>
+    <string name="sign_exist">當前章節書簽已存在</string>
     <string name="like_book">喜歡本書就加入書架吧</string>
     <string name="please_add_book">請先添加書籍</string>
 

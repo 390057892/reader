@@ -35,8 +35,8 @@
     <color name="read_font_four">#2C2C2C</color>
     <color name="read_font_five">#627176</color>
 
-    <color name="read_bg_night">#000000</color>
-    <color name="read_font_night">#99ffffff</color>
+    <color name="read_bg_night">#212021</color>
+    <color name="read_font_night">#94969C</color>
 
     <color name="read_menu_bg">#191919</color>
     <color name="read_menu_text">#CBCBCB</color>
