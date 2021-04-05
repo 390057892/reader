@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp">
+
+    <com.novel.read.ui.widget.image.CoverImageView
+        android:id="@+id/iv_cover"
+        android:layout_width="70dp"
+        android:layout_height="95dp"
+        android:layout_margin="8dp"
+        android:contentDescription="@string/img_cover"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_cover_default"
+        android:transitionName="img_cover"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UnusedAttribute" />
+
+    <TextView
+        android:id="@+id/tv_book_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/iv_cover"
+        app:layout_constraintTop_toTopOf="@+id/iv_cover"
+        android:layout_marginStart="12dp"
+        tools:text="步履不停"
+        android:textSize="17sp"
+        android:maxLines="1"
+        android:textColor="@color/primaryText"/>
+
+
+
+    <TextView
+        android:id="@+id/tv_book_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:maxLines="2"
+        android:textSize="15sp"
+        android:ellipsize="end"
+        app:layout_constraintLeft_toRightOf="@+id/iv_cover"
+        app:layout_constraintTop_toBottomOf="@+id/tv_book_name"
+        app:layout_constraintBottom_toTopOf="@+id/tv_book_author"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="12dp"
+        tools:text="步履不停步履不停步履不停步履不停步履不停步履不停步履不停"
+        android:textColor="@color/secondaryText"/>
+
+
+    <TextView
+        android:id="@+id/tv_book_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/iv_cover"
+        app:layout_constraintTop_toBottomOf="@+id/tv_book_description"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_cover"
+        app:layout_constraintRight_toLeftOf="@+id/tv_word"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintHorizontal_bias="0"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="2dp"
+        android:textSize="13sp"
+        android:gravity="center"
+        tools:text="赵利君 著"
+        android:maxLines="1"
+        android:textColor="@color/tv_text_summary"/>
+
+    <TextView
+        android:id="@+id/tv_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/tv_book_author"
+        app:layout_constraintTop_toTopOf="@+id/tv_book_author"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_book_author"
+        app:layout_constraintHorizontal_bias="0"
+        android:layout_marginStart="15dp"
+        android:textSize="13sp"
+        android:gravity="center"
+        tools:text="36万字"
+        android:maxLines="1"
+        android:textColor="@color/tv_text_summary"/>
+
+    <TextView
+        android:id="@+id/tv_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/tv_word"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_book_author"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_book_author"
+        app:layout_constraintHorizontal_bias="1"
+        android:layout_marginStart="15dp"
+        android:paddingVertical="1dp"
+        android:paddingHorizontal="5dp"
+        android:textSize="13sp"
+        android:gravity="center"
+        tools:text="恐怖灵异"
+        android:maxLines="1"
+        android:background="@drawable/bg_category"
+        android:textColor="@color/tv_text_summary"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="@color/bg_divider_line"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/iv_cover"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

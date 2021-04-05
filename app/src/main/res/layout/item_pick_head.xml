@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="15dp"
+    android:paddingBottom="15dp">
+
+    <TextView
+        android:id="@+id/tv_daily"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:text="@string/daily"
+        app:drawableTopCompat="@drawable/ic_daily"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_rank"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_rank"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:text="@string/rank"
+        app:drawableTopCompat="@drawable/ic_rank"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_daily"
+        app:layout_constraintLeft_toRightOf="@+id/tv_daily"
+        app:layout_constraintRight_toLeftOf="@+id/tv_end"
+        app:layout_constraintTop_toTopOf="@+id/tv_daily" />
+
+    <TextView
+        android:id="@+id/tv_end"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:text="@string/end_book"
+        app:drawableTopCompat="@drawable/ic_book_end"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_daily"
+        app:layout_constraintLeft_toRightOf="@+id/tv_rank"
+        app:layout_constraintRight_toLeftOf="@+id/tv_type"
+        app:layout_constraintTop_toTopOf="@+id/tv_daily" />
+
+
+    <TextView
+        android:id="@+id/tv_type"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:text="@string/type"
+        app:drawableTopCompat="@drawable/ic_book_type"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_daily"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintLeft_toRightOf="@+id/tv_end"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_daily" />
+</androidx.constraintlayout.widget.ConstraintLayout>

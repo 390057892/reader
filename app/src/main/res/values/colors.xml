@@ -1,56 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="white">#ffffff</color>
-    <color name="colorBlue">#5086DF</color>
-    <color name="black">#212121</color>
-    <!--day-->
-    <color name="colorPrimary">#ffffff</color>
-    <color name="colorSelect">#498EFF</color>
-    <color name="colorNoSelect">#8B8484</color>
 
-    <!--一级标题-->
-    <color name="colorTitle">#212121</color>
-    <!--二级标题-->
-    <color name="smallColor">#262626</color>
-    <!--三级标题-->
-    <color name="colorSubTitle">#A8ABB8</color>
-    <!--描述-->
-    <color name="colorDesTitle">#707177</color>
+    <color name="primary">@color/md_light_blue_600</color>
+    <color name="primaryDark">@color/md_light_blue_700</color>
+    <color name="accent">@color/md_orange_A400</color>
+    <color name="divider">#66666666</color>
 
-    <color name="colorLine">#F0F0F0</color>
-    <color name="colorSearchBg">#F5F5F5</color>
-    <color name="colorSearchText">#969696</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
 
-    <!--通用背景色-->
-    <color name="common_bg">@color/colorPrimary</color>
-    <!--通用触摸背景色-->
-    <color name="common_touch_bg">#E3E3E3</color>
+    <color name="btn_bg_press">#63ACACAC</color>
+    <color name="btn_bg_press_2">#63858585</color>
+    <color name="btn_bg_press_tp">#632C2C2C</color>
 
+    <color name="background_purity">@color/white</color>
+    <color name="background">@color/md_grey_50</color>
+    <color name="background_card">@color/md_grey_100</color>
+    <color name="background_menu">@color/md_grey_200</color>
+    <color name="background_prefs">#7fffffff</color>
     <color name="transparent">#00000000</color>
 
-    <color name="read_menu_color">#FFFDF6</color>
-    <color name="read_menu_trans_color">#FCC4C4C4</color>
-    <color name="light_red">#EC4A48</color>
-    <color name="light_yellow">#B87324</color>
 
-    <!--read-->
-    <color name="read_bg_one">#EFEFF7</color>
-    <color name="read_bg_two">#CCEBCC</color>
-    <color name="read_bg_four">#CEC29C</color>
-    <color name="read_bg_five">#001C27</color>
-    <color name="read_bg_six">#DDCEC29C</color>
+    <color name="primaryText">#de000000</color>
+    <color name="secondaryText">#8a000000</color>
+    <color name="tv_text_summary">#8A2C2C2C</color>
+    <color name="tv_text_book_detail">#dfdfdf</color>
+    <color name="menu_color_default">#383838</color>
 
+    <!--statusBarBackground-->
+    <color name="status_bar_bag">#19000000</color>
+    <color name="navigation_bar_bag">#f4f4f4</color>
 
-    <color name="read_font_one">#383429</color>
-    <color name="read_font_two">#2F332D</color>
-    <color name="read_font_three">#92918C</color>
-    <color name="read_font_four">#2C2C2C</color>
-    <color name="read_font_five">#627176</color>
+    <!--LIGHT-->
+    <!--12%-->
+    <color name="ate_switch_track_disabled_light">#1F000000</color>
+    <color name="ate_button_disabled_light">#1F000000</color>
+    <!-- 26% -->
+    <color name="ate_control_disabled_light">#43000000</color>
+    <color name="ate_switch_track_normal_light">#43000000</color>
+    <color name="ate_button_text_disabled_light">#43000000</color>
+    <!-- 38% -->
+    <color name="ate_text_disabled_light">#61000000</color>
+    <!-- 54% -->
+    <color name="ate_secondary_text_light">#8A000000</color>
+    <color name="ate_icon_light">#8A000000</color>
+    <color name="ate_control_normal_light">#8A000000</color>
+    <!-- 87% -->
+    <color name="ate_primary_text_light">#DE000000</color>
+    <!--Grey 50, #FAFAFA, Opacity  100%-->
+    <color name="ate_switch_thumb_normal_light">#FFFAFAFA</color>
+    <!--Grey 400, #BDBDBD, Opacity  100%-->
+    <color name="ate_switch_thumb_disabled_light">#FFBDBDBD</color>
+    <!---->
+    <color name="ate_navigation_drawer_selected_light">#E8E8E8</color>
 
-    <color name="read_bg_night">#212021</color>
-    <color name="read_font_night">#94969C</color>
+    <!--DARK-->
+    <!--10%-->
+    <color name="ate_switch_track_disabled_dark">#1AFFFFFF</color>
+    <!--12%-->
+    <color name="ate_button_disabled_dark">#1F000000</color>
+    <!-- 30% -->
+    <color name="ate_control_disabled_dark">#4DFFFFFF</color>
+    <color name="ate_switch_track_normal_dark">#4DFFFFFF</color>
+    <color name="ate_button_text_disabled_dark">#4DFFFFFF</color>
+    <color name="ate_text_disabled_dark">#4DFFFFFF</color>
+    <!-- 70% -->
+    <color name="ate_secondary_text_dark">#B3FFFFFF</color>
+    <color name="ate_icon_dark">#B3FFFFFF</color>
+    <color name="ate_control_normal_dark">#B3FFFFFF</color>
+    <!-- 100% -->
+    <color name="ate_primary_text_dark">#FFFFFFFF</color>
+    <!--Grey 400, #BDBDBD, Opacity  100%-->
+    <color name="ate_switch_thumb_normal_dark">#FFBDBDBD</color>
+    <!--Grey 800, #424242, Opacity 100%-->
+    <color name="ate_switch_thumb_disabled_dark">#FF424242</color>
+    <!---->
+    <color name="ate_navigation_drawer_selected_dark">#202020</color>
 
-    <color name="read_menu_bg">#191919</color>
-    <color name="read_menu_text">#CBCBCB</color>
-    <color name="read_bar_translucent">#88000000</color>
+    <color name="transparent10">#10000000</color>
+    <color name="transparent30">#30000000</color>
+    <color name="transparent50">#50000000</color>
+
+    <color name="bg_divider_line">#8fe0e0e0</color>
+
+    <color name="darker_gray">#aaaaaaaa</color>
+    <color name="tv_text_button_nor">#efefef</color>
+
+    <color name="test">#828790</color>
 </resources>

@@ -3,71 +3,96 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.novel.read">
 
+    <uses-permission
+        android:name="android.permission.MANAGE_DOCUMENTS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
 
     <application
-        android:name=".base.MyApp"
+        android:name="com.novel.read.App"
         android:allowBackup="true"
-        android:icon="@mipmap/logo"
-        android:logo="@mipmap/logo"
+        android:icon="@mipmap/icon_read_book"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/logo"
-        android:supportsRtl="true"
-        android:theme="@style/AppDartTheme"
+        android:logo="@mipmap/icon_read_book"
         android:networkSecurityConfig="@xml/network_security_config"
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity
-            android:name="com.novel.read.activity.NovelRankListActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.novel.read.activity.NovelReadActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.novel.read.activity.NovelSearchActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.novel.read.activity.NovelSplashActivity"
-            android:screenOrientation="portrait">
+        android:requestLegacyExternalStorage="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.Light"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute">
+        <activity android:name="com.novel.read.ui.about.AboutActivity"/>
+        <activity android:name="com.novel.read.ui.theme.ThemeActivity" />
+        <activity android:name="com.novel.read.ui.record.ReadRecordActivity" />
+        <activity android:name="com.novel.read.ui.welcome.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name="com.novel.read.activity.NovelRecommendBookListActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.novel.read.activity.NovelBookTypeListActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.novel.read.activity.NovelBookDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.novel.read.activity.NovelSettingActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.novel.read.activity.NovelMainActivity"
-            android:screenOrientation="portrait" />
 
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.fileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true">
             <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
+                android:name="android.app.shortcuts"
+                android:launchMode="singleTask"
+                android:resource="@xml/shortcuts" />
+        </activity>
+        <activity android:name="com.novel.read.ui.setting.SettingActivity" />
+        <activity
+            android:name="com.novel.read.ui.feedback.FeedBackActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.novel.read.ui.rank.RankActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.novel.read.ui.end.EndActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.novel.read.ui.daily.DailyActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.novel.read.ui.channel.ChannelInfoActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.novel.read.ui.channel.ChannelActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="behind" />
+        <activity android:name="com.novel.read.ui.info.BookInfoActivity" />
+        <activity
+            android:name="com.novel.read.ui.search.SearchActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.novel.read.ui.read.ReadBookActivity"
+            android:configChanges="locale|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.novel.read.ui.chapter.ChapterListActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind" />
+        <activity
+            android:name="com.novel.read.ui.MainActivity"
+            android:alwaysRetainTaskState="true"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.novel.read.ui.main.bookshelf.arrange.ArrangeBookActivity"
+            android:launchMode="singleTask" />
 
-        <service android:name="com.novel.read.service.DownloadService" />
+        <service android:name="com.novel.read.service.CacheBookService" />
+        <service android:name="com.novel.read.service.TTSReadAloudService" />
+        <service android:name="com.novel.read.service.HttpReadAloudService" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5528897088703176~2055995158" />
     </application>
 
 </manifest>

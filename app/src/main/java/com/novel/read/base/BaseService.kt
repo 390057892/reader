@@ -1,25 +1,26 @@
 package com.novel.read.base
 
 import android.app.Service
+import android.content.Intent
+import com.novel.read.help.coroutine.Coroutine
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
+import kotlin.coroutines.CoroutineContext
 
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
+abstract class BaseService : Service(), CoroutineScope by MainScope() {
 
-abstract class BaseService : Service() {
+    fun <T> execute(
+        scope: CoroutineScope = this,
+        context: CoroutineContext = Dispatchers.IO,
+        block: suspend CoroutineScope.() -> T
+    ) = Coroutine.async(scope, context) { block() }
 
-    private var mDisposable: CompositeDisposable? = null
-
-    protected fun addDisposable(disposable: Disposable) {
-        if (mDisposable == null) {
-            mDisposable = CompositeDisposable()
-        }
-        mDisposable!!.add(disposable)
-    }
+    override fun onBind(intent: Intent?) = null
 
     override fun onDestroy() {
         super.onDestroy()
-        if (mDisposable != null) {
-            mDisposable!!.dispose()
-        }
+        cancel()
     }
 }

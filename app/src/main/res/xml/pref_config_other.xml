@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.novel.read.ui.widget.prefs.NameListPreference
+        android:key="language"
+        android:title="@string/language"
+        android:defaultValue="auto"
+        app:entries="@array/language"
+        app:entryValues="@array/language_value" />
+
+
+    <com.novel.read.ui.widget.prefs.PreferenceCategory
+        android:title="@string/other_setting"
+        app:allowDividerBelow="false"
+        app:iconSpaceReserved="false"
+        app:layout="@layout/view_preference_category">
+
+        <com.novel.read.ui.widget.prefs.Preference
+            android:key="cleanCache"
+            android:title="@string/clear_cache"
+            android:summary="@string/clear_cache_summary"
+            app:iconSpaceReserved="false" />
+
+        <com.novel.read.ui.widget.prefs.Preference
+            android:key="check_update"
+            android:title="@string/check_update"
+            app:iconSpaceReserved="false" />
+
+    </com.novel.read.ui.widget.prefs.PreferenceCategory>
+
+
+</androidx.preference.PreferenceScreen>

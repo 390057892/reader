@@ -1,23 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
 <litepal>
-    <dbname value="readDb" />
-
-    <version value="9" />
-
+    <dbname value="light_book" />
+    <version value="1" />
     <list>
-        <!--搜索记录表-->
-        <mapping class="com.novel.read.model.db.SearchListTable"/>
-        <!--收藏书籍表-->
-        <mapping class="com.novel.read.model.db.CollBookBean"/>
-        <!--章节表-->
-        <mapping class="com.novel.read.model.db.BookChapterBean"/>
-        <!--阅读记录表-->
-        <mapping class="com.novel.read.model.db.BookRecordBean"/>
-        <!--章节详情表-->
-        <mapping class="com.novel.read.model.db.ChapterInfoBean" />
-        <!--章节详情表-->
-        <mapping class="com.novel.read.model.db.DownloadTaskBean" />
-        <!--书签表-->
-        <mapping class="com.novel.read.model.db.BookSignTable" />
+        <mapping class="com.novel.read.data.db.entity.Book" />
+        <mapping class="com.novel.read.data.db.entity.BookChapter" />
+        <mapping class="com.novel.read.data.db.entity.Bookmark" />
+        <mapping class="com.novel.read.data.db.entity.ReadRecord" />
+        <mapping class="com.novel.read.data.db.entity.SearchHistory" />
+        <mapping class="com.novel.read.data.db.entity.User" />
     </list>
+    <storage value="external" />
 </litepal>

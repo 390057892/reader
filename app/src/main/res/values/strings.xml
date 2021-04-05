@@ -1,163 +1,255 @@
-<resources>
-    <string name="app_name">轻之阅读</string>
-    <string name="hello">哈喽</string>
-    <string name="book">书架</string>
-    <string name="recommend">推荐</string>
-    <string name="stack">书库</string>
-    <string name="more">更多</string>
-    <string name="choose_language">语言选择</string>
-    <string name="a_simple">简体中文</string>
-    <string name="a_traditional">繁体中文</string>
-    <string name="update_time">按更新时间</string>
-    <string name="read_time">按阅读时间</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">LightNovel</string>
+    <string name="love_app">Love a free light novel?</string>
 
-    <string name="empty_info"> </string>
-    <string name="common_no_data">没有相关数据!</string>
-    <string name="clear_book">清空书架列表</string>
+    <string name="book_mail">BookMall</string>
+    <string name="book_shelf">Bookshelf</string>
+    <string name="my">Me</string>
+    <string name="type">Type</string>
+    <string name="daily">Daily recommendation</string>
+    <string name="end_book">Finished Edition</string>
+    <string name="rank">Ranking</string>
 
-    <!--推荐-->
-    <string name="man">男生</string>
-    <string name="woman">女生</string>
-    <string name="recommend_key">书籍关键词/作者</string>
-    <string name="popular_selection">人气精选</string>
-    <string name="edit_recommend">编辑推荐</string>
-    <string name="recent_update">最近更新</string>
-    <string name="hot_search">热搜精选</string>
-    <string name="general_list">总榜</string>
-    <string name="month_list">月榜</string>
-    <string name="week_list">周榜</string>
+    <string name="big_hot_title">Hot list</string>
+    <string name="click_title">Click list</string>
+    <string name="recommend_title">Recommendation list</string>
+    <string name="end_title">Finish the list</string>
+    <string name="end_title2">Closing list</string>
+    <string name="hot_search_title">Hot search list</string>
+
+    <string name="copy_complete">Copied successfully</string>
+    <string name="double_click_exit">Tap again to exit the program</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="dialog_title">Prompt</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_confirm">Confirm</string>
+    <string name="dialog_setting">Go to Settings</string>
+    <string name="tip_cannot_jump_setting_page">Cannot jump to Settings.</string>
+
+    <string name="data_loading">Loading…</string>
+    <string name="content_empty">No content</string>
+
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="set_timer">Timer</string>
+
+    <string name="tts_fix">Please install and select Chinese TTS!</string>
+    <string name="tts_init_failed">TTS initialization failed!</string>
+
+    <string name="read_aloud">Speech</string>
+    <string name="read_aloud_t">Speaking</string>
+    <string name="read_aloud_s">Click to open the Reading</string>
 
 
-    <!--书库-->
-    <string name="key_word">请输入书籍关键词/作者名称</string>
-    <string name="modern_love">现代言情</string>
-    <string name="ancient_love">古代言情</string>
-    <string name="urban_love">都市婚恋</string>
+    <string name="read_aloud_pause">Speak Paused</string>
+    <string name="read_aloud_timer">Speaking(%d min left)</string>
+
+    <string name="offline_cache">Offline cache</string>
+    <string name="offline_cache_t">Offline cache</string>
+    <string name="offline_cache_s">cache the selected chapter(s) to Storage</string>
+
+    <string name="starting_download">Starting download</string>
+    <string name="already_in_download">This book is already in Download list</string>
 
 
-    <!--more-->
-    <string name="opinions">意见与反馈</string>
-    <string name="appraise">评价</string>
-    <string name="setting">设置</string>
+    <string name="error_get_book_info">Failed to obtain book information</string>
+    <string name="error_get_content">Failed to obtain content</string>
+    <string name="error_get_chapter_list">Failed to obtain chapters list</string>
+    <string name="error_get_web_content">Failed to access website:%s</string>
+    <string name="error_read_file">Failed to read file</string>
+    <string name="error_load_toc">Failed to load chapters list</string>
+    <string name="error_get_data">Failed to get data</string>
+    <string name="error_load_msg">Failed to load\n%s</string>
+    <string name="net_error_10001">No network</string>
+    <string name="net_error_10002">Network connection timeout</string>
+    <string name="net_error_10003">Data parsing failed</string>
+    <string name="network_request_failed">Network request failed</string>
+    <string name="no_prev_page">No prior page</string>
+    <string name="no_next_page">No next page</string>
 
-    <!--setting-->
-    <string name="choose_text">字体选择</string>
-    <string name="clear_cache">清除缓存</string>
-    <string name="check_update">检查更新</string>
+    <string name="action_download">Download</string>
 
-    <!--detail-->
-    <string name="book_detail">图书详情</string>
-    <string name="lovely">猜你喜欢</string>
-    <string name="already_add">已加入</string>
-    <string name="go_read">继续阅读</string>
-    <string name="add_book">加入书架</string>
-    <string name="start_read">开始阅读</string>
-    <string name="popularity">人气</string>
-    <string name="love_look">爱看</string>
-    <string name="author_zhu">%s 著</string>
-    <string name="new_chapter">最新章节:%s</string>
-    <string name="book_word">%d万字</string>
-    <string name="jump_ad">跳过</string>
-    <string name="cancel">取消</string>
-    <string name="sure">确定</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="sure">OK</string>
 
-    <!--search-->
-    <string name="search_hot">热门搜索</string>
-    <string name="search_history">历史搜索</string>
-    <string name="clear_search">确认清空全部记录?</string>
+    <string name="page_anim_cover">Cover</string>
+    <string name="page_anim_slide">Slide</string>
+    <string name="page_anim_simulation">Simulation</string>
+    <string name="page_anim_scroll">Scroll</string>
+    <string name="page_anim_none">None</string>
+    <string name="btn_default_s">Default</string>
+    <string name="page_anim">Flip animation</string>
 
-    <!--阅读器-->
-    <string name="contents">目录</string>
-    <string name="light">亮度</string>
-    <string name="cache">缓存</string>
-    <string name="listen">听书</string>
-    <string name="brief">简介</string>
-    <string name="label">标签</string>
+    <string name="chapter">Chapter</string>
+    <string name="to">To</string>
 
-    <string name="d_cache_num">缓存多少章？</string>
-    <string name="d_cache_last_50">后面五十章</string>
-    <string name="d_cache_last_all">后面全部</string>
-    <string name="d_cache_all">全部</string>
+    <string name="bookmark">Bookmarks</string>
+    <string name="bookmark_add">Add to Bookmarks</string>
+    <string name="action_del">Delete</string>
+    <string name="load_over_time">Loading timeout</string>
 
-    <string name="font">字体</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="delete_all">Delete all</string>
+    <string name="note_content">Remarks section</string>
+    <string name="set_charset">Text encoding</string>
+
+    <string name="select_end">Select end</string>
+    <string name="select_start">Select start</string>
+
+    <string name="interface_setting">Interface</string>
+    <string name="brightness">Brightness</string>
+    <string name="chapter_list">Chapters</string>
+    <string name="next_chapter">Next</string>
+    <string name="previous_chapter">Prior</string>
+    <string name="setting">Settings</string>
+    <string name="search_content">Search content</string>
+    <string name="dark_theme">Dark mode</string>
+    <string name="aloud_config">Speech settings</string>
+    <string name="main_menu">Main menu</string>
+    <string name="auto_page_speed">Auto scroll speed</string>
+    <string name="more_menu">More menu</string>
+    <string name="more">More</string>
+
+    <string name="default1">Default-1</string>
+    <string name="default2">Default-2</string>
+    <string name="default3">Default-3</string>
+    <string name="title">Title</string>
+    <string name="title_left">Left</string>
+    <string name="title_center">Center</string>
+    <string name="title_hide">Hide</string>
+
+    <string name="brightness_auto">Auto-Brightness %s</string>
+    <string name="read_aloud_by_page">Speak by pages</string>
+    <string name="speak_engine">Speak Engine</string>
+    <string name="local_tts">Local TTS</string>
+    <string name="search">Search</string>
+
+    <string name="go_to_top">Scroll to the top</string>
+    <string name="go_to_bottom">Scroll to the bottom</string>
+    <string name="success">Success</string>
+    <string name="toc_updateing">Updating Chapters</string>
+
+    <string name="author">Author</string>
+    <string name="img_cover">Cover</string>
+    <string name="read_dur_progress">Origin: %s</string>
+    <string name="book_name">Title</string>
+    <string name="lasted_show">Latest: %s</string>
+
+    <string name="book_info">Book information</string>
+    <string name="update_toc">Update chapters</string>
+    <string name="copy_text">Copy</string>
+    <string name="refresh">Refresh</string>
+    <string name="alouding_disable">The selected text cannot be spoken in full text speech</string>
+
+    <string name="book_word">%d萬字</string>
+    <string name="man_channel">Boys</string>
+    <string name="woman_channel">Girls</string>
+    <string name="other_channel">Other categories</string>
+    <string name="similar_recommend">Similar recommendation</string>
+
+    <string name="book_detail">Book details</string>
+    <string name="remove_from_bookshelf">Remove</string>
+    <string name="start_read">Start reading</string>
+    <string name="reading">Read</string>
+    <string name="add_to_shelf">Add to Bookshelf</string>
+    <string name="continue_read">Continue reading</string>
+
+    <string name="dynamic_click_retry">Retry</string>
+    <string name="dynamic_loading">Loading</string>
+    <string name="search_hot">Hot Search</string>
+    <string name="search_history">Search History</string>
+    <string name="empty_info" tools:ignore="MissingTranslation"> </string>
+
+    <string name="text_bold">Bold</string>
+    <string name="text_font">Font</string>
+    <string name="text">Text</string>
     <string name="simple_font">简体</string>
     <string name="traditional_font">繁体</string>
-    <string name="font_size">字号</string>
-    <string name="font_bg">背景</string>
+    <string name="good_text">If you think we are doing well, please give us a five-star praise to encourage</string>
+    <string name="no_google">Google App store not detected</string>
+    <string name="feedback">Feedback</string>
+    <string name="evaluate">Evaluate</string>
+    <string name="submit_feedback">Submit feedback</string>
+    <string name="feedback_not_empty">Feedback content cannot be empty</string>
+    <string name="feedback_success">Feedback successful, we will solve your problem as soon as possible</string>
+    <string name="feedback_hint">In order to better solve the problem you encountered, please try to describe the problem in detail. Such as providing the name and phenomenon of books.</string>
+    <string name="check_add_bookshelf">Would you like to add %s to your Bookshelf?</string>
+    <string name="flow_sys">Follow system</string>
+    <string name="read_aloud_speed">Speech rate</string>
 
-    <string name="book_read_mode_day">夜间</string>
-
-
-    <string name="net_error">加入书架失败,请检查网络设置</string>
-
-    <string name="delete">删除</string>
-    <string name="add_bookmark">新增书签</string>
-    <string name="clear_bookmark">清除</string>
-    <string name="sign_exist">当前章节书签已存在</string>
-    <string name="like_book">喜欢本书就加入书架吧</string>
-    <string name="please_add_book">请先添加书籍</string>
-
-    <string name="pic_loading">插图加载中...</string>
+    <string name="timer_m">%d min</string>
+    <string name="prev_sentence">Prior sentence</string>
+    <string name="next_sentence">Next sentence</string>
+    <string name="audio_play">Play</string>
+    <string name="audio_play_t">Playing</string>
+    <string name="audio_play_s">Click to open the Playing</string>
+    <string name="audio_pause">Pause</string>
+    <string name="to_backstage">Background</string>
+    <string name="layout_list">List</string>
+    <string name="layout_grid3">Grid-3</string>
+    <string name="layout_grid4">Grid-4</string>
+    <string name="layout_grid5">Grid-5</string>
+    <string name="layout_grid6">Grid-6</string>
+    <string name="bookshelf_layout">Layout</string>
+    <string name="arrange_bookshelf">Bookshelf arrangement</string>
+    <string name="view">View</string>
+    <string name="swap_sort">Ascending/Descending order</string>
+    <string name="sort">Sort</string>
+    <string name="sort_auto">Sort automatically</string>
+    <string name="sort_manual">Sort manually</string>
+    <string name="sort_pin_yin">Sort phonetically</string>
+    <string name="bookshelf_px_0">By recent list</string>
+    <string name="bookshelf_px_1">By update time</string>
+    <string name="bookshelf_px_2">By book title</string>
+    <string name="bookshelf_px_3">By sort manually</string>
+    <string name="language">Language</string>
+    <string name="other_setting">Other settings</string>
+    <string name="clear_cache">Clear cache</string>
+    <string name="clear_cache_success">Cache cleared</string>
+    <string name="clear_cache_summary">Clear the cache of the downloaded books and fonts</string>
+    <string name="sure_del">Are you sure to delete it?</string>
+    <string name="sure_del_all_book">Are you sure to delete all books？</string>
+    <string name="sure_del_download_book">Do you want to delete the downloaded book chapters at the same time?</string>
+    <string name="check_update">Check for Updates</string>
+    <string name="version">Version</string>
+    <string name="recent_reading">Recent reading</string>
+    <string name="last_read">Last reading</string>
+    <string name="bookshelf">Bookshelf</string>
 
     <!--version-->
     <string name="new_version">新版本V %s</string>
     <string name="download_loading">%d/%d</string>
-    <string name="downloading">正在下载</string>
+    <string name="downloading">正在下載</string>
     <string name="update_now">立即更新</string>
 
-    <!--book status-->
-    <string name="cached">当前书籍已缓存</string>
-    <string name="cache_success">成功添加到缓存队列</string>
-    <string name="task_exist">任务已存在</string>
+    <string name="jump_ad">Skip</string>
+    <string name="chinese_converter">Simplified conversion</string>
+    <string name="text_font_weight_converter">Text font weight switching</string>
 
-    <string name="download_success">下载完成</string>
-    <string name="download_error">资源或网络错误</string>
-    <string name="download_pause">暂停加载</string>
+    <string name="draw">Warning</string>
 
-    <string name="night">夜间模式</string>
-    <string name="switch_lau">切换语言</string>
-    <string name="book_sort">书架排序</string>
-    <string name="edit_book">编辑书架</string>
+    <string name="read_record">Read record</string>
+    <string name="read_record_summary">Read record summary</string>
+    <string name="clear">Clear</string>
+    <string name="theme_setting">Theme settings</string>
+    <string name="praise">Praise</string>
+    <string name="many_book_free">Read a large number of popular novels for free</string>
 
-    <string name="delete_success">删除成功</string>
-
-    <string name="loading_more">正在加载更多...</string>
-
-    <!--听书-->
-    <string name="hard_work">努力开发中</string>
-    <string name="listen_speed">语速</string>
-    <string name="listen_slow">慢</string>
-    <string name="listen_fast">快</string>
-    <string name="listen_sound">发音</string>
-    <string name="listen_man">男声</string>
-    <string name="listen_woman">女声</string>
-    <string name="listen_dashi">大师</string>
-    <string name="listen_niuniu">妞妞</string>
-    <string name="listen_time">定时</string>
-    <string name="listen_time_no">不启用</string>
-    <string name="listen_shiwu">15分钟</string>
-    <string name="listen_sanshi">30分钟</string>
-    <string name="listen_liushi">60分钟</string>
-    <string name="listen_quit">退出听书</string>
-    <string name="listen_start">开始听书</string>
-    <string name="listen_no_switch">听书时不能切换发音哦</string>
-    <string name="listen_end">定时播放结束</string>
-    <string name="listen_time_start">定时播放开始</string>
-
-    <string name="good_text">如果您觉得我们做的还不错请给我们一个五星好评鼓励一下</string>
-
-    <!--  翻页  -->
-    <string name="page_mode">翻页</string>
-    <string name="simulation">仿真</string>
-    <string name="cover">覆盖</string>
-    <string name="scroll">滚动</string>
-    <string name="none">无</string>
-
-    <!--DownloadTask:书籍下载-->
-    <string name="download_add_succeed">成功添加到下载列表</string>
-    <string name="download_exist">该任务已存在</string>
-    <string name="download_load_all">已缓存全部章节</string>
-    <string name="download_progress">%1$d/%2$d</string>
-    <string name="download_chapter_scope">(%1$d-%2$d章)</string>
-    <string name="load_end">已经到底了</string>
+    <string name="reserved">©2021 LightNovel \n All Right Reserved</string>
+    <string name="about">About Us</string>
+    <string name="google_login">Starting Google login</string>
+    <string name="buy_vip">Click to open</string>
+    <string name="login_now">Click login</string>
+    <string name="welcome_use">Welcome to the LightNovel</string>
+    <string name="g_login">Google account login</string>
+    <string name="user_login">User login</string>
+    <string name="privacy">Terms of service</string>
+    <string name="my_order">My Order</string>
 </resources>

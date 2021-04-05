@@ -15,10 +15,10 @@
   ~ limitations under the License.
   -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rl_empty_view"
+    android:id="@+id/rl_error_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/appBg"
+    android:background="@color/background"
     android:layout_centerInParent="true"
     android:orientation="vertical">
 
@@ -39,7 +39,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="暂无数据"
-            android:textColor="@color/smallColor" />
+            android:text="暂无数据" />
     </LinearLayout>
 </RelativeLayout>

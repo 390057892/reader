@@ -19,6 +19,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
             android:text="去添加"
-            android:background="@color/colorSelect"
+            android:background="@color/primary"
             android:textColor="@color/white" />
 </LinearLayout>

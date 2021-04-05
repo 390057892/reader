@@ -1,69 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.novel.read.widget.RefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/swipe"
-    android:layout_width="match_parent"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rlv_man"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <com.novel.read.widget.HeadLayout
-                android:id="@+id/head_pop"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:headImg="@drawable/ic_star"
-                app:headText="@string/popular_selection"
-                app:rightText="@string/more"
-                app:showRightText="false"/>
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rlv_pop"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <com.novel.read.widget.HeadLayout
-                android:id="@+id/head_recommend"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:headImg="@drawable/ic_edit_recommend"
-                app:headText="@string/edit_recommend"
-                app:rightText="@string/more"
-                app:showRightText="false"/>
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rlv_recommend"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <com.novel.read.widget.HeadLayout
-                android:id="@+id/head_update"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:headImg="@drawable/ic_recent_update"
-                app:headText="@string/hot_search"
-                app:rightText="@string/more"
-                app:showRightText="false"/>
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rlv_update"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp" />
-
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-    </androidx.core.widget.NestedScrollView>
-
-
-</com.novel.read.widget.RefreshLayout>
+</FrameLayout>

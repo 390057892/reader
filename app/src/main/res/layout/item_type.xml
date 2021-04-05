@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_bg"
+    android:layout_width="90dp"
+    android:layout_height="60dp"
+    android:background="@color/background_menu"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/iv_check"
+        android:layout_width="3dp"
+        android:layout_height="15dp"
+        android:layout_gravity="center"
+        android:background="@drawable/ic_rank_type"/>
+
+    <TextView
+        android:id="@+id/tv_type"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="@color/primaryText"
+        android:textSize="17sp"
+        app:layout_constraintLeft_toRightOf="@+id/iv_cover"
+        app:layout_constraintTop_toTopOf="@+id/iv_cover"
+        tools:text="hot" />
+
+
+</LinearLayout>

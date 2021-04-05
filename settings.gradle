@@ -1,2 +1,2 @@
-include ':app', ':net_serivce', ':common_lib'
-rootProject.name='reader'
+include ':app'
+rootProject.name = "reader"

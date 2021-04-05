@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/background_card"
+    android:layout_margin="13dp"
+    android:paddingVertical="8dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:ellipsize="end"
+        app:layout_constraintHorizontal_weight="3"
+        android:includeFontPadding="false"
+        android:lines="2"
+        android:text="@string/book_name"
+        android:textColor="@color/primaryText"
+        android:textSize="12sp"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/iv_cover"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/tv_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:lines="1"
+        android:text="@string/book_name"
+        android:textColor="@color/primaryText"
+        android:textSize="12sp"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/iv_cover"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+    <com.novel.read.ui.widget.image.CoverImageView
+        android:id="@+id/iv_cover"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_weight="2"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_cover_default"
+        android:transitionName="img_cover"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/tv_name"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="UnusedAttribute" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

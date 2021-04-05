@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="bottom_navigation_view">
+
+    <item
+        android:id="@+id/menu_mail"
+        android:icon="@drawable/ic_bottom_mail"
+        android:title="@string/book_mail"
+        />
+
+    <item
+        android:id="@+id/menu_bookshelf"
+        android:icon="@drawable/ic_bottom_books"
+        android:title="@string/book_shelf" />
+
+    <item
+        android:id="@+id/menu_my_config"
+        android:icon="@drawable/ic_bottom_person"
+        android:title="@string/my" />
+
+</menu>

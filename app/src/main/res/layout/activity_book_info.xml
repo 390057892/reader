@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.info.BookInfoActivity">
+
+    <com.novel.read.ui.widget.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:attachToActivity="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/book_detail" />
+
+    <com.novel.read.ui.widget.dynamic.RefreshLayout
+        android:id="@+id/refresh"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_bar">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/fl_action"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.novel.read.ui.widget.image.CoverImageView
+                        android:id="@+id/iv_book"
+                        android:layout_width="80dp"
+                        android:layout_height="0dp"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginTop="15dp"
+                        android:contentDescription="@null"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/image_cover_default"
+                        android:transitionName="img_cover"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_status"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="UnusedAttribute" />
+
+
+                    <TextView
+                        android:id="@+id/tv_book_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/primaryText"
+                        android:textSize="18sp"
+                        app:layout_constraintLeft_toRightOf="@+id/iv_book"
+                        app:layout_constraintTop_toTopOf="@+id/iv_book"
+                        tools:text="武侠世界自由行" />
+
+                    <TextView
+                        android:id="@+id/tv_book_author"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/md_light_blue_500"
+                        android:textSize="14sp"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_book_name"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_book_name"
+                        tools:text="橘子猫" />
+
+                    <TextView
+                        android:id="@+id/tv_key"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:drawablePadding="5dp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/secondaryText"
+                        android:textSize="14sp"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_book_name"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_book_author"
+                        tools:text="最新章节第二章:跨越千年的...千年的.越千年越千年." />
+
+                    <TextView
+                        android:id="@+id/tv_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/tv_text_summary"
+                        android:textSize="13sp"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_book_name"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_key"
+                        tools:text="连载" />
+
+                    <TextView
+                        android:id="@+id/tv_word"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:drawablePadding="5dp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/tv_text_summary"
+                        android:textSize="13sp"
+                        app:layout_constraintLeft_toRightOf="@+id/tv_status"
+                        app:layout_constraintTop_toTopOf="@+id/tv_status"
+                        tools:text="30万字" />
+
+
+                    <TextView
+                        android:id="@+id/tv_tro"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginTop="10dp"
+                        android:ellipsize="end"
+                        android:lineSpacingExtra="2dp"
+                        android:maxLines="5"
+                        android:textColor="@color/secondaryText"
+                        android:textSize="15sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_status"
+                        tools:text="简介" />
+
+
+                    <View
+                        android:id="@+id/preference_divider_above"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_tro" />
+
+
+                    <TextView
+                        android:id="@+id/tv_recommend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginVertical="10dp"
+                        android:text="@string/similar_recommend"
+                        android:textColor="@color/primaryText"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/preference_divider_above" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rlv_recommend"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_recommend" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+            <LinearLayout
+                android:id="@+id/fl_action"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/background_menu"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_shelf"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="@string/remove_from_bookshelf"
+                    android:textColor="@color/primaryText"
+                    android:textSize="15sp" />
+
+                <com.novel.read.ui.widget.AccentBgTextView
+                    android:id="@+id/tv_read"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_btn_accent_bg"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="@string/reading"
+                    android:textColor="@color/tv_text_button_nor"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.novel.read.ui.widget.dynamic.RefreshLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

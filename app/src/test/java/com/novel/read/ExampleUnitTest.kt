@@ -2,8 +2,6 @@ package com.novel.read
 
 import org.junit.Test
 
-import org.junit.Assert.*
-
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -12,6 +10,30 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        romanToInt("III")
+    }
+
+    fun romanToInt(s: String): Int {
+        val map: MutableMap<Char, Int> = HashMap()
+        map['I'] = 1
+        map['V'] = 5
+        map['X'] = 10
+        map['L'] = 50
+        map['C'] = 100
+        map['D'] = 500
+        map['M'] = 1000
+        var result = 0
+        var preValue = map[s[0]]!!
+        for (i in 1 until s.length) {
+            val num = map[s[i]]!!
+            if (preValue < num) {
+                result -= preValue
+            } else {
+                result += preValue
+            }
+            preValue = num
+        }
+        result += preValue
+        return result
     }
 }

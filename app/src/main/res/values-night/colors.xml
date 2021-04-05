@@ -1,44 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="white">#ffffff</color>
-    <color name="colorBlue">#5086DF</color>
-    <!--night-->
-    <color name="colorPrimary">#282A2E</color>
-    <color name="colorSelect">#498EFF</color>
-    <color name="colorNoSelect">#8B8484</color>
-    <color name="colorTitle">#FFFFFF</color>
-    <color name="colorSubTitle">#878C9B</color>
-    <color name="smallColor">#D2D2D2</color>
-    <color name="colorLine">#222326</color>
-    <color name="colorSearchBg">#515356</color>
-    <color name="colorSearchText">#969696</color>
+    <color name="primary">@color/md_blue_grey_600</color>
+    <color name="primaryDark">@color/md_blue_grey_700</color>
+    <color name="accent">@color/md_deep_orange_800</color>
 
-    <!--通用背景色-->
-    <color name="common_bg">@color/colorPrimary</color>
-    <!--通用触摸背景色-->
-    <color name="common_touch_bg">#3C3C3C</color>
+    <color name="btn_bg_press">#634D4D4D</color>
+    <color name="btn_bg_press_2">#63686868</color>
+    <color name="btn_bg_press_tp">#63C7C7C7</color>
 
-    <color name="transparent">#00000000</color>
+    <color name="background_purity">@color/black</color>
+    <color name="background">@color/md_grey_900</color>
+    <color name="background_card">@color/md_grey_850</color>
+    <color name="background_menu">@color/md_grey_800</color>
+    <color name="background_prefs">#10303030</color>
 
-    <!--read-->
-    <color name="read_bg_one">#EFEFF7</color>
-    <color name="read_bg_two">#CCEBCC</color>
-    <color name="read_bg_four">#CEC29C</color>
-    <color name="read_bg_five">#001C27</color>
-    <color name="read_bg_six">#DDCEC29C</color>
+    <color name="primaryText">#ffffffff</color>
+    <color name="secondaryText">#b3ffffff</color>
+    <color name="tv_text_summary">#B3B3B3</color>
+    <color name="menu_color_default">#b7b7b7</color>
 
+    <color name="transparent10">#10ffffff</color>
+    <color name="transparent30">#30ffffff</color>
+    <color name="transparent50">#50ffffff</color>
+    <color name="bg_divider_line">#363636</color>
 
-    <color name="read_font_one">#383429</color>
-    <color name="read_font_two">#2F332D</color>
-    <color name="read_font_three">#92918C</color>
-    <color name="read_font_four">#2C2C2C</color>
-    <color name="read_font_five">#627176</color>
+    <color name="darker_gray">#66666666</color>
+    <color name="tv_text_button_nor">#303030</color>
 
-    <color name="read_bg_night">#212021</color>
-    <color name="read_font_night">#94969C</color>
-
-    <color name="read_menu_bg">#191919</color>
-    <color name="read_menu_text">#CBCBCB</color>
-    <color name="read_bar_translucent">#88000000</color>
 </resources>

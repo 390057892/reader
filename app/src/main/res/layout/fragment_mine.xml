@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.novel.read.ui.widget.TitleBar
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:attachToActivity="false"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_head"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_bar">
+
+            <TextView
+                android:id="@+id/tv_welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="@string/welcome_use"
+                android:textColor="@color/primaryText"
+                android:textSize="24sp"
+                android:textStyle="normal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_button"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/bg_login"
+                android:gravity="center"
+                android:text="@string/login_now"
+                android:textColor="@color/white"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_welcome"
+                app:layout_constraintTop_toBottomOf="@+id/tv_welcome"
+                tools:visibility="gone" />
+
+
+            <com.novel.read.ui.widget.image.CircleImageView
+                android:id="@+id/iv_head"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="15dp"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/primaryText"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toRightOf="@+id/iv_head"
+                app:layout_constraintTop_toTopOf="@+id/iv_head"
+                tools:text="萌萌的道祖" />
+
+            <TextView
+                android:id="@+id/tv_des"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/secondaryText"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_head"
+                app:layout_constraintLeft_toRightOf="@+id/iv_head"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                tools:text="vip" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_vip"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/bg_mine_vip"
+            android:padding="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_head">
+
+            <ImageView
+                android:id="@+id/iv_vip"
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/ic_vip"
+                app:layout_constraintBottom_toTopOf="@+id/tv_vip_msg"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_vip_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="尊享免广告,自定义背景等权益"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_vip" />
+
+            <TextView
+                android:id="@+id/tv_buy_vip"
+                android:layout_width="90dp"
+                android:layout_height="28dp"
+                android:background="@drawable/bg_mine_buy"
+                android:gravity="center"
+                android:text="@string/buy_vip"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_vip"
+            android:background="@color/background_card"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rlv_tools"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/background_purity"
+            android:overScrollMode="never"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            tools:itemCount="7"
+            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_tools"
+            tools:spanCount="3" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

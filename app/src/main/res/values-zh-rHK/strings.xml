@@ -1,0 +1,251 @@
+<resources>
+    <!--App-->
+    <string name="app_name">輕之國度</string>
+    <string name="love_app">喜歡輕之國度？</string>
+
+    <string name="book_mail">書城</string>
+    <string name="book_shelf">書架</string>
+    <string name="my">我的</string>
+    <string name="type">分類</string>
+    <string name="daily">每日推薦</string>
+    <string name="end_book">完本</string>
+    <string name="rank">排行</string>
+
+    <string name="big_hot_title">大熱榜</string>
+    <string name="click_title">點擊榜</string>
+    <string name="recommend_title">推薦榜</string>
+    <string name="end_title">完本榜</string>
+    <string name="end_title2">完結榜</string>
+    <string name="hot_search_title">熱搜榜</string>
+
+    <string name="copy_complete">已拷貝</string>
+    <string name="double_click_exit">再按一次退出程式</string>
+
+    <string name="ok">確認</string>
+    <string name="cancel">取消</string>
+
+    <string name="dialog_title">提示</string>
+    <string name="dialog_cancel">取消</string>
+    <string name="dialog_confirm">確認</string>
+    <string name="dialog_setting">去設定</string>
+    <string name="tip_cannot_jump_setting_page">無法轉跳至設定介面</string>
+
+    <string name="content_empty">文章內容為空</string>
+    <string name="data_loading">數據載入中…</string>
+
+    <string name="start">開始</string>
+    <string name="stop">停止</string>
+    <string name="pause">暫停</string>
+    <string name="resume">繼續</string>
+    <string name="set_timer">定時</string>
+
+    <string name="tts_fix">請安裝並選擇中文 TTS!</string>
+    <string name="tts_init_failed">TTS 初始化失敗!</string>
+
+    <string name="read_aloud">朗讀</string>
+    <string name="read_aloud_t">正在朗讀</string>
+    <string name="read_aloud_s">點擊打開閲讀介面</string>
+
+    <string name="read_aloud_pause">朗讀暫停</string>
+    <string name="read_aloud_timer">正在朗讀（剩餘 %d 分鐘）</string>
+
+    <string name="offline_cache">離線緩存</string>
+    <string name="offline_cache_t">離線緩存</string>
+    <string name="offline_cache_s">緩存已選擇的章節到本地</string>
+
+    <string name="starting_download">正在啟動下載</string>
+    <string name="already_in_download">該書已在下載列表</string>
+
+    <string name="error_get_book_info">書籍信息獲取失敗</string>
+    <string name="error_get_content">內容獲取失敗</string>
+    <string name="error_get_chapter_list">目錄獲取失敗</string>
+    <string name="error_get_web_content">訪問網站失敗: %s</string>
+    <string name="error_read_file">文件讀取失敗</string>
+    <string name="error_load_toc">加載目錄失敗</string>
+    <string name="error_get_data">獲取數據失敗！</string>
+    <string name="error_load_msg">加載失敗\n%s</string>
+    <string name="net_error_10001">沒有網絡</string>
+    <string name="net_error_10002">網絡連接超時</string>
+    <string name="net_error_10003">數據解析失敗</string>
+    <string name="network_request_failed">網絡請求失敗</string>
+    <string name="no_prev_page">沒有上一頁</string>
+    <string name="no_next_page">沒有下一頁</string>
+
+    <string name="action_download">下載</string>
+
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="sure">確認</string>
+
+    <string name="page_anim_cover">覆蓋</string>
+    <string name="page_anim_slide">滑動</string>
+    <string name="page_anim_simulation">仿真</string>
+    <string name="page_anim_scroll">滾動</string>
+    <string name="page_anim_none">無動畫</string>
+    <string name="btn_default_s">默認</string>
+    <string name="page_anim">翻頁動畫</string>
+
+    <string name="chapter">章</string>
+    <string name="to">至</string>
+
+    <string name="bookmark">書籤</string>
+    <string name="bookmark_add">添加書籤</string>
+    <string name="action_del">刪除</string>
+    <string name="load_over_time">加載超時</string>
+
+    <string name="edit">編輯</string>
+    <string name="delete">刪除</string>
+    <string name="note_content">備註內容</string>
+    <string name="set_charset">設定編碼</string>
+
+    <string name="select_end">文本選擇結束位置</string>
+    <string name="select_start">文本選擇開始位置</string>
+
+    <string name="interface_setting">介面</string>
+    <string name="brightness">亮度</string>
+    <string name="chapter_list">目錄</string>
+    <string name="next_chapter">下一章</string>
+    <string name="previous_chapter">上一章</string>
+    <string name="setting">設定</string>
+    <string name="search_content">全文搜索</string>
+    <string name="dark_theme">深色模式</string>
+    <string name="aloud_config">朗讀設置</string>
+    <string name="main_menu">主菜單</string>
+    <string name="auto_page_speed">自動翻頁速度</string>
+    <string name="more_menu">更多菜單</string>
+    <string name="more">更多</string>
+
+    <string name="default1">預設一</string>
+    <string name="default2">預設二</string>
+    <string name="default3">預設三</string>
+    <string name="title">標題</string>
+    <string name="title_left">靠左</string>
+    <string name="title_center">居中</string>
+    <string name="title_hide">隱藏</string>
+
+    <string name="brightness_auto">自動亮度 %s</string>
+    <string name="read_aloud_by_page">按頁朗讀</string>
+    <string name="speak_engine">朗讀引擎</string>
+    <string name="local_tts">本地TTS</string>
+    <string name="search">搜尋</string>
+
+    <string name="go_to_top">滾動到頂部</string>
+    <string name="go_to_bottom">滾動到底部</string>
+    <string name="success">成功</string>
+    <string name="toc_updateing">更新目錄中</string>
+
+    <string name="author">作者</string>
+    <string name="img_cover">封面</string>
+    <string name="read_dur_progress">最近: %s</string>
+    <string name="book_name">書名</string>
+    <string name="lasted_show">最新: %s</string>
+
+    <string name="book_info">書籍信息</string>
+    <string name="update_toc">更新目錄</string>
+    <string name="copy_text">拷貝內容</string>
+    <string name="refresh">刷新</string>
+    <string name="alouding_disable">全文朗讀中不能朗讀選中文字</string>
+
+    <string name="book_word">%d萬字</string>
+    <string name="man_channel">男生類</string>
+    <string name="woman_channel">女生類</string>
+    <string name="other_channel">其他類</string>
+    <string name="similar_recommend">同類推薦</string>
+
+    <string name="book_detail">圖書詳情</string>
+    <string name="remove_from_bookshelf">刪除書輯</string>
+    <string name="start_read">開始閲讀</string>
+    <string name="reading">閲讀</string>
+    <string name="add_to_shelf">放入書架</string>
+    <string name="continue_read">繼續閲讀</string>
+
+    <string name="dynamic_click_retry">點擊重試</string>
+    <string name="dynamic_loading">正在加載</string>
+
+    <string name="search_hot">熱門搜索</string>
+    <string name="search_history">搜索歷史</string>
+
+    <string name="text_bold">加粗</string>
+    <string name="text_font">字體</string>
+    <string name="text">文字</string>
+    <string name="simple_font">簡體</string>
+    <string name="traditional_font">繁體</string>
+    <string name="good_text">如果您覺得我們做的還不錯請給我們壹個五星好評鼓勵壹下</string>
+    <string name="no_google">未檢測到Google應用商店</string>
+    <string name="feedback">意見反饋</string>
+    <string name="evaluate">好評</string>
+    <string name="submit_feedback">提交反饋</string>
+    <string name="feedback_not_empty">反饋內容不能為空</string>
+    <string name="feedback_success">反饋成功,我們將盡快解決您的問題</string>
+    <string name="feedback_hint">為更好地解決您遇到的問題,請盡量將問題描述詳細。如提供書籍名稱和現象等。</string>
+    <string name="check_add_bookshelf">是否將《%s》放入書架？</string>
+    <string name="flow_sys">跟隨系統</string>
+    <string name="read_aloud_speed">朗讀語速</string>
+    <string name="timer_m">%d 分鐘</string>
+    <string name="prev_sentence">上一句</string>
+    <string name="next_sentence">下一句</string>
+    <string name="audio_play">播放</string>
+    <string name="audio_play_t">正在播放</string>
+    <string name="audio_play_s">點擊打開播放介面</string>
+    <string name="audio_pause">播放暫停</string>
+    <string name="to_backstage">後台</string>
+    <string name="layout_list">列表</string>
+    <string name="layout_grid3">網格三列</string>
+    <string name="layout_grid4">網格四列</string>
+    <string name="layout_grid5">網格五列</string>
+    <string name="layout_grid6">網格六列</string>
+    <string name="bookshelf_layout">書架佈局</string>
+    <string name="arrange_bookshelf">整理書架</string>
+    <string name="view">視圖</string>
+    <string name="swap_sort">倒序-順序</string>
+    <string name="sort">排序</string>
+    <string name="sort_auto">智能排序</string>
+    <string name="sort_manual">手動排序</string>
+    <string name="sort_pin_yin">拼音排序</string>
+    <string name="bookshelf_px_0">按閲讀時間</string>
+    <string name="bookshelf_px_1">按更新時間</string>
+    <string name="bookshelf_px_2">按書名</string>
+    <string name="bookshelf_px_3">手動排序</string>
+    <string name="language">语言</string>
+    <string name="other_setting">其它設定</string>
+    <string name="clear_cache">清理緩存</string>
+    <string name="clear_cache_success">成功清理緩存</string>
+    <string name="clear_cache_summary">清除已下載書籍和字體緩存</string>
+    <string name="sure_del">是否確認刪除？</string>
+    <string name="sure_del_all_book">是否刪除全部書籍？</string>
+    <string name="sure_del_download_book">是否同時刪除已下載的書籍目錄？</string>
+    <string name="check_update">檢查更新</string>
+    <string name="version">版本</string>
+    <string name="recent_reading">最近閲讀</string>
+    <string name="last_read">最後閲讀</string>
+    <string name="bookshelf">書架</string>
+
+    <!--version-->
+    <string name="new_version">新版本V %s</string>
+    <string name="download_loading">%d/%d</string>
+    <string name="downloading">正在下載</string>
+    <string name="update_now">立即更新</string>
+
+    <string name="jump_ad">跳過</string>
+    <string name="chinese_converter">中文簡繁體轉換</string>
+    <string name="text_font_weight_converter">文章字體轉換</string>
+
+    <string name="draw">提醒</string>
+
+    <string name="read_record">阅读记录</string>
+    <string name="read_record_summary">阅读时间记录</string>
+    <string name="clear">清除</string>
+    <string name="theme_setting">主題設定</string>
+    <string name="praise">好評</string>
+    <string name="many_book_free">海量熱門小說免費讀</string>
+    <string name="reserved">©2021 輕之國度 \n All Right Reserved</string>
+    <string name="about">關於我們</string>
+    <string name="google_login">正在啟動谷歌登錄</string>
+    <string name="buy_vip">點擊開通</string>
+    <string name="login_now">點擊登錄</string>
+    <string name="welcome_use">歡迎使用輕之國度</string>
+    <string name="g_login">Google賬號登錄</string>
+    <string name="user_login">用戶登錄</string>
+    <string name="privacy">服務條款</string>
+    <string name="my_order">我的訂單</string>
+</resources>

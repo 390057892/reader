@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_gravity="center"
+    android:clickable="true"
+    android:focusable="true"
+    android:id="@+id/cv_tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/iv_tools"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/ic_tools_history"
+        app:layout_constraintHorizontal_bias="0"
+        android:layout_marginHorizontal="15dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_tools"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/tv_tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="常用工具"
+        android:textSize="13sp"
+        android:textColor="@color/primaryText"
+        app:layout_constraintLeft_toRightOf="@+id/iv_tools"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:src="@drawable/ic_arrow_right"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <View android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/bg_divider_line"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

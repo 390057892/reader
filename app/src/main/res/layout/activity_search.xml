@@ -4,23 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/appBg"
-    tools:context=".activity.NovelSearchActivity">
+    tools:context=".ui.search.SearchActivity">
 
 
-    <include
-        android:id="@+id/search_title"
-        layout="@layout/title_search" />
+    <com.novel.read.ui.widget.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        app:attachToActivity="false"
+        app:contentInsetStartWithNavigation="0dp"
+        app:contentLayout="@layout/view_search"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.novel.read.widget.HeadLayout
+    <com.novel.read.ui.widget.HeadLayout
         android:id="@+id/head_hot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:headImg="@drawable/ic_hot"
         app:headText="@string/search_hot"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_title"
+        app:layout_constraintTop_toBottomOf="@+id/title_bar"
         app:rightText="@string/more"
         app:showRightText="false" />
 
@@ -36,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/head_hot" />
 
 
-    <com.novel.read.widget.HeadLayout
+    <com.novel.read.ui.widget.HeadLayout
         android:id="@+id/head_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,22 +63,16 @@
         app:layout_constraintTop_toBottomOf="@+id/head_history" />
 
 
-    <com.novel.read.widget.RefreshLayout
-        android:id="@+id/refresh"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rlv_search"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="?attr/appBg"
+        android:background="@color/background"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_title"
-        android:visibility="gone">
+        app:layout_constraintTop_toBottomOf="@+id/title_bar" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rlv_search"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/appBg" />
-    </com.novel.read.widget.RefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

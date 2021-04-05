@@ -11,7 +11,9 @@
     android:gravity="center"
     android:layout_margin="5dp"
     android:textSize="12sp"
-    android:textColor="@color/white"
+    android:maxLines="1"
+    android:ellipsize="end"
+    android:textColor="@color/navigation_bar_bag"
     android:id="@+id/tv_label"
     tools:text="aaaaa" />
 

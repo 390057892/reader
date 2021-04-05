@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <com.novel.read.ui.widget.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:attachToActivity="false"
+        app:title="@string/my" />
+
+    <TextView
+        android:id="@+id/tv_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        app:drawableStartCompat="@drawable/ic_idea"
+        android:text="@string/feedback"
+        android:textSize="16sp"
+        android:textColor="@color/primaryText"
+        app:drawableEndCompat="@drawable/ic_arrow_right" />
+
+    <TextView
+        android:id="@+id/tv_appraise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="@string/evaluate"
+        android:textSize="16sp"
+        android:textColor="@color/primaryText"
+        app:drawableEndCompat="@drawable/ic_arrow_right"
+        app:drawableStartCompat="@drawable/ic_appraise" />
+
+
+
+    <TextView
+        android:id="@+id/tv_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="@string/setting"
+        android:textSize="16sp"
+        android:textColor="@color/primaryText"
+        app:drawableStartCompat="@drawable/ic_setting"
+        app:drawableEndCompat="@drawable/ic_arrow_right" />
+
+
+
+</LinearLayout>

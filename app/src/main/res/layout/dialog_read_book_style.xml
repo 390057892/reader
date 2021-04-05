@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/root_view"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="205dp"
+        android:paddingTop="8dp"
+        android:background="@color/background">
+
+        <View
+            android:id="@+id/vw_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="10dp">
+
+                <com.novel.read.ui.widget.StrokeTextView
+                    android:id="@+id/nbTextSizeDec"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="3.5"
+                    android:gravity="center"
+                    app:cornerRadius="16dp"
+                    android:text="A-"
+                    android:textSize="14sp"
+                    app:isBottomBackground="true"
+                    app:radius="3dp"/>
+
+                <TextView
+                    android:id="@+id/nbTextSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:text="20" />
+
+                <com.novel.read.ui.widget.StrokeTextView
+                    android:id="@+id/nbTextSizeAdd"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="3.5"
+                    android:gravity="center"
+                    app:cornerRadius="16dp"
+                    android:text="A+"
+                    android:textSize="14sp"
+                    app:isBottomBackground="true"
+                    app:radius="3dp"/>
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5" />
+
+                <com.novel.read.ui.read.config.TextFontWeightConverter
+                    android:id="@+id/fl_text_Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    app:cornerRadius="16dp"
+                    android:text="@string/text_bold"
+                    app:isBottomBackground="true"
+                    app:radius="3dp"
+                    android:textSize="14sp" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5" />
+
+                <com.novel.read.ui.widget.StrokeTextView
+                    android:id="@+id/fl_text_font"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    app:cornerRadius="16dp"
+                    android:text="@string/text_font"
+                    app:isBottomBackground="true"
+                    app:radius="3dp"
+                    android:textSize="14sp" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5" />
+
+                <com.novel.read.ui.read.config.ChineseConverter
+                    android:id="@+id/tv_font_type"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    app:cornerRadius="16dp"
+                    app:isBottomBackground="true"
+                    app:radius="3dp"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="@color/bg_divider_line" />
+
+            <RadioGroup
+                android:id="@+id/rg_page_anim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <com.novel.read.ui.widget.ATERadioNoButton
+                    android:id="@+id/rb_anim0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="@string/page_anim_cover"
+                    app:isBottomBackground="true" />
+
+                <com.novel.read.ui.widget.ATERadioNoButton
+                    android:id="@+id/rb_anim1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="@string/page_anim_slide"
+                    app:isBottomBackground="true" />
+
+                <com.novel.read.ui.widget.ATERadioNoButton
+                    android:id="@+id/rb_simulation_anim"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="@string/page_anim_simulation"
+                    app:isBottomBackground="true" />
+
+                <com.novel.read.ui.widget.ATERadioNoButton
+                    android:id="@+id/rb_scroll_anim"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="@string/page_anim_scroll"
+                    app:isBottomBackground="true" />
+
+                <com.novel.read.ui.widget.ATERadioNoButton
+                    android:id="@+id/rb_no_anim"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="@string/page_anim_none"
+                    app:isBottomBackground="true" />
+
+            </RadioGroup>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="@color/bg_divider_line" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="12dp"
+                android:paddingHorizontal="10dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_read_style" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+</LinearLayout>

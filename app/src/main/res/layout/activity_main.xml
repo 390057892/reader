@@ -1,35 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.NovelMainActivity">
+    tools:context=".ui.MainActivity"
+    android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/fl_content"
-        android:layout_width="0dp"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager_main"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_bar"/>
+        android:layout_weight="1" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_bar"
+        android:id="@+id/bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="?attr/appBg"
+        android:background="@color/background"
         app:labelVisibilityMode="labeled"
-        app:elevation="10dp"
-        app:itemIconTint="@drawable/selector_tab_color"
-        app:itemTextColor="@drawable/selector_tab_color"
-        app:menu="@menu/bottom_navigation_tab">
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:menu="@menu/main_bnv" />
+</LinearLayout>
