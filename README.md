@@ -38,7 +38,6 @@ Kt、AndroidX、Retrofit、Okhttp3、Glide、LitePal、MVVM、协程等
 | <img src="https://github.com/390057892/reader/blob/master/screenshot/%E6%8F%92%E9%A1%B52.jpg" width="280" alt="插页2"/> | <img src="https://github.com/390057892/reader/blob/master/screenshot/night.jpg" width="280" alt="夜间"/> | <img src="https://github.com/390057892/reader/blob/master/screenshot/edit.jpg" width="280" alt="编辑"/> |
 
 
-
 ## LICENSE
 
 ```
