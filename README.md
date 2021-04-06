@@ -1,6 +1,6 @@
 # Reader
 
-一款网络小说阅读器📕,采用Kt编写，MVVM架构，支持追书、看书。支持TTS语音朗读，仿真翻页等功能。对比old分支:
+一款网络小说阅读器📕，使用MVVM架构，Kotlin+AndroidX编写，支持TTS听书、章节缓存、字体切换、繁简转换、黑夜模式、各种翻页(仿真、滚动、滑动、覆盖、无动画)、插页图片加载等。觉得有用请给一个 star or fork！。对比old分支:
 
     重写代码，优化阅读器代码结构,Md设计风格
 
@@ -36,7 +36,6 @@ Kt、AndroidX、Retrofit、Okhttp3、Glide、LitePal、MVVM、协程等
 | <img src="https://github.com/390057892/reader/blob/master/screenshot/%E8%AE%BE%E7%BD%AE.jpg?raw=true" width="280" alt="设置"/> | <img src="https://github.com/390057892/reader/blob/master/screenshot/%E6%90%9C%E7%B4%A2.jpg?raw=true" width="280" alt="搜索"/> | <img src="https://github.com/390057892/reader/blob/master/screenshot/%E9%98%85%E8%AF%BB%E9%A1%B5.jpg" width="280" alt="阅读页"/> |
 | <img src="https://github.com/390057892/reader/blob/master/screenshot/%E9%98%85%E8%AF%BB%E9%A1%B5%E8%8F%9C%E5%8D%95.jpg" width="280" alt="菜单"/> |  <img src="https://github.com/390057892/reader/blob/master/screenshot/%E4%B9%A6%E7%B1%8D%E7%9B%AE%E5%BD%95.jpg" width="280" alt="目录"/>  | <img src="https://github.com/390057892/reader/blob/master/screenshot/%E6%8F%92%E9%A1%B51.jpg" width="280" alt="插页"/>  |
 | <img src="https://github.com/390057892/reader/blob/master/screenshot/%E6%8F%92%E9%A1%B52.jpg" width="280" alt="插页2"/> | <img src="https://github.com/390057892/reader/blob/master/screenshot/night.jpg" width="280" alt="夜间"/> | <img src="https://github.com/390057892/reader/blob/master/screenshot/edit.jpg" width="280" alt="编辑"/> |
-
 
 
 ## LICENSE
