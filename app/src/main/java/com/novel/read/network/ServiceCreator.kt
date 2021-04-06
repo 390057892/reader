@@ -1,7 +1,11 @@
 package com.novel.read.network
 
 import android.util.Log
+import com.novel.read.constant.AppConst
+import com.novel.read.data.model.CheckSumDTO
 import com.novel.read.network.api.BookService
+import com.novel.read.utils.CheckSumBuilder
+import com.novel.read.utils.ext.MYGSON
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -131,8 +135,17 @@ object ServiceCreator {
     class HeaderInterceptor : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
             val original = chain.request()
+            val time = System.currentTimeMillis().toString()
+            val nonce = CheckSumBuilder.getRandomString(8)
+            val checkSum = CheckSumBuilder.getCheckSum(
+                AppConst.AppSecret,
+                nonce,
+                time
+            )
+            val checkSha = MYGSON.toJson(CheckSumDTO(AppConst.AppId,nonce,time,checkSum))
             val request = original.newBuilder().apply {
                 header("model", "Android")
+//                header("checkSumDTO", checkSha)
                 header("If-Modified-Since", URLEncoder.encode("${Date()}", "utf-8"))
                 header("User-Agent", System.getProperty("http.agent") ?: "unknown")
             }.build()

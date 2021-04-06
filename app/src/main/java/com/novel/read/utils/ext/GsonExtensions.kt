@@ -22,6 +22,17 @@ val GSON: Gson by lazy {
         .create()
 }
 
+val MYGSON: Gson by lazy {
+    GsonBuilder()
+        .registerTypeAdapter(
+            object : TypeToken<Map<String?, Any?>?>() {}.type,
+            MapDeserializerDoubleAsIntFix()
+        )
+        .registerTypeAdapter(Int::class.java, IntJsonDeserializer())
+        .disableHtmlEscaping()
+        .create()
+}
+
 inline fun <reified T> genericType(): Type = object : TypeToken<T>() {}.type
 
 inline fun <reified T> Gson.fromJsonObject(json: String?): T? {//可转成任意类型

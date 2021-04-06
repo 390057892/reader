@@ -8,13 +8,11 @@ import java.text.SimpleDateFormat
 object AppConst {
 
     const val APP_TAG = "TuZi"
+    const val AppId = "20210306161"
+    const val AppSecret = "c14f6a2b3dcah893a31b9i4f40f5cc08"
 
     const val channelIdDownload = "channel_download"
     const val channelIdReadAloud = "channel_read_aloud"
-    const val channelIdWeb = "channel_web"
-
-    const val UA_NAME = "User-Agent"
-    const val CONCEAL = "http://yijianda8.com/conceal/"
 
     val timeFormat: SimpleDateFormat by lazy {
         SimpleDateFormat("HH:mm")
