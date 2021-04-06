@@ -40,7 +40,6 @@ import com.novel.read.ui.read.page.TextPageFactory
 import com.novel.read.ui.read.page.delegate.PageDelegate
 import com.novel.read.ui.widget.dialog.AutoReadDialog
 import com.novel.read.ui.widget.dialog.TextDialog
-import com.novel.read.user.VipHelper
 import com.novel.read.utils.ext.*
 import kotlinx.android.synthetic.main.activity_read_book.*
 import kotlinx.android.synthetic.main.view_read_menu.*
@@ -207,35 +206,7 @@ class ReadBookActivity : VMBaseActivity<ReadBookViewModel>(R.layout.activity_rea
                 startActivity(intent)
             }
         }
-
-        adView.setBackgroundColor(ReadBookConfig.bgMeanColor)
-        adView.alpha = 0.3f
-        if (VipHelper.showAd()) {
-//            adView.visibility = View.VISIBLE
-//            //底部banner google
-//            val mPublisherAdView = PublisherAdView(this)
-//            mPublisherAdView.adUnitId = "ca-app-pub-5528897088703176/7116750145"
-//            adView.removeAllViews()
-//            adView.addView(mPublisherAdView)
-//            val adRequest = PublisherAdRequest.Builder().build()
-//            mPublisherAdView.setAdSizes(getAdSize(), AdSize.BANNER)
-//            mPublisherAdView.loadAd(adRequest)
-        } else {
-            adView.visibility = View.GONE
-        }
-
-
     }
-
-//    private fun getAdSize(): AdSize? {
-//        val display = windowManager.defaultDisplay
-//        val outMetrics = DisplayMetrics()
-//        display.getMetrics(outMetrics)
-//        val widthPixels = outMetrics.widthPixels.toFloat()
-//        val density = outMetrics.density
-//        val adWidth = (widthPixels / density).toInt()
-//        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth)
-//    }
 
     override fun clickCenter() {
         when {
@@ -468,7 +439,6 @@ class ReadBookActivity : VMBaseActivity<ReadBookViewModel>(R.layout.activity_rea
             } else {
                 page_view.upContent(resetPageOffset = false)
             }
-            adView.setBackgroundColor(ReadBookConfig.bgMeanColor)
         }
         observeEvent<Int>(EventBus.ALOUD_STATE) {
             if (it == Status.STOP || it == Status.PAUSE) {

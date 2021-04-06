@@ -8,7 +8,6 @@ import androidx.annotation.Keep
 import com.novel.read.App
 import com.novel.read.R
 import com.novel.read.constant.PreferKey
-import com.novel.read.user.VipHelper
 import com.novel.read.utils.BitmapUtils
 import com.novel.read.utils.FileUtils
 import com.novel.read.utils.ext.*
@@ -236,11 +235,7 @@ object ReadBookConfig {
 
     var paddingBottom: Int
 //        get() = config.paddingBottom
-        get() = if (VipHelper.showAd()) {
-            10
-        } else {
-            20
-        }
+        get() = 20
         set(value) {
             config.paddingBottom = value
         }
@@ -289,11 +284,7 @@ object ReadBookConfig {
 
     var footerPaddingBottom: Int
         //        get() = config.footerPaddingBottom
-        get() = if (VipHelper.showAd()) {
-            60
-        } else {
-            10
-        }
+        get() = 10
         set(value) {
             config.footerPaddingBottom = value
         }

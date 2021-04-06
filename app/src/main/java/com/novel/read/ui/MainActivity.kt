@@ -23,7 +23,6 @@ import com.novel.read.ui.main.bookshelf.BookshelfFragment
 import com.novel.read.ui.main.mail.MailFragment
 import com.novel.read.ui.main.my.MyFragment
 import com.novel.read.ui.widget.dialog.AppraiseDialog
-import com.novel.read.user.VipHelper
 import com.novel.read.utils.ext.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
@@ -67,7 +66,6 @@ class MainActivity : VMBaseActivity<MainViewModel>(R.layout.activity_main),
 
 
     private fun initData() {
-        VipHelper.notifyUser()
         viewModel.appResp.observe(this) {
             updateApk(it)
         }
