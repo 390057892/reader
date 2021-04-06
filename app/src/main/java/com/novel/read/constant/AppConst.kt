@@ -35,8 +35,6 @@ object AppConst {
     }
 
     const val notificationIdRead = 1144771
-    const val notificationIdAudio = 1144772
-    const val notificationIdWeb = 1144773
     const val notificationIdDownload = 1144774
 
 

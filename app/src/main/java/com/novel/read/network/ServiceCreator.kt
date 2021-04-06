@@ -145,7 +145,7 @@ object ServiceCreator {
             val checkSha = MYGSON.toJson(CheckSumDTO(AppConst.AppId,nonce,time,checkSum))
             val request = original.newBuilder().apply {
                 header("model", "Android")
-//                header("checkSumDTO", checkSha)
+                header("checkSumDTO", checkSha)
                 header("If-Modified-Since", URLEncoder.encode("${Date()}", "utf-8"))
                 header("User-Agent", System.getProperty("http.agent") ?: "unknown")
             }.build()
