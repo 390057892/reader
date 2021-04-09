@@ -25,6 +25,9 @@ android {
             abiFilters "armeabi", "arm64-v8a"// "armeabi-v7a",
         }
         multiDexEnabled true
+        resConfigs "zh", "zh-rCN"
+        resConfigs "zh", "zh-rTW"
+        resConfigs "zh", "zh-rHK"
     }
 
     signingConfigs {

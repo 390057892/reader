@@ -34,10 +34,10 @@ public class HeadLayout extends LinearLayout {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.HeadLayout);
         boolean showHead = typedArray.getBoolean(R.styleable.HeadLayout_showHead, true);
         int headText=typedArray.getResourceId(R.styleable.HeadLayout_headText,R.string.empty_info);
-        int headImg= typedArray.getResourceId(R.styleable.HeadLayout_headImg, R.mipmap.ic_launcher);
+        int headImg= typedArray.getResourceId(R.styleable.HeadLayout_headImg, R.mipmap.icon_read_book);
         boolean showRight = typedArray.getBoolean(R.styleable.HeadLayout_showRightText, true);
         int rightText=typedArray.getResourceId(R.styleable.HeadLayout_rightText,R.string.empty_info);
-        int rightImg=typedArray.getResourceId(R.styleable.HeadLayout_rightImg,R.mipmap.ic_launcher);
+        int rightImg=typedArray.getResourceId(R.styleable.HeadLayout_rightImg,R.mipmap.icon_read_book);
         if (showHead){
             mTvHead.setText(headText);
             Drawable drawable = ContextCompat.getDrawable(getContext(), headImg);
@@ -48,7 +48,7 @@ public class HeadLayout extends LinearLayout {
         }
         if (showRight){
             mTvMore.setText(rightText);
-            if (rightImg!=R.mipmap.ic_launcher){
+            if (rightImg!=R.mipmap.icon_read_book){
                 Drawable drawable = ContextCompat.getDrawable(getContext(), rightImg);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 mTvHead.setCompoundDrawables(null, null, drawable, null);
