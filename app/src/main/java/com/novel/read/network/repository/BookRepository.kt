@@ -104,18 +104,6 @@ class BookRepository {
             ServiceCreator.apiService.feedback(mapToBody(map)).apiData()
         }
 
-    suspend fun login(loginReq: LoginReq) = withContext(Dispatchers.IO) {
-        ServiceCreator.apiService.googleLogin(loginReq).apiData()
-    }
-
-    suspend fun getGoods() = withContext(Dispatchers.IO) {
-        ServiceCreator.apiService.getGoods().apiData()
-    }
-
-    suspend fun buyVip() = withContext(Dispatchers.IO) {
-        ServiceCreator.apiService.buyVip().apiData()
-    }
-
     private fun mapToBody(map: HashMap<String, Any>): RequestBody {
         return RequestBody.create(
             MediaType.parse("application/json;charset=UTF-8"),

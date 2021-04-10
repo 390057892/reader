@@ -234,8 +234,8 @@ object ReadBookConfig {
         }
 
     var paddingBottom: Int
-//        get() = config.paddingBottom
-        get() = 20
+        get() = config.paddingBottom
+//        get() = 20
         set(value) {
             config.paddingBottom = value
         }

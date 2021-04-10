@@ -21,7 +21,6 @@ class BookDatabase private constructor() {
     private var readRecordDao: ReadRecordDao? = null
     private var bookMarkDao: BookMarkDao? = null
     private var searchHistoryDao: SearchHistoryDao? = null
-    private var userDao: UserDao? = null
 
     fun getChapterDao(): ChapterDao {
         if (chapterDao == null) {
@@ -58,10 +57,4 @@ class BookDatabase private constructor() {
         return searchHistoryDao!!
     }
 
-    fun getUserDao(): UserDao {
-        if (userDao == null) {
-            userDao = UserDao()
-        }
-        return userDao!!
-    }
 }

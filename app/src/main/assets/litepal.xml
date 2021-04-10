@@ -7,7 +7,6 @@
         <mapping class="com.novel.read.data.db.entity.Bookmark" />
         <mapping class="com.novel.read.data.db.entity.ReadRecord" />
         <mapping class="com.novel.read.data.db.entity.SearchHistory" />
-        <mapping class="com.novel.read.data.db.entity.User" />
     </list>
     <storage value="external" />
 </litepal>

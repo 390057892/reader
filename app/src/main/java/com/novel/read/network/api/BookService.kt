@@ -45,15 +45,6 @@ interface BookService {
     @POST("api/edition/editionUpdate")
     suspend fun appUpdate(@Body body: RequestBody): ApiResult<AppUpdateResp>
 
-    @POST("api/user/googleLogin")
-    suspend fun googleLogin(@Body loginReq: LoginReq): ApiResult<UserResp>
-
-    @POST("api/order/getCommodityList")
-    suspend fun getGoods(): ApiResult<MutableList<GoodsResp>>
-
-    @POST("api/order/addBookOrder")
-    suspend fun buyVip(): ApiResult<MutableList<GoodsResp>>
-
     @Streaming
     @GET()
     suspend fun getImage(@Url fileUrl: String): ResponseBody
