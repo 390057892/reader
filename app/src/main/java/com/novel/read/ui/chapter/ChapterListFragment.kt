@@ -13,12 +13,13 @@ import com.novel.read.base.VMBaseFragment
 import com.novel.read.constant.EventBus
 import com.novel.read.data.db.entity.Book
 import com.novel.read.data.db.entity.BookChapter
+import com.novel.read.databinding.FragmentChapterListBinding
 import com.novel.read.help.BookHelp
 import com.novel.read.ui.widget.UpLinearLayoutManager
 import com.novel.read.ui.widget.VerticalDivider
 import com.novel.read.utils.ColorUtils
 import com.novel.read.utils.ext.*
-import kotlinx.android.synthetic.main.fragment_chapter_list.*
+import com.novel.read.utils.viewbindingdelegate.viewBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -27,7 +28,7 @@ import org.jetbrains.anko.sdk27.listeners.onClick
 class ChapterListFragment : VMBaseFragment<ChapterListViewModel>(R.layout.fragment_chapter_list),
     ChapterListViewModel.ChapterListCallBack,ChapterListAdapter.Callback {
 
-    lateinit var adapter: ChapterListAdapter
+    private lateinit var adapter: ChapterListAdapter
     private var durChapterIndex = 0
     private lateinit var mLayoutManager: UpLinearLayoutManager
     private var tocLiveData: MutableLiveData<List<BookChapter>>? = MutableLiveData()
@@ -36,14 +37,16 @@ class ChapterListFragment : VMBaseFragment<ChapterListViewModel>(R.layout.fragme
     override val viewModel: ChapterListViewModel
         get() = getViewModelOfActivity(ChapterListViewModel::class.java)
 
+    private val binding by viewBinding(FragmentChapterListBinding::bind)
+    
     override fun onFragmentCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.chapterCallBack = this
         val bbg = bottomBackground
         val btc = requireContext().getPrimaryTextColor(ColorUtils.isColorLight(bbg))
-        ll_chapter_base_info.setBackgroundColor(bbg)
-        tv_current_chapter_info.setTextColor(btc)
-        iv_chapter_top.setColorFilter(btc)
-        iv_chapter_bottom.setColorFilter(btc)
+        binding.llChapterBaseInfo.setBackgroundColor(bbg)
+        binding.tvCurrentChapterInfo.setTextColor(btc)
+        binding.ivChapterTop.setColorFilter(btc)
+        binding.ivChapterBottom.setColorFilter(btc)
         initRecyclerView()
         initView()
         initBook()
@@ -52,19 +55,19 @@ class ChapterListFragment : VMBaseFragment<ChapterListViewModel>(R.layout.fragme
     private fun initRecyclerView() {
         adapter = ChapterListAdapter(this)
         mLayoutManager = UpLinearLayoutManager(requireContext())
-        recycler_view.layoutManager = mLayoutManager
-        recycler_view.addItemDecoration(VerticalDivider(requireContext()))
-        recycler_view.adapter = adapter
+        binding.recyclerView.layoutManager = mLayoutManager
+        binding.recyclerView.addItemDecoration(VerticalDivider(requireContext()))
+        binding.recyclerView.adapter = adapter
     }
 
     private fun initView() {
-        iv_chapter_top.onClick { mLayoutManager.scrollToPositionWithOffset(0, 0) }
-        iv_chapter_bottom.onClick {
+        binding.ivChapterTop.onClick { mLayoutManager.scrollToPositionWithOffset(0, 0) }
+        binding.ivChapterBottom.onClick {
             if (adapter.itemCount > 0) {
                 mLayoutManager.scrollToPositionWithOffset(adapter.itemCount - 1, 0)
             }
         }
-        tv_current_chapter_info.onClick {
+        binding.tvCurrentChapterInfo.onClick {
             mLayoutManager.scrollToPositionWithOffset(durChapterIndex, 0)
         }
 
@@ -76,7 +79,7 @@ class ChapterListFragment : VMBaseFragment<ChapterListViewModel>(R.layout.fragme
             initDoc()
             viewModel.book?.let {
                 durChapterIndex = it.durChapterIndex
-                tv_current_chapter_info.text =
+                binding.tvCurrentChapterInfo.text =
                     "${it.durChapterTitle}(${it.durChapterIndex + 1}/${tocLiveData?.value?.size})"
                 initCacheFileNames(it)
             }

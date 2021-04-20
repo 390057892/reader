@@ -1,25 +1,38 @@
 package com.novel.read.ui.main.mail.pick
 
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.novel.read.R
+import com.novel.read.base.BaseBindingAdapter
+import com.novel.read.base.VBViewHolder
 import com.novel.read.data.model.EndRank
+import com.novel.read.databinding.ItemEndItemBinding
 import com.novel.read.lib.ATH
 import com.novel.read.ui.info.BookInfoActivity
-import kotlinx.android.synthetic.main.item_end_item.view.*
 import org.jetbrains.anko.sdk27.listeners.onClick
 
-class EndAdapter :BaseQuickAdapter<EndRank,BaseViewHolder>(R.layout.item_end_item) {
+class EndAdapter :BaseBindingAdapter<EndRank,ItemEndItemBinding>() {
 
-    override fun convert(holder: BaseViewHolder, item: EndRank) {
+    override fun convert(holder: VBViewHolder<ItemEndItemBinding>, item: EndRank) {
+        holder.vb.run {
+            ivCover.load(item.coverImageUrl, item.getBBookName(), item.getBAuthorName())
+            tvName.text = item.getBBookName()
+        }
         holder.itemView.run {
             ATH.applyBackgroundTint(this)
-            iv_cover.load(item.coverImageUrl, item.getBBookName(), item.getBAuthorName())
-            tv_name.text = item.getBBookName()
             onClick {
                 BookInfoActivity.actionBookInfo(context,item.bookId,item.bookTypeId)
             }
         }
+    }
+
+    override fun createViewBinding(
+        inflater: LayoutInflater,
+        parent: ViewGroup
+    ): ItemEndItemBinding {
+        return ItemEndItemBinding.inflate(inflater,parent,false)
     }
 
 }

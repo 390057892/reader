@@ -26,7 +26,6 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     private val homeRepository by lazy { HomeRepository() }
     private val bookRepository by lazy { BookRepository() }
     var appResp = MutableLiveData<AppUpdateResp>()
-    val showEvaluate = MutableLiveData<Boolean>()
 
     fun appUpdate() {
         launch({
@@ -126,18 +125,4 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         }
     }
 
-
-    fun checkCount() {
-        val count = App.INSTANCE.getPrefInt(PreferKey.installCount, 0)
-        App.INSTANCE.putPrefInt(PreferKey.installCount, count + 1)
-
-        if (App.INSTANCE.getPrefLong(PreferKey.installTime) == 0L) {
-            App.INSTANCE.putPrefLong(PreferKey.installTime, System.currentTimeMillis())
-        } else {
-            if (StringUtils.checkInstallTime() && !App.INSTANCE.getPrefBoolean(PreferKey.appraiseShow)) {
-                showEvaluate.postValue(true)
-                App.INSTANCE.putPrefBoolean(PreferKey.appraiseShow, true)
-            }
-        }
-    }
 }

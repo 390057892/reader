@@ -15,13 +15,13 @@ import androidx.appcompat.view.SupportMenuInflater
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.view.menu.MenuItemImpl
 import androidx.core.view.isVisible
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.novel.read.R
+import com.novel.read.base.BaseBindingAdapter
+import com.novel.read.base.VBViewHolder
+import com.novel.read.databinding.ItemTextBinding
+import com.novel.read.databinding.PopupActionMenuBinding
 import com.novel.read.service.BaseReadAloudService
 import com.novel.read.utils.ext.*
-import kotlinx.android.synthetic.main.item_text.view.*
-import kotlinx.android.synthetic.main.popup_action_menu.view.*
 import org.jetbrains.anko.sdk27.listeners.onClick
 import org.jetbrains.anko.toast
 import java.util.*
@@ -30,7 +30,7 @@ import java.util.*
 class TextActionMenu(private val context: Context, private val callBack: CallBack) :
     PopupWindow(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT),
     TextToSpeech.OnInitListener {
-
+    private val binding = PopupActionMenuBinding.inflate(LayoutInflater.from(context))
     private val adapter = Adapter()
     private val menu = MenuBuilder(context)
     private val moreMenu = MenuBuilder(context)
@@ -46,46 +46,46 @@ class TextActionMenu(private val context: Context, private val callBack: CallBac
         initRecyclerView()
         setOnDismissListener {
             contentView.apply {
-                iv_menu_more.setImageResource(R.drawable.ic_more_vert)
-                recycler_view_more.gone()
+                binding.ivMenuMore.setImageResource(R.drawable.ic_more_vert)
+                binding.recyclerViewMore.gone()
                 adapter.setList(menu.visibleItems)
-                recycler_view.visible()
+                binding.recyclerView.visible()
             }
         }
     }
 
-    private fun initRecyclerView() = with(contentView) {
-        recycler_view.adapter = adapter
-        recycler_view_more.adapter = adapter
+    private fun initRecyclerView()  = with(binding) {
+        recyclerView.adapter = adapter
+        recyclerViewMore.adapter = adapter
         SupportMenuInflater(context).inflate(R.menu.content_select_action, menu)
         adapter.setList(menu.visibleItems)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             onInitializeMenu(moreMenu)
         }
         if (moreMenu.size() > 0) {
-            iv_menu_more.visible()
+            ivMenuMore.visible()
         }
-        iv_menu_more.onClick {
-            if (recycler_view.isVisible) {
-                iv_menu_more.setImageResource(R.drawable.ic_arrow_back)
+        ivMenuMore.onClick {
+            if (recyclerView.isVisible) {
+                ivMenuMore.setImageResource(R.drawable.ic_arrow_back)
                 adapter.setList(menu.visibleItems)
-                recycler_view.gone()
-                recycler_view_more.visible()
+                recyclerView.gone()
+                recyclerViewMore.visible()
             } else {
-                iv_menu_more.setImageResource(R.drawable.ic_more_vert)
-                recycler_view_more.gone()
+                ivMenuMore.setImageResource(R.drawable.ic_more_vert)
+                recyclerViewMore.gone()
                 adapter.setList(menu.visibleItems)
-                recycler_view.visible()
+                recyclerView.visible()
             }
         }
     }
 
     inner class Adapter :
-        BaseQuickAdapter<MenuItemImpl, BaseViewHolder>(R.layout.item_text){
+        BaseBindingAdapter<MenuItemImpl, ItemTextBinding>(){
 
-        override fun convert(holder: BaseViewHolder, item: MenuItemImpl) {
-            holder.itemView.run {
-                text_view.text = item.title
+        override fun convert(holder: VBViewHolder<ItemTextBinding>, item: MenuItemImpl) {
+            holder.vb.run {
+                textView.text = item.title
             }
             holder.itemView.onClick {
                 getItem(holder.layoutPosition)?.let {
@@ -95,6 +95,13 @@ class TextActionMenu(private val context: Context, private val callBack: CallBac
                 }
                 callBack.onMenuActionFinally()
             }
+        }
+
+        override fun createViewBinding(
+            inflater: LayoutInflater,
+            parent: ViewGroup
+        ): ItemTextBinding {
+            return ItemTextBinding.inflate(inflater,parent,false)
         }
 
     }

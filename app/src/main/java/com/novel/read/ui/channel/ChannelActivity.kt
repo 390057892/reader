@@ -8,29 +8,33 @@ import com.novel.read.R
 import com.novel.read.base.VMBaseActivity
 import com.novel.read.constant.AppConst
 import com.novel.read.data.model.ChannelSection
+import com.novel.read.databinding.ActivityChannelBinding
 import com.novel.read.lib.ATH
 import com.novel.read.utils.ext.getViewModel
-import kotlinx.android.synthetic.main.activity_channel.*
 import java.util.ArrayList
 
-class ChannelActivity : VMBaseActivity<ChannelViewModel>(R.layout.activity_channel) {
+class ChannelActivity : VMBaseActivity<ActivityChannelBinding, ChannelViewModel>() {
 
     override val viewModel: ChannelViewModel
         get() = getViewModel(ChannelViewModel::class.java)
+
+    override fun getViewBinding(): ActivityChannelBinding {
+        return ActivityChannelBinding.inflate(layoutInflater)
+    }
 
     private lateinit var adapter: ChannelAdapter
     private val data: MutableList<ChannelSection> = ArrayList()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        ATH.applyEdgeEffectColor(rlv_channel)
+        ATH.applyEdgeEffectColor(binding.rlvChannel)
         initRecyclerView()
         upRecyclerData()
     }
 
-    private fun initRecyclerView() {
-        rlv_channel.layoutManager = GridLayoutManager(this, 2)
+    private fun initRecyclerView() = with(binding) {
+        rlvChannel.layoutManager = GridLayoutManager(this@ChannelActivity, 2)
         adapter = ChannelAdapter()
-        rlv_channel.adapter = adapter
+        rlvChannel.adapter = adapter
     }
 
     private fun upRecyclerData() {
@@ -69,9 +73,11 @@ class ChannelActivity : VMBaseActivity<ChannelViewModel>(R.layout.activity_chann
     }
 
     private fun getErrorView(): View {
-        val errorView: View = layoutInflater.inflate(R.layout.view_net_error, rlv_channel, false)
+        val errorView: View =
+            layoutInflater.inflate(R.layout.view_net_error, binding.rlvChannel, false)
         errorView.setOnClickListener { onRefresh() }
         return errorView
     }
+
 
 }

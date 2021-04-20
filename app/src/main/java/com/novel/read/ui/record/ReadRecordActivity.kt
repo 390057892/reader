@@ -1,19 +1,27 @@
 package com.novel.read.ui.record
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.novel.read.App
 import com.novel.read.R
 import com.novel.read.base.BaseActivity
+import com.novel.read.base.BaseBindingAdapter
+import com.novel.read.base.VBViewHolder
 import com.novel.read.data.db.entity.ReadRecord
-import kotlinx.android.synthetic.main.activity_read_record.*
-import kotlinx.android.synthetic.main.item_book_common.view.tv_book_name
-import kotlinx.android.synthetic.main.item_read_record.view.*
+import com.novel.read.databinding.ActivityReadRecordBinding
+import com.novel.read.databinding.ItemReadRecordBinding
 
-class ReadRecordActivity : BaseActivity(R.layout.activity_read_record) {
+class ReadRecordActivity : BaseActivity<ActivityReadRecordBinding>() {
     lateinit var adapter: RecordAdapter
     private var sortMode = 0
+
+    override fun getViewBinding(): ActivityReadRecordBinding {
+        return ActivityReadRecordBinding.inflate(layoutInflater)
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         initView()
         initData()
@@ -26,17 +34,25 @@ class ReadRecordActivity : BaseActivity(R.layout.activity_read_record) {
 
     private fun initView() {
         adapter = RecordAdapter()
-        recycler_view.adapter = adapter
+        binding.recyclerView.adapter = adapter
     }
 
 
     inner class RecordAdapter :
-        BaseQuickAdapter<ReadRecord, BaseViewHolder>(R.layout.item_read_record) {
-        override fun convert(holder: BaseViewHolder, item: ReadRecord) {
-            holder.itemView.run {
-                tv_book_name.text = item.bookName
-                tv_read_time.text = formatDuring(item.readTime)
+        BaseBindingAdapter<ReadRecord, ItemReadRecordBinding>() {
+
+        override fun convert(holder: VBViewHolder<ItemReadRecordBinding>, item: ReadRecord) {
+            holder.vb.run {
+                tvBookName.text = item.bookName
+                tvReadTime.text = formatDuring(item.readTime)
             }
+        }
+
+        override fun createViewBinding(
+            inflater: LayoutInflater,
+            parent: ViewGroup
+        ): ItemReadRecordBinding {
+            return ItemReadRecordBinding.inflate(inflater, parent, false)
         }
 
 //        private fun sureDelAlert(item: ReadRecord) {
@@ -65,5 +81,8 @@ class ReadRecordActivity : BaseActivity(R.layout.activity_read_record) {
             }
             return time
         }
+
+
     }
+
 }

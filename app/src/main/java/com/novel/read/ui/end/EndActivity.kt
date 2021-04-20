@@ -8,28 +8,32 @@ import com.chad.library.adapter.base.listener.OnLoadMoreListener
 import com.novel.read.R
 import com.novel.read.base.VMBaseActivity
 import com.novel.read.constant.AppConst
+import com.novel.read.databinding.ActivityEndBinding
 import com.novel.read.lib.ATH
 import com.novel.read.utils.ext.getViewModel
-import kotlinx.android.synthetic.main.activity_end.*
 
-class EndActivity : VMBaseActivity<EndViewModel>(R.layout.activity_end) {
+class EndActivity : VMBaseActivity<ActivityEndBinding,EndViewModel>() {
 
     override val viewModel: EndViewModel
         get() = getViewModel(EndViewModel::class.java)
 
+    override fun getViewBinding(): ActivityEndBinding {
+        return ActivityEndBinding.inflate(layoutInflater)
+    }
+
     private lateinit var adapter: EndAdapter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        ATH.applyEdgeEffectColor(rlv_end)
+        ATH.applyEdgeEffectColor(binding.rlvEnd)
         initRecyclerView()
         upRecyclerData()
         initLoadMore()
     }
 
     private fun initRecyclerView() {
-        rlv_end.layoutManager = LinearLayoutManager(this)
+        binding.rlvEnd.layoutManager = LinearLayoutManager(this)
         adapter = EndAdapter()
-        rlv_end.adapter = adapter
+        binding.rlvEnd.adapter = adapter
     }
 
     private fun upRecyclerData() {
@@ -87,10 +91,11 @@ class EndActivity : VMBaseActivity<EndViewModel>(R.layout.activity_end) {
     }
 
     private fun getErrorView(): View {
-        val errorView: View = layoutInflater.inflate(R.layout.view_net_error, rlv_end, false)
+        val errorView: View = layoutInflater.inflate(R.layout.view_net_error, binding.rlvEnd, false)
         errorView.setOnClickListener { onRefresh() }
         return errorView
     }
+
 
 
 }

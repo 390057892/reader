@@ -16,18 +16,17 @@ import com.novel.read.R
 import com.novel.read.base.VMBaseActivity
 import com.novel.read.constant.EventBus
 import com.novel.read.data.model.AppUpdateResp
+import com.novel.read.databinding.ActivityMainBinding
 import com.novel.read.help.AppConfig
 import com.novel.read.lib.ATH
 import com.novel.read.service.BaseReadAloudService
 import com.novel.read.ui.main.bookshelf.BookshelfFragment
 import com.novel.read.ui.main.mail.MailFragment
 import com.novel.read.ui.main.my.MyFragment
-import com.novel.read.ui.widget.dialog.AppraiseDialog
 import com.novel.read.utils.ext.*
-import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
 
-class MainActivity : VMBaseActivity<MainViewModel>(R.layout.activity_main),
+class MainActivity : VMBaseActivity<ActivityMainBinding, MainViewModel>(),
     BottomNavigationView.OnNavigationItemSelectedListener,
     BottomNavigationView.OnNavigationItemReselectedListener,
     ViewPager.OnPageChangeListener by ViewPager.SimpleOnPageChangeListener() {
@@ -35,31 +34,34 @@ class MainActivity : VMBaseActivity<MainViewModel>(R.layout.activity_main),
     override val viewModel: MainViewModel
         get() = getViewModel(MainViewModel::class.java)
 
+    override fun getViewBinding(): ActivityMainBinding {
+        return ActivityMainBinding.inflate(layoutInflater)
+    }
+
     private var bookshelfReselected: Long = 0
     private var exitTime: Long = 0
     private var pagePosition = 0
     private val fragmentMap = hashMapOf<Int, Fragment>()
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        ATH.applyEdgeEffectColor(view_pager_main)
-        ATH.applyBottomNavigationColor(bottom_navigation_view)
+    override fun onActivityCreated(savedInstanceState: Bundle?) = with(binding) {
+        ATH.applyEdgeEffectColor(viewPagerMain)
+        ATH.applyBottomNavigationColor(bottomNavigationView)
 
-        view_pager_main.offscreenPageLimit = 3
-        view_pager_main.adapter = TabFragmentPageAdapter(supportFragmentManager)
-        view_pager_main.addOnPageChangeListener(this)
-        bottom_navigation_view.elevation =
+        viewPagerMain.offscreenPageLimit = 3
+        viewPagerMain.adapter = TabFragmentPageAdapter(supportFragmentManager)
+        viewPagerMain.addOnPageChangeListener(this@MainActivity)
+        bottomNavigationView.elevation =
             if (AppConfig.elevation < 0) elevation else AppConfig.elevation.toFloat()
-        bottom_navigation_view.setOnNavigationItemSelectedListener(this)
-        bottom_navigation_view.setOnNavigationItemReselectedListener(this)
+        bottomNavigationView.setOnNavigationItemSelectedListener(this@MainActivity)
+        bottomNavigationView.setOnNavigationItemReselectedListener(this@MainActivity)
         initData()
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         viewModel.appUpdate()
-        viewModel.checkCount()
         //自动更新书籍
-        view_pager_main.postDelayed({
+        binding.viewPagerMain.postDelayed({
             viewModel.upAllBookToc()
         }, 1000)
     }
@@ -69,21 +71,13 @@ class MainActivity : VMBaseActivity<MainViewModel>(R.layout.activity_main),
         viewModel.appResp.observe(this) {
             updateApk(it)
         }
-        viewModel.showEvaluate.observe(this) {
-            val dialog = AppraiseDialog(this)
-            dialog.appraiseDialog {
-                goShop()
-                dialog.dismiss()
-            }
-            dialog.show()
-        }
     }
 
-    override fun onPageSelected(position: Int) {
-        view_pager_main.hideSoftInput()
+    override fun onPageSelected(position: Int) = with(binding) {
+        viewPagerMain.hideSoftInput()
         pagePosition = position
         when (position) {
-            0, 1, 2 -> bottom_navigation_view.menu.getItem(position).isChecked = true
+            0, 1, 2 -> bottomNavigationView.menu.getItem(position).isChecked = true
         }
     }
 
@@ -92,7 +86,7 @@ class MainActivity : VMBaseActivity<MainViewModel>(R.layout.activity_main),
             when (keyCode) {
                 KeyEvent.KEYCODE_BACK -> if (event.isTracking && !event.isCanceled) {
                     if (pagePosition != 0) {
-                        view_pager_main.currentItem = 0
+                        binding.viewPagerMain.currentItem = 0
                         return true
                     }
                     if (System.currentTimeMillis() - exitTime > 2000) {
@@ -112,11 +106,11 @@ class MainActivity : VMBaseActivity<MainViewModel>(R.layout.activity_main),
         return super.onKeyUp(keyCode, event)
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+    override fun onNavigationItemSelected(item: MenuItem): Boolean = with(binding) {
         when (item.itemId) {
-            R.id.menu_mail -> view_pager_main.setCurrentItem(0, false)
-            R.id.menu_bookshelf -> view_pager_main.setCurrentItem(1, false)
-            R.id.menu_my_config -> view_pager_main.setCurrentItem(2, false)
+            R.id.menu_mail -> viewPagerMain.setCurrentItem(0, false)
+            R.id.menu_bookshelf -> viewPagerMain.setCurrentItem(1, false)
+            R.id.menu_my_config -> viewPagerMain.setCurrentItem(2, false)
         }
         return false
     }

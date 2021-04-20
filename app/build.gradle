@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
+    id 'kotlin-parcelize'
 }
 
 def name = "reader"
@@ -22,7 +22,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
-            abiFilters "armeabi", "arm64-v8a"// "armeabi-v7a",
+            abiFilters "armeabi"
         }
         multiDexEnabled true
         resConfigs "zh", "zh-rCN"
@@ -38,7 +38,9 @@ android {
             storePassword '1qaz@WSX'
         }
     }
-
+    buildFeatures {
+        viewBinding true
+    }
     buildTypes {
         debug {
             minifyEnabled true
@@ -67,11 +69,6 @@ android {
         app {
             dimension "mode"
             manifestPlaceholders = [APP_CHANNEL_VALUE: "app"]
-        }
-        google {
-            dimension "mode"
-            applicationId "com.novel.read"
-            manifestPlaceholders = [APP_CHANNEL_VALUE: "google"]
         }
     }
 
@@ -161,5 +158,4 @@ dependencies {
     implementation 'com.allenliu.versionchecklib:library:2.2.0'
 
     implementation 'com.permissionx.guolindev:permissionx:1.4.0'
-
 }

@@ -11,33 +11,36 @@ import com.novel.read.constant.AppConst
 import com.novel.read.constant.IntentAction
 import com.novel.read.constant.LayoutType
 import com.novel.read.data.model.*
+import com.novel.read.databinding.ActivityRankBinding
 import com.novel.read.lib.ATH
 import com.novel.read.utils.ext.getViewModel
-import kotlinx.android.synthetic.main.activity_rank.*
 
-class RankActivity : VMBaseActivity<RankViewModel>(R.layout.activity_rank) {
+class RankActivity : VMBaseActivity<ActivityRankBinding,RankViewModel>() {
 
     override val viewModel: RankViewModel
         get() = getViewModel(RankViewModel::class.java)
 
+    override fun getViewBinding(): ActivityRankBinding {
+        return ActivityRankBinding.inflate(layoutInflater)
+    }
     private lateinit var adapter: RankAdapter
     private lateinit var typeAdapter: TypeAdapter
     private lateinit var mTypes: List<TypeName>
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        ATH.applyEdgeEffectColor(rlv_rank)
-        ATH.applyEdgeEffectColor(lv_type)
+    override fun onActivityCreated(savedInstanceState: Bundle?) = with(binding){
+        ATH.applyEdgeEffectColor(rlvRank)
+        ATH.applyEdgeEffectColor(rlvType)
         initRecyclerView()
         upRecyclerData()
         initLoadMore()
     }
 
     private fun initRecyclerView() {
-        rlv_rank.layoutManager = LinearLayoutManager(this)
+        binding.rlvRank.layoutManager = LinearLayoutManager(this)
         adapter = RankAdapter()
-        rlv_rank.adapter = adapter
-        lv_type.layoutManager = LinearLayoutManager(this)
+        binding.rlvRank.adapter = adapter
+        binding.rlvType.layoutManager = LinearLayoutManager(this)
         typeAdapter = TypeAdapter()
-        lv_type.adapter = typeAdapter
+        binding.rlvType.adapter = typeAdapter
 
     }
 
@@ -124,10 +127,11 @@ class RankActivity : VMBaseActivity<RankViewModel>(R.layout.activity_rank) {
     }
 
     private fun getErrorView(): View {
-        val errorView: View = layoutInflater.inflate(R.layout.view_net_error, rlv_rank, false)
+        val errorView: View = layoutInflater.inflate(R.layout.view_net_error, binding.rlvRank, false)
         errorView.setOnClickListener { onRefresh() }
         return errorView
     }
+
 
 
 }

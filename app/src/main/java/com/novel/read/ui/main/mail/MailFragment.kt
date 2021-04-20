@@ -10,31 +10,32 @@ import com.novel.read.R
 import com.novel.read.base.VMBaseFragment
 import com.novel.read.constant.AppConst
 import com.novel.read.data.model.*
+import com.novel.read.databinding.FragmentMailBinding
 import com.novel.read.lib.ATH
 import com.novel.read.ui.main.mail.pick.PickAdapter
 import com.novel.read.ui.search.SearchActivity
 import com.novel.read.utils.ext.*
-import kotlinx.android.synthetic.main.fragment_mail.rlv_home
-import kotlinx.android.synthetic.main.view_title_bar.*
+import com.novel.read.utils.viewbindingdelegate.viewBinding
 import java.util.ArrayList
 
 class MailFragment : VMBaseFragment<MailViewModel>(R.layout.fragment_mail) {
 
     override val viewModel: MailViewModel
         get() = getViewModel(MailViewModel::class.java)
+    private val binding by viewBinding(FragmentMailBinding::bind)
     private lateinit var adapter: PickAdapter<MultiItemEntity>
     private val data: MutableList<MultiItemEntity> = ArrayList()
     override fun onFragmentCreated(view: View, savedInstanceState: Bundle?) {
-        setSupportToolbar(toolbar)
-        ATH.applyEdgeEffectColor(rlv_home)
+        setSupportToolbar(binding.titleBar.toolbar)
+        ATH.applyEdgeEffectColor(binding.rlvHome)
         initRecycleView()
         upRecyclerData()
     }
 
     private fun initRecycleView() {
-        rlv_home.layoutManager = LinearLayoutManager(context)
+        binding.rlvHome.layoutManager = LinearLayoutManager(context)
         adapter = PickAdapter(data)
-        rlv_home.adapter = adapter
+        binding.rlvHome.adapter = adapter
     }
 
     private fun upRecyclerData() {
@@ -78,7 +79,7 @@ class MailFragment : VMBaseFragment<MailViewModel>(R.layout.fragment_mail) {
     }
 
     private fun getErrorView(): View {
-        val errorView: View = layoutInflater.inflate(R.layout.view_net_error, rlv_home, false)
+        val errorView: View = layoutInflater.inflate(R.layout.view_net_error, binding.rlvHome, false)
         errorView.setOnClickListener { onRefresh() }
         return errorView
     }

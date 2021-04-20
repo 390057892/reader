@@ -1,37 +1,44 @@
 package com.novel.read.ui.widget.dialog
 
-import android.app.Dialog
 import android.content.Context
+import android.os.Bundle
 import android.view.*
-import android.widget.LinearLayout
-import android.widget.TextView
 import com.novel.read.R
-import kotlinx.android.synthetic.main.dialog_go_appraise.*
+import com.novel.read.base.BaseDialogFragment
+import com.novel.read.databinding.DialogGoAppraiseBinding
+import com.novel.read.utils.ext.goShop
+import com.novel.read.utils.viewbindingdelegate.viewBinding
 
-class AppraiseDialog(context: Context) : Dialog(context, R.style.dialog) {
-    private val view: View = LayoutInflater.from(context).inflate(R.layout.dialog_go_appraise, null)
+class AppraiseDialog : BaseDialogFragment() {
+    private val binding by viewBinding(DialogGoAppraiseBinding::bind)
 
-    init {
-        view.setHasTransientState(true)
-        setContentView(
-            view, LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT
-            )
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
         )
-        setCancelable(false)
-        initView()
-
     }
 
-    private fun initView() {
-        val mTvCancel = findViewById<TextView>(R.id.tv_cancel)
-
-        mTvCancel.setOnClickListener { dismiss() }
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.dialog_go_appraise, container)
     }
 
-    fun appraiseDialog(receiveClickListener: View.OnClickListener) {
-        tv_appraise.setOnClickListener(receiveClickListener)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(STYLE_NO_TITLE, R.style.dialog_app)
     }
 
+    override fun onFragmentCreated(view: View, savedInstanceState: Bundle?){
+        binding.tvAppraise.setOnClickListener{
+            context?.goShop()
+            dismiss()
+        }
+        binding.clBg.setBackgroundResource(R.color.transparent)
+        binding.tvCancel.setOnClickListener { dismiss() }
+    }
 }

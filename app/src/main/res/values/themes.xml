@@ -88,4 +88,13 @@
         <item name="android:backgroundDimAmount">0.6</item>
     </style>
 
+    <style name="dialog_app" parent="android:style/Theme.Dialog">
+        <item name="android:background">@color/transparent</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowEnterAnimation">@anim/message_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/message_fade_out</item>
+    </style>
+
 </resources>

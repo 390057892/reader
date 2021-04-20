@@ -8,6 +8,7 @@ import com.novel.read.R
 import com.novel.read.base.VMBaseActivity
 import com.novel.read.constant.PreferKey
 import com.novel.read.data.db.entity.Book
+import com.novel.read.databinding.ActivityArrangeBookBinding
 import com.novel.read.lib.ATH
 import com.novel.read.lib.dialogs.alert
 import com.novel.read.lib.dialogs.okButton
@@ -15,14 +16,17 @@ import com.novel.read.ui.widget.VerticalDivider
 import com.novel.read.utils.ext.applyTint
 import com.novel.read.utils.ext.getPrefInt
 import com.novel.read.utils.ext.getViewModel
-import kotlinx.android.synthetic.main.activity_arrange_book.*
 
-class ArrangeBookActivity : VMBaseActivity<ArrangeBookViewModel>(R.layout.activity_arrange_book),ArrangeBookAdapter.CallBack {
+class ArrangeBookActivity : VMBaseActivity<ActivityArrangeBookBinding,ArrangeBookViewModel>(),ArrangeBookAdapter.CallBack {
 
     private lateinit var adapter: ArrangeBookAdapter
 
     override val viewModel: ArrangeBookViewModel
         get() = getViewModel(ArrangeBookViewModel::class.java)
+
+    override fun getViewBinding(): ActivityArrangeBookBinding {
+        return ActivityArrangeBookBinding.inflate(layoutInflater)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         initView()
@@ -30,11 +34,11 @@ class ArrangeBookActivity : VMBaseActivity<ArrangeBookViewModel>(R.layout.activi
     }
 
     private fun initView() {
-        ATH.applyEdgeEffectColor(recycler_view)
-        recycler_view.layoutManager = LinearLayoutManager(this)
-        recycler_view.addItemDecoration(VerticalDivider(this))
+        ATH.applyEdgeEffectColor(binding.recyclerView)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.addItemDecoration(VerticalDivider(this))
         adapter = ArrangeBookAdapter(this)
-        recycler_view.adapter = adapter
+        binding.recyclerView.adapter = adapter
     }
 
     private fun initBookData() {

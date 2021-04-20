@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import com.novel.read.R
 import com.novel.read.base.BaseDialogFragment
+import com.novel.read.databinding.DialogPhotoViewBinding
 import com.novel.read.service.help.ReadBook
+import com.novel.read.utils.viewbindingdelegate.viewBinding
 import io.legado.app.ui.book.read.page.provider.ImageProvider
-import kotlinx.android.synthetic.main.dialog_photo_view.*
 
 class PhotoDialog : BaseDialogFragment() {
 
@@ -29,6 +30,8 @@ class PhotoDialog : BaseDialogFragment() {
         }
 
     }
+
+    private val binding by viewBinding(DialogPhotoViewBinding::bind)
 
     override fun onStart() {
         super.onStart()
@@ -56,7 +59,7 @@ class PhotoDialog : BaseDialogFragment() {
                         ImageProvider.getImage(book, chapterIndex, src)
                     }.onSuccess { bitmap ->
                         if (bitmap != null) {
-                            photo_view.setImageBitmap(bitmap)
+                            binding.photoView.setImageBitmap(bitmap)
                         }
                     }
                 }

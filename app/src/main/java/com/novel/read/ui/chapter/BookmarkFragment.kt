@@ -12,6 +12,7 @@ import com.novel.read.App
 import com.novel.read.R
 import com.novel.read.base.VMBaseFragment
 import com.novel.read.data.db.entity.Bookmark
+import com.novel.read.databinding.FragmentBookmarkBinding
 import com.novel.read.lib.ATH
 import com.novel.read.lib.dialogs.alert
 import com.novel.read.lib.dialogs.customView
@@ -19,14 +20,15 @@ import com.novel.read.lib.dialogs.noButton
 import com.novel.read.lib.dialogs.yesButton
 import com.novel.read.ui.widget.VerticalDivider
 import com.novel.read.utils.ext.*
-import kotlinx.android.synthetic.main.dialog_edit_text.view.*
-import kotlinx.android.synthetic.main.fragment_bookmark.*
+import com.novel.read.utils.viewbindingdelegate.viewBinding
 
 class BookmarkFragment : VMBaseFragment<ChapterListViewModel>(R.layout.fragment_bookmark),
     ChapterListViewModel.BookmarkCallBack {
 
     override val viewModel: ChapterListViewModel
         get() = getViewModelOfActivity(ChapterListViewModel::class.java)
+
+    private val binding by viewBinding(FragmentBookmarkBinding::bind)
 
     private lateinit var adapter: BookMarkAdapter
     private var bookmarkLiveData =  MutableLiveData<List<Bookmark>>()
@@ -37,11 +39,11 @@ class BookmarkFragment : VMBaseFragment<ChapterListViewModel>(R.layout.fragment_
     }
 
     private fun initRecyclerView() {
-        ATH.applyEdgeEffectColor(recycler_view)
+        ATH.applyEdgeEffectColor(binding.recyclerView)
         adapter = BookMarkAdapter()
-        recycler_view.layoutManager = LinearLayoutManager(requireContext())
-        recycler_view.addItemDecoration(VerticalDivider(requireContext()))
-        recycler_view.adapter = adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.addItemDecoration(VerticalDivider(requireContext()))
+        binding.recyclerView.adapter = adapter
     }
 
     private fun initData() {
@@ -68,9 +70,10 @@ class BookmarkFragment : VMBaseFragment<ChapterListViewModel>(R.layout.fragment_
                 requireContext().alert(R.string.bookmark) {
                     var editText: EditText? = null
                     message = book.bookName + " • " + bookmark.chapterName
+
                     customView {
                         layoutInflater.inflate(R.layout.dialog_edit_text, null).apply {
-                            editText = edit_view.apply {
+                            editText = findViewById<EditText>(R.id.edit_view).apply {
                                 setHint(R.string.note_content)
                                 setText(bookmark.content)
                             }

@@ -1,26 +1,32 @@
 package com.novel.read.ui.rank
 
+import android.view.LayoutInflater
 import android.view.View
-import com.chad.library.adapter.base.BaseQuickAdapter
+import android.view.ViewGroup
 import com.chad.library.adapter.base.module.LoadMoreModule
-import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.novel.read.R
+import com.novel.read.base.BaseBindingAdapter
+import com.novel.read.base.VBViewHolder
 import com.novel.read.data.model.TypeName
-import kotlinx.android.synthetic.main.item_type.view.*
+import com.novel.read.databinding.ItemTypeBinding
 
 class TypeAdapter :
-    BaseQuickAdapter<TypeName, BaseViewHolder>(R.layout.item_type), LoadMoreModule {
+    BaseBindingAdapter<TypeName, ItemTypeBinding>(), LoadMoreModule {
 
-    override fun convert(holder: BaseViewHolder, item: TypeName) {
-        holder.itemView.run {
-            tv_type.text = item.name
+    override fun convert(holder: VBViewHolder<ItemTypeBinding>, item: TypeName) {
+        holder.vb.run {
+            tvType.text = item.name
             if (item.check) {
-                iv_check.visibility = View.VISIBLE
-                ll_bg.setBackgroundColor(context.resources.getColor(R.color.background))
+                ivCheck.visibility = View.VISIBLE
+                llBg.setBackgroundColor(context.resources.getColor(R.color.background))
             } else {
-                iv_check.visibility = View.GONE
-                ll_bg.setBackgroundColor(context.resources.getColor(R.color.background_menu))
+                ivCheck.visibility = View.GONE
+                llBg.setBackgroundColor(context.resources.getColor(R.color.background_menu))
             }
         }
+    }
+
+    override fun createViewBinding(inflater: LayoutInflater, parent: ViewGroup): ItemTypeBinding {
+        return ItemTypeBinding.inflate(inflater, parent, false)
     }
 }

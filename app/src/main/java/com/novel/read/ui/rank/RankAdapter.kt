@@ -1,28 +1,38 @@
 package com.novel.read.ui.rank
 
-import com.chad.library.adapter.base.BaseQuickAdapter
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.chad.library.adapter.base.module.LoadMoreModule
-import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.novel.read.R
+import com.novel.read.base.BaseBindingAdapter
+import com.novel.read.base.VBViewHolder
 import com.novel.read.data.model.BookListResp
+import com.novel.read.databinding.ItemBookCommonBinding
 import com.novel.read.ui.info.BookInfoActivity
-import kotlinx.android.synthetic.main.item_book_common.view.*
 import org.jetbrains.anko.sdk27.listeners.onClick
 
 class RankAdapter :
-    BaseQuickAdapter<BookListResp, BaseViewHolder>(R.layout.item_book_common), LoadMoreModule {
+    BaseBindingAdapter<BookListResp, ItemBookCommonBinding>(), LoadMoreModule {
 
-    override fun convert(holder: BaseViewHolder, item: BookListResp) {
-        holder.itemView.run {
-            iv_cover.load(item.coverImageUrl, item.getBBookName(), item.getBAuthorName())
-            tv_book_name.text = item.getBBookName()
-            tv_book_description.text = item.getBIntroduction()
-            tv_book_author.text = item.getBAuthorName()
-            tv_word.text = context.getString(R.string.book_word, item.wordCount / 10000)
-            tv_category.text = item.getBCategoryName()
-            onClick {
-                BookInfoActivity.actionBookInfo(context,item.bookId,item.bookTypeId)
-            }
+    override fun convert(holder: VBViewHolder<ItemBookCommonBinding>, item: BookListResp) {
+
+        holder.vb.run {
+            ivCover.load(item.coverImageUrl, item.getBBookName(), item.getBAuthorName())
+            tvBookName.text = item.getBBookName()
+            tvBookDescription.text = item.getBIntroduction()
+            tvBookAuthor.text = item.getBAuthorName()
+            tvWord.text = context.getString(R.string.book_word, item.wordCount / 10000)
+            tvCategory.text = item.getBCategoryName()
         }
+        holder.itemView.onClick {
+            BookInfoActivity.actionBookInfo(context, item.bookId, item.bookTypeId)
+        }
+    }
+
+    override fun createViewBinding(
+        inflater: LayoutInflater,
+        parent: ViewGroup
+    ): ItemBookCommonBinding {
+        return ItemBookCommonBinding.inflate(inflater, parent, false)
     }
 }

@@ -6,6 +6,7 @@ import android.widget.SeekBar
 import com.novel.read.R
 import com.novel.read.base.BaseDialogFragment
 import com.novel.read.constant.EventBus
+import com.novel.read.databinding.DialogReadAloudBinding
 import com.novel.read.help.AppConfig
 import com.novel.read.service.BaseReadAloudService
 import com.novel.read.service.help.ReadAloud
@@ -13,12 +14,11 @@ import com.novel.read.service.help.ReadBook
 import com.novel.read.ui.widget.dialog.ReadAloudConfigDialog
 import com.novel.read.utils.ColorUtils
 import com.novel.read.utils.ext.*
-import kotlinx.android.synthetic.main.dialog_read_aloud.*
-import org.jetbrains.anko.sdk27.listeners.onClick
+import com.novel.read.utils.viewbindingdelegate.viewBinding
 
 class ReadAloudDialog : BaseDialogFragment() {
     var callBack: CallBack? = null
-
+    private val binding by viewBinding(DialogReadAloudBinding::bind)
     override fun onStart() {
         super.onStart()
         dialog?.window?.let {
@@ -46,59 +46,61 @@ class ReadAloudDialog : BaseDialogFragment() {
         val bg = requireContext().bottomBackground
         val isLight = ColorUtils.isColorLight(bg)
         val textColor = requireContext().getPrimaryTextColor(isLight)
-        root_view.setBackgroundColor(bg)
-        tv_pre.setTextColor(textColor)
-        tv_next.setTextColor(textColor)
-        iv_play_prev.setColorFilter(textColor)
-        iv_play_pause.setColorFilter(textColor)
-        iv_play_next.setColorFilter(textColor)
-        iv_stop.setColorFilter(textColor)
-        iv_timer.setColorFilter(textColor)
-        tv_timer.setTextColor(textColor)
-        tv_tts_speed.setTextColor(textColor)
-        iv_catalog.setColorFilter(textColor)
-        tv_catalog.setTextColor(textColor)
-        iv_main_menu.setColorFilter(textColor)
-        tv_main_menu.setTextColor(textColor)
-        iv_to_backstage.setColorFilter(textColor)
-        tv_to_backstage.setTextColor(textColor)
-        iv_setting.setColorFilter(textColor)
-        tv_setting.setTextColor(textColor)
-        cb_tts_follow_sys.setTextColor(textColor)
+        with(binding) {
+            rootView.setBackgroundColor(bg)
+            tvPre.setTextColor(textColor)
+            tvNext.setTextColor(textColor)
+            ivPlayPrev.setColorFilter(textColor)
+            ivPlayPause.setColorFilter(textColor)
+            ivPlayNext.setColorFilter(textColor)
+            ivStop.setColorFilter(textColor)
+            ivTimer.setColorFilter(textColor)
+            tvTimer.setTextColor(textColor)
+            tvTtsSpeed.setTextColor(textColor)
+            ivCatalog.setColorFilter(textColor)
+            tvCatalog.setTextColor(textColor)
+            ivMainMenu.setColorFilter(textColor)
+            tvMainMenu.setTextColor(textColor)
+            ivToBackstage.setColorFilter(textColor)
+            tvToBackstage.setTextColor(textColor)
+            ivSetting.setColorFilter(textColor)
+            tvSetting.setTextColor(textColor)
+            cbTtsFollowSys.setTextColor(textColor)
+        }
         initOnChange()
         initData()
         initEvent()
     }
 
-    private fun initData() {
+    private fun initData() = with(binding) {
         upPlayState()
         upTimerText(BaseReadAloudService.timeMinute)
-        seek_timer.progress = BaseReadAloudService.timeMinute
-        cb_tts_follow_sys.isChecked = requireContext().getPrefBoolean("ttsFollowSys", true)
-        seek_tts_SpeechRate.isEnabled = !cb_tts_follow_sys.isChecked
-        seek_tts_SpeechRate.progress = AppConfig.ttsSpeechRate
+        seekTimer.progress = BaseReadAloudService.timeMinute
+        cbTtsFollowSys.isChecked = requireContext().getPrefBoolean("ttsFollowSys", true)
+        seekTtsSpeechRate.isEnabled = !cbTtsFollowSys.isChecked
+        seekTtsSpeechRate.progress = AppConfig.ttsSpeechRate
     }
 
-    private fun initOnChange() {
-        cb_tts_follow_sys.setOnCheckedChangeListener { buttonView, isChecked ->
+    private fun initOnChange() = with(binding){
+        cbTtsFollowSys.setOnCheckedChangeListener { buttonView, isChecked ->
             if (buttonView.isPressed) {
                 requireContext().putPrefBoolean("ttsFollowSys", isChecked)
-                seek_tts_SpeechRate.isEnabled = !isChecked
+                seekTtsSpeechRate.isEnabled = !isChecked
                 upTtsSpeechRate()
             }
         }
-        seek_tts_SpeechRate.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        seekTtsSpeechRate.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) = Unit
 
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                AppConfig.ttsSpeechRate = seek_tts_SpeechRate.progress
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+                AppConfig.ttsSpeechRate = seekBar.progress
                 upTtsSpeechRate()
             }
         })
-        seek_timer.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        seekTimer.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 upTimerText(progress)
             }
@@ -106,40 +108,46 @@ class ReadAloudDialog : BaseDialogFragment() {
             override fun onStartTrackingTouch(seekBar: SeekBar?) = Unit
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                ReadAloud.setTimer(requireContext(), seek_timer.progress)
+                ReadAloud.setTimer(requireContext(), seekTimer.progress)
             }
         })
     }
 
-    private fun initEvent() {
-        ll_main_menu.onClick { callBack?.showMenuBar(); dismiss() }
-        ll_setting.onClick {
+    private fun initEvent() = with(binding) {
+        llMainMenu.setOnClickListener {
+            callBack?.showMenuBar()
+            dismissAllowingStateLoss()
+        }
+        llSetting.setOnClickListener {
             ReadAloudConfigDialog().show(childFragmentManager, "readAloudConfigDialog")
         }
-        tv_pre.onClick { ReadBook.moveToPrevChapter(upContent = true, toLast = false) }
-        tv_next.onClick { ReadBook.moveToNextChapter(true) }
-        iv_stop.onClick { ReadAloud.stop(requireContext()); dismiss() }
-        iv_play_pause.onClick { callBack?.onClickReadAloud() }
-        iv_play_prev.onClick { ReadAloud.prevParagraph(requireContext()) }
-        iv_play_next.onClick { ReadAloud.nextParagraph(requireContext()) }
-        ll_catalog.onClick { callBack?.openChapterList() }
-        ll_to_backstage.onClick { callBack?.finish() }
+        tvPre.setOnClickListener { ReadBook.moveToPrevChapter(upContent = true, toLast = false) }
+        tvNext.setOnClickListener { ReadBook.moveToNextChapter(true) }
+        ivStop.setOnClickListener {
+            ReadAloud.stop(requireContext())
+            dismissAllowingStateLoss()
+        }
+        ivPlayPause.setOnClickListener { callBack?.onClickReadAloud() }
+        ivPlayPrev.setOnClickListener { ReadAloud.prevParagraph(requireContext()) }
+        ivPlayNext.setOnClickListener { ReadAloud.nextParagraph(requireContext()) }
+        llCatalog.setOnClickListener { callBack?.openChapterList() }
+        llToBackstage.setOnClickListener { callBack?.finish() }
     }
 
     private fun upPlayState() {
         if (!BaseReadAloudService.pause) {
-            iv_play_pause.setImageResource(R.drawable.ic_pause_24dp)
+            binding.ivPlayPause.setImageResource(R.drawable.ic_pause_24dp)
         } else {
-            iv_play_pause.setImageResource(R.drawable.ic_play_24dp)
+            binding.ivPlayPause.setImageResource(R.drawable.ic_play_24dp)
         }
         val bg = requireContext().bottomBackground
         val isLight = ColorUtils.isColorLight(bg)
         val textColor = requireContext().getPrimaryTextColor(isLight)
-        iv_play_pause.setColorFilter(textColor)
+        binding.ivPlayPause.setColorFilter(textColor)
     }
 
     private fun upTimerText(timeMinute: Int) {
-        tv_timer.text = requireContext().getString(R.string.timer_m, timeMinute)
+        binding.tvTimer.text = requireContext().getString(R.string.timer_m, timeMinute)
     }
 
     private fun upTtsSpeechRate() {
@@ -152,7 +160,7 @@ class ReadAloudDialog : BaseDialogFragment() {
 
     override fun observeLiveBus() {
         observeEvent<Int>(EventBus.ALOUD_STATE) { upPlayState() }
-        observeEvent<Int>(EventBus.TTS_DS) { seek_timer.progress = it }
+        observeEvent<Int>(EventBus.TTS_DS) { binding.seekTimer.progress = it }
     }
 
     interface CallBack {

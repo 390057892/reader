@@ -19,6 +19,8 @@ import com.novel.read.constant.EventBus
 import com.novel.read.constant.IntentAction
 import com.novel.read.constant.PreferKey
 import com.novel.read.data.db.entity.Book
+import com.novel.read.databinding.DialogBookshelfConfigBinding
+import com.novel.read.databinding.FragmentBookShelfBinding
 import com.novel.read.help.AppConfig
 import com.novel.read.help.IntentDataHelp
 import com.novel.read.lib.ATH
@@ -32,23 +34,21 @@ import com.novel.read.ui.read.ReadBookActivity
 import com.novel.read.ui.search.SearchActivity
 import com.novel.read.utils.BooksDiffCallBack
 import com.novel.read.utils.ext.*
-import kotlinx.android.synthetic.main.dialog_bookshelf_config.view.*
-import kotlinx.android.synthetic.main.fragment_book_shelf.*
-import kotlinx.android.synthetic.main.view_title_bar.*
+import com.novel.read.utils.viewbindingdelegate.viewBinding
 import org.jetbrains.anko.startActivity
 
 class BookshelfFragment : VMBaseFragment<BookViewModel>(R.layout.fragment_book_shelf), BaseBookAdapter.CallBack  {
 
-
     override val viewModel: BookViewModel by viewModels()
     private val activityViewModel: MainViewModel
             by activityViewModels()
+    private val binding by viewBinding(FragmentBookShelfBinding::bind)
     private lateinit var booksAdapter: BaseBookAdapter
     private var bookshelfLiveData = MutableLiveData<List<Book>>()
     private lateinit var selectBook: Book
 
     override fun onFragmentCreated(view: View, savedInstanceState: Bundle?) {
-        setSupportToolbar(toolbar)
+        setSupportToolbar(binding.titleBar.toolbar)
         initRecycleView()
         upRecyclerData()
     }
@@ -75,23 +75,23 @@ class BookshelfFragment : VMBaseFragment<BookViewModel>(R.layout.fragment_book_s
     }
 
     private fun initRecycleView() {
-        ATH.applyEdgeEffectColor(rlv_book_shelf)
+        ATH.applyEdgeEffectColor(binding.rlvBookShelf)
 
-        refresh_layout.setColorSchemeColors(accentColor)
-        refresh_layout.setOnRefreshListener {
-            refresh_layout.isRefreshing = false
+        binding.refreshLayout.setColorSchemeColors(accentColor)
+        binding.refreshLayout.setOnRefreshListener {
+            binding.refreshLayout.isRefreshing = false
             activityViewModel.upToc(booksAdapter.data)
         }
 
         val bookshelfLayout = getPrefInt(PreferKey.bookshelfLayout)
         if (bookshelfLayout == 0) {
-            rlv_book_shelf.layoutManager = LinearLayoutManager(context)
+            binding.rlvBookShelf.layoutManager = LinearLayoutManager(context)
             booksAdapter = BookShelfAdapter(this)
         } else {
-            rlv_book_shelf.layoutManager = GridLayoutManager(context, bookshelfLayout + 2)
+            binding.rlvBookShelf.layoutManager = GridLayoutManager(context, bookshelfLayout + 2)
             booksAdapter = BooksAdapterGrid(this)
         }
-        rlv_book_shelf.adapter = booksAdapter
+        binding.rlvBookShelf.adapter = booksAdapter
         booksAdapter.setEmptyView(R.layout.view_empty)
         booksAdapter.setDiffCallback(BooksDiffCallBack())
 
@@ -132,9 +132,9 @@ class BookshelfFragment : VMBaseFragment<BookViewModel>(R.layout.fragment_book_s
 
     fun gotoTop() {
         if (AppConfig.isEInkMode) {
-            rlv_book_shelf.scrollToPosition(0)
+            binding.rlvBookShelf.scrollToPosition(0)
         } else {
-            rlv_book_shelf.smoothScrollToPosition(0)
+            binding.rlvBookShelf.smoothScrollToPosition(0)
         }
     }
 
@@ -143,21 +143,23 @@ class BookshelfFragment : VMBaseFragment<BookViewModel>(R.layout.fragment_book_s
         requireContext().alert(titleResource = R.string.bookshelf_layout) {
             val bookshelfLayout = getPrefInt(PreferKey.bookshelfLayout)
             val bookshelfSort = getPrefInt(PreferKey.bookshelfSort)
-            val root = LayoutInflater.from(requireContext())
-                .inflate(R.layout.dialog_bookshelf_config, null).apply {
-                    rg_layout.checkByIndex(bookshelfLayout)
-                    rg_sort.checkByIndex(bookshelfSort)
-                }
-            customView = root
+            val alertBinding =
+                DialogBookshelfConfigBinding.inflate(layoutInflater)
+                    .apply {
+                        rgLayout.checkByIndex(bookshelfLayout)
+                        rgSort.checkByIndex(bookshelfSort)
+                    }
+
+            customView = alertBinding.root
             okButton {
-                root.apply {
+                alertBinding.apply {
                     var changed = false
-                    if (bookshelfLayout != rg_layout.getCheckedIndex()) {
-                        putPrefInt(PreferKey.bookshelfLayout, rg_layout.getCheckedIndex())
+                    if (bookshelfLayout != rgLayout.getCheckedIndex()) {
+                        putPrefInt(PreferKey.bookshelfLayout, rgLayout.getCheckedIndex())
                         changed = true
                     }
-                    if (bookshelfSort != rg_sort.getCheckedIndex()) {
-                        putPrefInt(PreferKey.bookshelfSort, rg_sort.getCheckedIndex())
+                    if (bookshelfSort != rgSort.getCheckedIndex()) {
+                        putPrefInt(PreferKey.bookshelfSort, rgSort.getCheckedIndex())
                         changed = true
                     }
                     if (changed) {

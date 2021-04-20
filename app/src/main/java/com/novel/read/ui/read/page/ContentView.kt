@@ -3,6 +3,7 @@ package com.novel.read.ui.read.page
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
@@ -10,19 +11,18 @@ import com.novel.read.R
 import com.novel.read.base.BaseActivity
 import com.novel.read.constant.AppConst.timeFormat
 import com.novel.read.data.read.TextPage
+import com.novel.read.databinding.ViewBookPageBinding
 import com.novel.read.help.ReadBookConfig
 import com.novel.read.help.ReadTipConfig
 import com.novel.read.service.help.ReadBook
 import com.novel.read.ui.widget.BatteryView
 import com.novel.read.utils.ext.*
 import io.legado.app.ui.book.read.page.provider.ChapterProvider
-import kotlinx.android.synthetic.main.view_book_page.view.*
 import org.jetbrains.anko.topPadding
 import java.util.*
 
-
 class ContentView(context: Context) : FrameLayout(context) {
-
+    private val binding = ViewBookPageBinding.inflate(LayoutInflater.from(context), this, true)
     private var battery = 100
     private var tvTitle: BatteryView? = null
     private var tvTime: BatteryView? = null
@@ -35,55 +35,54 @@ class ContentView(context: Context) : FrameLayout(context) {
     val headerHeight: Int
         get() {
             val h1 = if (ReadBookConfig.hideStatusBar) 0 else context.statusBarHeight
-            val h2 = if (ll_header.isGone) 0 else ll_header.height
+            val h2 = if (binding.llHeader.isGone) 0 else binding.llHeader.height
             return h1 + h2
         }
 
     init {
         //设置背景防止切换背景时文字重叠
         setBackgroundColor(context.getCompatColor(R.color.background))
-        inflate(context, R.layout.view_book_page, this)
         upTipStyle()
         upStyle()
-        content_text_view.upView = {
+        binding.contentTextView.upView = {
             setProgress(it)
         }
     }
 
-    fun upStyle() {
+    fun upStyle() = with(binding){
         ReadBookConfig.apply {
-            bv_header_left.typeface = ChapterProvider.typeface
-            tv_header_left.typeface = ChapterProvider.typeface
-            tv_header_middle.typeface = ChapterProvider.typeface
-            tv_header_right.typeface = ChapterProvider.typeface
-            bv_footer_left.typeface = ChapterProvider.typeface
-            tv_footer_left.typeface = ChapterProvider.typeface
-            tv_footer_middle.typeface = ChapterProvider.typeface
-            tv_footer_right.typeface = ChapterProvider.typeface
-            bv_header_left.setColor(textColor)
-            tv_header_left.setColor(textColor)
-            tv_header_middle.setColor(textColor)
-            tv_header_right.setColor(textColor)
-            bv_footer_left.setColor(textColor)
-            tv_footer_left.setColor(textColor)
-            tv_footer_middle.setColor(textColor)
-            tv_footer_right.setColor(textColor)
+            bvHeaderLeft.typeface = ChapterProvider.typeface
+            tvHeaderLeft.typeface = ChapterProvider.typeface
+            tvHeaderMiddle.typeface = ChapterProvider.typeface
+            tvHeaderRight.typeface = ChapterProvider.typeface
+            bvFooterLeft.typeface = ChapterProvider.typeface
+            tvFooterLeft.typeface = ChapterProvider.typeface
+            tvFooterMiddle.typeface = ChapterProvider.typeface
+            tvFooterRight.typeface = ChapterProvider.typeface
+            bvHeaderLeft.setColor(textColor)
+            tvHeaderLeft.setColor(textColor)
+            tvHeaderMiddle.setColor(textColor)
+            tvHeaderRight.setColor(textColor)
+            bvFooterLeft.setColor(textColor)
+            tvFooterLeft.setColor(textColor)
+            tvFooterMiddle.setColor(textColor)
+            tvFooterRight.setColor(textColor)
             upStatusBar()
-            ll_header.setPadding(
+            binding.llHeader.setPadding(
                 headerPaddingLeft.dp,
                 headerPaddingTop.dp,
                 headerPaddingRight.dp,
                 headerPaddingBottom.dp
             )
-            ll_footer.setPadding(
+            llFooter.setPadding(
                 footerPaddingLeft.dp,
                 footerPaddingTop.dp,
                 footerPaddingRight.dp,
                 footerPaddingBottom.dp
             )
-            vw_top_divider.visible(showHeaderLine)
-            vw_bottom_divider.visible(showFooterLine)
-            content_text_view.upVisibleRect()
+            vwTopDivider.visible(showHeaderLine)
+            vwBottomDivider.visible(showFooterLine)
+            binding.contentTextView.upVisibleRect()
         }
         upTime()
         upBattery(battery)
@@ -92,32 +91,32 @@ class ContentView(context: Context) : FrameLayout(context) {
     /**
      * 显示状态栏时隐藏header
      */
-    fun upStatusBar() {
-        vw_status_bar.topPadding = context.statusBarHeight
-        vw_status_bar.isGone =
-            ReadBookConfig.hideStatusBar || (activity as? BaseActivity)?.isInMultiWindow == true
+    fun upStatusBar() = with(binding.vwStatusBar){
+        setPadding(paddingLeft, context.statusBarHeight, paddingRight, paddingBottom)
+        isGone =
+            ReadBookConfig.hideStatusBar || (activity as? BaseActivity<*>)?.isInMultiWindow == true
     }
 
-    fun upTipStyle() {
+    fun upTipStyle()  = with(binding) {
         ReadTipConfig.apply {
-            tv_header_left.isInvisible = tipHeaderLeft != chapterTitle
-            bv_header_left.isInvisible = tipHeaderLeft == none || !tv_header_left.isInvisible
-            tv_header_right.isGone = tipHeaderRight == none
-            tv_header_middle.isGone = tipHeaderMiddle == none
-            tv_footer_left.isInvisible = tipFooterLeft != chapterTitle
-            bv_footer_left.isInvisible = tipFooterLeft == none || !tv_footer_left.isInvisible
-            tv_footer_right.isGone = tipFooterRight == none
-            tv_footer_middle.isGone = tipFooterMiddle == none
-            ll_header.isGone = hideHeader
-            ll_footer.isGone = hideFooter
+            tvHeaderLeft.isInvisible = tipHeaderLeft != chapterTitle
+            bvHeaderLeft.isInvisible = tipHeaderLeft == none || !tvHeaderLeft.isInvisible
+            tvHeaderRight.isGone = tipHeaderRight == none
+            tvHeaderMiddle.isGone = tipHeaderMiddle == none
+            tvFooterLeft.isInvisible = tipFooterLeft != chapterTitle
+            bvFooterLeft.isInvisible = tipFooterLeft == none || !tvFooterLeft.isInvisible
+            tvFooterRight.isGone = tipFooterRight == none
+            tvFooterMiddle.isGone = tipFooterMiddle == none
+            binding.llHeader.isGone = hideHeader
+            llFooter.isGone = hideFooter
         }
         tvTitle = when (ReadTipConfig.chapterTitle) {
-            ReadTipConfig.tipHeaderLeft -> tv_header_left
-            ReadTipConfig.tipHeaderMiddle -> tv_header_middle
-            ReadTipConfig.tipHeaderRight -> tv_header_right
-            ReadTipConfig.tipFooterLeft -> tv_footer_left
-            ReadTipConfig.tipFooterMiddle -> tv_footer_middle
-            ReadTipConfig.tipFooterRight -> tv_footer_right
+            ReadTipConfig.tipHeaderLeft -> tvHeaderLeft
+            ReadTipConfig.tipHeaderMiddle -> tvHeaderMiddle
+            ReadTipConfig.tipHeaderRight -> tvHeaderRight
+            ReadTipConfig.tipFooterLeft -> tvFooterLeft
+            ReadTipConfig.tipFooterMiddle -> tvFooterMiddle
+            ReadTipConfig.tipFooterRight -> tvFooterRight
             else -> null
         }
         tvTitle?.apply {
@@ -125,12 +124,12 @@ class ContentView(context: Context) : FrameLayout(context) {
             textSize = 12f
         }
         tvTime = when (ReadTipConfig.time) {
-            ReadTipConfig.tipHeaderLeft -> bv_header_left
-            ReadTipConfig.tipHeaderMiddle -> tv_header_middle
-            ReadTipConfig.tipHeaderRight -> tv_header_right
-            ReadTipConfig.tipFooterLeft -> bv_footer_left
-            ReadTipConfig.tipFooterMiddle -> tv_footer_middle
-            ReadTipConfig.tipFooterRight -> tv_footer_right
+            ReadTipConfig.tipHeaderLeft -> bvHeaderLeft
+            ReadTipConfig.tipHeaderMiddle -> tvHeaderMiddle
+            ReadTipConfig.tipHeaderRight -> tvHeaderRight
+            ReadTipConfig.tipFooterLeft -> bvFooterLeft
+            ReadTipConfig.tipFooterMiddle -> tvFooterMiddle
+            ReadTipConfig.tipFooterRight -> tvFooterRight
             else -> null
         }
         tvTime?.apply {
@@ -138,12 +137,12 @@ class ContentView(context: Context) : FrameLayout(context) {
             textSize = 12f
         }
         tvBattery = when (ReadTipConfig.battery) {
-            ReadTipConfig.tipHeaderLeft -> bv_header_left
-            ReadTipConfig.tipHeaderMiddle -> tv_header_middle
-            ReadTipConfig.tipHeaderRight -> tv_header_right
-            ReadTipConfig.tipFooterLeft -> bv_footer_left
-            ReadTipConfig.tipFooterMiddle -> tv_footer_middle
-            ReadTipConfig.tipFooterRight -> tv_footer_right
+            ReadTipConfig.tipHeaderLeft -> bvHeaderLeft
+            ReadTipConfig.tipHeaderMiddle -> tvHeaderMiddle
+            ReadTipConfig.tipHeaderRight -> tvHeaderRight
+            ReadTipConfig.tipFooterLeft -> bvFooterLeft
+            ReadTipConfig.tipFooterMiddle -> tvFooterMiddle
+            ReadTipConfig.tipFooterRight -> tvFooterRight
             else -> null
         }
         tvBattery?.apply {
@@ -151,12 +150,12 @@ class ContentView(context: Context) : FrameLayout(context) {
             textSize = 10f
         }
         tvPage = when (ReadTipConfig.page) {
-            ReadTipConfig.tipHeaderLeft -> bv_header_left
-            ReadTipConfig.tipHeaderMiddle -> tv_header_middle
-            ReadTipConfig.tipHeaderRight -> tv_header_right
-            ReadTipConfig.tipFooterLeft -> bv_footer_left
-            ReadTipConfig.tipFooterMiddle -> tv_footer_middle
-            ReadTipConfig.tipFooterRight -> tv_footer_right
+            ReadTipConfig.tipHeaderLeft -> bvHeaderLeft
+            ReadTipConfig.tipHeaderMiddle -> tvHeaderMiddle
+            ReadTipConfig.tipHeaderRight -> tvHeaderRight
+            ReadTipConfig.tipFooterLeft -> bvFooterLeft
+            ReadTipConfig.tipFooterMiddle -> tvFooterMiddle
+            ReadTipConfig.tipFooterRight -> tvFooterRight
             else -> null
         }
         tvPage?.apply {
@@ -164,12 +163,12 @@ class ContentView(context: Context) : FrameLayout(context) {
             textSize = 12f
         }
         tvTotalProgress = when (ReadTipConfig.totalProgress) {
-            ReadTipConfig.tipHeaderLeft -> bv_header_left
-            ReadTipConfig.tipHeaderMiddle -> tv_header_middle
-            ReadTipConfig.tipHeaderRight -> tv_header_right
-            ReadTipConfig.tipFooterLeft -> bv_footer_left
-            ReadTipConfig.tipFooterMiddle -> tv_footer_middle
-            ReadTipConfig.tipFooterRight -> tv_footer_right
+            ReadTipConfig.tipHeaderLeft -> bvHeaderLeft
+            ReadTipConfig.tipHeaderMiddle -> tvHeaderMiddle
+            ReadTipConfig.tipHeaderRight -> tvHeaderRight
+            ReadTipConfig.tipFooterLeft -> bvFooterLeft
+            ReadTipConfig.tipFooterMiddle -> tvFooterMiddle
+            ReadTipConfig.tipFooterRight -> tvFooterRight
             else -> null
         }
         tvTotalProgress?.apply {
@@ -177,12 +176,12 @@ class ContentView(context: Context) : FrameLayout(context) {
             textSize = 12f
         }
         tvPageAndTotal = when (ReadTipConfig.pageAndTotal) {
-            ReadTipConfig.tipHeaderLeft -> bv_header_left
-            ReadTipConfig.tipHeaderMiddle -> tv_header_middle
-            ReadTipConfig.tipHeaderRight -> tv_header_right
-            ReadTipConfig.tipFooterLeft -> bv_footer_left
-            ReadTipConfig.tipFooterMiddle -> tv_footer_middle
-            ReadTipConfig.tipFooterRight -> tv_footer_right
+            ReadTipConfig.tipHeaderLeft -> bvHeaderLeft
+            ReadTipConfig.tipHeaderMiddle -> tvHeaderMiddle
+            ReadTipConfig.tipHeaderRight -> tvHeaderRight
+            ReadTipConfig.tipFooterLeft -> bvFooterLeft
+            ReadTipConfig.tipFooterMiddle -> tvFooterMiddle
+            ReadTipConfig.tipFooterRight -> tvFooterRight
             else -> null
         }
         tvPageAndTotal?.apply {
@@ -190,12 +189,12 @@ class ContentView(context: Context) : FrameLayout(context) {
             textSize = 12f
         }
         tvBookName = when (ReadTipConfig.bookName) {
-            ReadTipConfig.tipHeaderLeft -> bv_header_left
-            ReadTipConfig.tipHeaderMiddle -> tv_header_middle
-            ReadTipConfig.tipHeaderRight -> tv_header_right
-            ReadTipConfig.tipFooterLeft -> bv_footer_left
-            ReadTipConfig.tipFooterMiddle -> tv_footer_middle
-            ReadTipConfig.tipFooterRight -> tv_footer_right
+            ReadTipConfig.tipHeaderLeft -> bvHeaderLeft
+            ReadTipConfig.tipHeaderMiddle -> tvHeaderMiddle
+            ReadTipConfig.tipHeaderRight -> tvHeaderRight
+            ReadTipConfig.tipFooterLeft -> bvFooterLeft
+            ReadTipConfig.tipFooterMiddle -> tvFooterMiddle
+            ReadTipConfig.tipFooterRight -> tvFooterRight
             else -> null
         }
         tvBookName?.apply {
@@ -205,7 +204,7 @@ class ContentView(context: Context) : FrameLayout(context) {
     }
 
     fun setBg(bg: Drawable?) {
-        page_panel.background = bg
+        binding.pagePanel.background = bg
     }
 
     fun upTime() {
@@ -221,11 +220,11 @@ class ContentView(context: Context) : FrameLayout(context) {
         setProgress(textPage)
         if (resetPageOffset)
             resetPageOffset()
-        content_text_view.setContent(textPage)
+        binding.contentTextView.setContent(textPage)
     }
 
     fun resetPageOffset() {
-        content_text_view.resetPageOffset()
+        binding.contentTextView.resetPageOffset()
     }
 
     @SuppressLint("SetTextI18n")
@@ -238,40 +237,40 @@ class ContentView(context: Context) : FrameLayout(context) {
     }
 
     fun onScroll(offset: Float) {
-        content_text_view.onScroll(offset)
+        binding.contentTextView.onScroll(offset)
     }
 
     fun upSelectAble(selectAble: Boolean) {
-        content_text_view.selectAble = selectAble
+        binding.contentTextView.selectAble = selectAble
     }
 
     fun selectText(
         x: Float, y: Float,
         select: (relativePage: Int, lineIndex: Int, charIndex: Int) -> Unit
     ) {
-        return content_text_view.selectText(x, y - headerHeight, select)
+        return binding.contentTextView.selectText(x, y - headerHeight, select)
     }
 
     fun selectStartMove(x: Float, y: Float) {
-        content_text_view.selectStartMove(x, y - headerHeight)
+        binding.contentTextView.selectStartMove(x, y - headerHeight)
     }
 
     fun selectStartMoveIndex(relativePage: Int, lineIndex: Int, charIndex: Int) {
-        content_text_view.selectStartMoveIndex(relativePage, lineIndex, charIndex)
+        binding.contentTextView.selectStartMoveIndex(relativePage, lineIndex, charIndex)
     }
 
     fun selectEndMove(x: Float, y: Float) {
-        content_text_view.selectEndMove(x, y - headerHeight)
+        binding.contentTextView.selectEndMove(x, y - headerHeight)
     }
 
     fun selectEndMoveIndex(relativePage: Int, lineIndex: Int, charIndex: Int) {
-        content_text_view.selectEndMoveIndex(relativePage, lineIndex, charIndex)
+        binding.contentTextView.selectEndMoveIndex(relativePage, lineIndex, charIndex)
     }
 
     fun cancelSelect() {
-        content_text_view.cancelSelect()
+        binding.contentTextView.cancelSelect()
     }
 
-    val selectedText: String get() = content_text_view.selectedText
+    val selectedText: String get() = binding.contentTextView.selectedText
 
 }

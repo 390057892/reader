@@ -19,7 +19,6 @@ import com.novel.read.utils.ext.activity
 import com.novel.read.utils.ext.screenshot
 
 import io.legado.app.ui.book.read.page.provider.ChapterProvider
-import kotlinx.android.synthetic.main.activity_read_book.view.*
 import kotlin.math.abs
 
 class PageView(context: Context, attrs: AttributeSet) :
@@ -35,7 +34,7 @@ class PageView(context: Context, attrs: AttributeSet) :
             field = value
             upContent()
         }
-    var isScroll = ReadBook.pageAnim() == 3
+    var isScroll = false
     var prevPage: ContentView = ContentView(context)
     var curPage: ContentView = ContentView(context)
     var nextPage: ContentView = ContentView(context)
@@ -102,16 +101,15 @@ class PageView(context: Context, attrs: AttributeSet) :
     override fun dispatchDraw(canvas: Canvas) {
         super.dispatchDraw(canvas)
         pageDelegate?.onDraw(canvas)
-        if (callBack.isAutoPage) {
+        if (!isInEditMode && callBack.isAutoPage && !isScroll) {
             nextPage.screenshot()?.let {
-                val bottom =
-                    page_view.height * callBack.autoPageProgress / (ReadBookConfig.autoReadSpeed * 10)
-                autoPageRect.set(0, 0, page_view.width, bottom)
+                val bottom = callBack.autoPageProgress
+                autoPageRect.set(0, 0, width, bottom)
                 canvas.drawBitmap(it, autoPageRect, autoPageRect, null)
                 canvas.drawRect(
                     0f,
                     bottom.toFloat() - 1,
-                    page_view.width.toFloat(),
+                    width.toFloat(),
                     bottom.toFloat(),
                     autoPagePint
                 )

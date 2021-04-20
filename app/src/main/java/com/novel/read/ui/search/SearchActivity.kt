@@ -5,6 +5,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.View
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.listener.OnLoadMoreListener
 import com.google.android.flexbox.AlignItems
@@ -15,19 +16,15 @@ import com.novel.read.App
 import com.novel.read.R
 import com.novel.read.base.VMBaseActivity
 import com.novel.read.constant.AppConst
+import com.novel.read.databinding.ActivitySearchBinding
 import com.novel.read.lib.ATH
 import com.novel.read.lib.dialogs.alert
 import com.novel.read.lib.dialogs.noButton
 import com.novel.read.lib.dialogs.yesButton
-import com.novel.read.utils.ext.applyTint
-import com.novel.read.utils.ext.getViewModel
-import com.novel.read.utils.ext.requestInputMethod
-import kotlinx.android.synthetic.main.activity_daily.*
-import kotlinx.android.synthetic.main.activity_search.*
-import kotlinx.android.synthetic.main.view_search.*
+import com.novel.read.utils.ext.*
 
-//这个页面为了赶进度写的很蠢
-class SearchActivity : VMBaseActivity<SearchViewModel>(R.layout.activity_search) {
+//这个页面写的很蠢
+class SearchActivity : VMBaseActivity<ActivitySearchBinding,SearchViewModel>() {
 
     private lateinit var mHisAdapter: HistoryAdapter
     private lateinit var mHotAdapter: HotAdapter
@@ -36,10 +33,19 @@ class SearchActivity : VMBaseActivity<SearchViewModel>(R.layout.activity_search)
     override val viewModel: SearchViewModel
         get() = getViewModel(SearchViewModel::class.java)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        ATH.applyEdgeEffectColor(rlv_history)
-        ATH.applyEdgeEffectColor(rlv_hot)
-        ATH.applyEdgeEffectColor(rlv_history)
+    override fun getViewBinding(): ActivitySearchBinding {
+        return ActivitySearchBinding.inflate(layoutInflater)
+    }
+
+    private lateinit var tvSearch: TextView
+    private lateinit var tvCancel: TextView
+
+    override fun onActivityCreated(savedInstanceState: Bundle?)= with(binding) {
+        ATH.applyEdgeEffectColor(binding.rlvHistory)
+        ATH.applyEdgeEffectColor(binding.rlvHot)
+        ATH.applyEdgeEffectColor(binding.rlvSearch)
+        tvSearch=binding.titleBar.findViewById(R.id.tv_search)
+        tvCancel=binding.titleBar.findViewById(R.id.tv_cancel)
         viewModel.initData()
         initHotAdapter()
         initHisAdapter()
@@ -49,28 +55,28 @@ class SearchActivity : VMBaseActivity<SearchViewModel>(R.layout.activity_search)
         initLoadMore()
     }
 
-    private fun initClick() {
-        tv_search.addTextChangedListener(object : TextWatcher {
+    private fun initClick() = with(binding){
+        tvSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
 
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 if (s.toString().trim { it <= ' ' } == "") {
-                    head_hot.visibility = View.VISIBLE
-                    head_history.visibility = View.VISIBLE
-                    rlv_hot.visibility = View.VISIBLE
-                    rlv_history.visibility = View.VISIBLE
-                    rlv_search.visibility=View.GONE
+                    headHot.visibility = View.VISIBLE
+                    headHistory.visibility = View.VISIBLE
+                    rlvHot.visibility = View.VISIBLE
+                    rlvHistory.visibility = View.VISIBLE
+                    rlvSearch.visibility=View.GONE
                 } else {
-                    head_hot.visibility = View.GONE
-                    head_history.visibility = View.GONE
-                    rlv_hot.visibility = View.GONE
-                    rlv_history.visibility = View.GONE
+                    headHot.visibility = View.GONE
+                    headHistory.visibility = View.GONE
+                    rlvHot.visibility = View.GONE
+                    rlvHistory.visibility = View.GONE
                     viewModel.page = 1
                     viewModel.searchKey = s.toString().trim()
                     onRefresh()
-                    rlv_search.visibility=View.VISIBLE
+                    rlvSearch.visibility=View.VISIBLE
                 }
 
             }
@@ -81,7 +87,7 @@ class SearchActivity : VMBaseActivity<SearchViewModel>(R.layout.activity_search)
         })
 
         //键盘的搜索
-        tv_search.setOnKeyListener { v, keyCode, event ->
+        tvSearch.setOnKeyListener { v, keyCode, event ->
             //修改回车键功能
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 saveKey()
@@ -90,11 +96,11 @@ class SearchActivity : VMBaseActivity<SearchViewModel>(R.layout.activity_search)
             false
         }
 
-        tv_cancel.setOnClickListener {
+        tvCancel.setOnClickListener {
             onBackPressed()
         }
 
-        head_history.setOnClickListener {
+        binding.headHistory.setOnClickListener {
             alert(title = "操作提示", message = "確認清空全部記錄?") {
                 yesButton {
                     App.db.getSearchDao().deleteAll()
@@ -153,12 +159,12 @@ class SearchActivity : VMBaseActivity<SearchViewModel>(R.layout.activity_search)
     }
 
     private fun initSearchAdapter() {
-        rlv_search.layoutManager = LinearLayoutManager(this)
+        binding.rlvSearch.layoutManager = LinearLayoutManager(this)
         mSearchAdapter = SearchAdapter()
-        rlv_search.adapter = mSearchAdapter
+        binding.rlvSearch.adapter = mSearchAdapter
 
         mSearchAdapter.setOnItemChildClickListener { adapter, view, position ->
-            tv_search.setText(viewModel.mList[position].getBBookName())
+            tvSearch.text = viewModel.mList[position].getBBookName()
             saveKey()
         }
     }
@@ -171,12 +177,12 @@ class SearchActivity : VMBaseActivity<SearchViewModel>(R.layout.activity_search)
         manager2.flexWrap = FlexWrap.WRAP
         manager2.alignItems = AlignItems.STRETCH
         mHisAdapter = HistoryAdapter()
-        rlv_history.layoutManager = manager2
-        rlv_history.adapter = mHisAdapter
+        binding.rlvHistory.layoutManager = manager2
+        binding.rlvHistory.adapter = mHisAdapter
 
         mHisAdapter.setOnItemClickListener { adapter, view, position ->
-            rlv_search.visibility = View.VISIBLE
-            tv_search.setText(viewModel.hisKey.value?.get(position)?.getBKey())
+            binding.rlvSearch.visibility = View.VISIBLE
+            tvSearch.setText(viewModel.hisKey.value?.get(position)?.getBKey())
             saveKey()
         }
     }
@@ -188,12 +194,12 @@ class SearchActivity : VMBaseActivity<SearchViewModel>(R.layout.activity_search)
         //设置是否换行
         manager.flexWrap = FlexWrap.WRAP
         manager.alignItems = AlignItems.STRETCH
-        rlv_hot.layoutManager = manager
+        binding.rlvHot.layoutManager = manager
         mHotAdapter = HotAdapter()
-        rlv_hot.adapter = mHotAdapter
+        binding.rlvHot.adapter = mHotAdapter
         mHotAdapter.setOnItemClickListener { adapter, view, position ->
-            rlv_search.visibility = View.VISIBLE
-            tv_search.setText(mHotAdapter.data[position])
+            binding.rlvSearch.visibility = View.VISIBLE
+            tvSearch.text = mHotAdapter.data[position]
             saveKey()
         }
     }
@@ -212,18 +218,18 @@ class SearchActivity : VMBaseActivity<SearchViewModel>(R.layout.activity_search)
     }
 
     private fun saveKey() {
-        val key = tv_search.text.toString().trim { it <= ' ' }
+        val key = tvSearch.text.toString().trim { it <= ' ' }
         viewModel.saveKey(key)
     }
 
     private fun onRefresh() {
         mSearchAdapter.setEmptyView(R.layout.view_loading)
-        viewModel.searchKey = tv_search.text.toString().trim()
+        viewModel.searchKey = tvSearch.text.toString().trim()
         viewModel.searchBook()
     }
 
     private fun getErrorView(): View {
-        val errorView: View = layoutInflater.inflate(R.layout.view_net_error, rlv_daily, false)
+        val errorView: View = layoutInflater.inflate(R.layout.view_net_error, binding.rlvSearch, false)
         errorView.setOnClickListener { onRefresh() }
         return errorView
     }
@@ -232,4 +238,5 @@ class SearchActivity : VMBaseActivity<SearchViewModel>(R.layout.activity_search)
         super.onBackPressed()
         overridePendingTransition(R.anim.message_fade_in, R.anim.message_fade_out)
     }
+
 }

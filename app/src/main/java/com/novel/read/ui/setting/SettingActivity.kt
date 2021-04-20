@@ -4,9 +4,14 @@ import android.os.Bundle
 import com.novel.read.R
 import com.novel.read.base.BaseActivity
 import com.novel.read.constant.EventBus
+import com.novel.read.databinding.ActivitySettingActivityBinding
 import com.novel.read.utils.ext.observeEvent
 
-class SettingActivity : BaseActivity(R.layout.activity_setting_activity) {
+class SettingActivity : BaseActivity<ActivitySettingActivityBinding>() {
+
+    override fun getViewBinding(): ActivitySettingActivityBinding {
+        return ActivitySettingActivityBinding.inflate(layoutInflater)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         val fTag = "otherConfigFragment"
@@ -23,4 +28,6 @@ class SettingActivity : BaseActivity(R.layout.activity_setting_activity) {
             recreate()
         }
     }
+
+
 }

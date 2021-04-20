@@ -7,14 +7,16 @@ import com.novel.read.App
 import com.novel.read.R
 import com.novel.read.base.BaseDialogFragment
 import com.novel.read.constant.PreferKey
+import com.novel.read.databinding.DialogReadAdjustBinding
 import com.novel.read.help.AppConfig
 import com.novel.read.ui.read.ReadBookActivity
 import com.novel.read.utils.ext.*
-import kotlinx.android.synthetic.main.dialog_read_adjust.*
+import com.novel.read.utils.viewbindingdelegate.viewBinding
 
 class ReadAdjustDialog :BaseDialogFragment() {
 
     val callBack get() = activity as? ReadBookActivity
+    private val binding by viewBinding(DialogReadAdjustBinding::bind)
     val showBrightnessView get() = context?.getPrefBoolean(PreferKey.showBrightnessView, true)
 
     override fun onStart() {
@@ -49,33 +51,33 @@ class ReadAdjustDialog :BaseDialogFragment() {
     private fun initView() {
     }
 
-    private fun initData() {
-        scb_follow_sys.isChecked = brightnessAuto()
-        hpb_light.progress = requireContext().getPrefInt("brightness", 100)
+    private fun initData() = with(binding) {
+        binding.scbFollowSys.isChecked = brightnessAuto()
+        binding.hpbLight.progress = requireContext().getPrefInt("brightness", 100)
         upBrightnessState()
 
-        swt_dark.isChecked=AppConfig.isNightTheme
+        binding.swtDark.isChecked=AppConfig.isNightTheme
 
-        swt_dark.setOnCheckedChangeListener { compoundButton, b ->
+        binding.swtDark.setOnCheckedChangeListener { compoundButton, b ->
             AppConfig.isNightTheme = b
             App.INSTANCE.applyDayNight()
         }
     }
 
-    private fun initViewEvent() {
+    private fun initViewEvent() = with(binding){
         //亮度调节
-        scb_follow_sys.setOnClickListener {
-            if (scb_follow_sys.isChecked) {
-                scb_follow_sys.setChecked(checked = false, animate = true)
+        scbFollowSys.setOnClickListener {
+            if (scbFollowSys.isChecked) {
+                scbFollowSys.setChecked(checked = false, animate = true)
             } else {
-                scb_follow_sys.setChecked(checked = true, animate = true)
+                scbFollowSys.setChecked(checked = true, animate = true)
             }
             context?.putPrefBoolean("brightnessAuto", !brightnessAuto())
             upBrightnessState()
         }
 
         //亮度调节
-        hpb_light.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        hpbLight.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 setScreenBrightness(progress)
             }
@@ -85,14 +87,14 @@ class ReadAdjustDialog :BaseDialogFragment() {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                context?.putPrefInt("brightness", hpb_light.progress)
+                context?.putPrefInt("brightness", hpbLight.progress)
             }
 
         })
     }
 
     private fun upBrightnessState() {
-        hpb_light.isEnabled = !brightnessAuto()
+        binding.hpbLight.isEnabled = !brightnessAuto()
         context?.getPrefInt("brightness", 100)?.let { setScreenBrightness(it) }
     }
 

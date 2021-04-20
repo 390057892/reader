@@ -7,17 +7,20 @@ import com.hankcs.hanlp.HanLP
 import com.permissionx.guolindev.PermissionX
 import com.novel.read.R
 import com.novel.read.base.BaseActivity
+import com.novel.read.databinding.ActivityWelcomeBinding
 import com.novel.read.help.AppConfig
 import com.novel.read.ui.MainActivity
 import com.novel.read.ui.read.ReadBookActivity
 import com.novel.read.utils.ext.getPrefBoolean
 import com.novel.read.help.coroutine.Coroutine
-import kotlinx.android.synthetic.main.activity_welcome.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
-class WelcomeActivity : BaseActivity(R.layout.activity_welcome) {
+class WelcomeActivity : BaseActivity<ActivityWelcomeBinding>() {
 
+    override fun getViewBinding(): ActivityWelcomeBinding {
+        return ActivityWelcomeBinding.inflate(layoutInflater)
+    }
     private var flag = false
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -46,14 +49,14 @@ class WelcomeActivity : BaseActivity(R.layout.activity_welcome) {
             )
             .request { allGranted, grantedList, deniedList ->
                 if (allGranted) {
-                    root_view.postDelayed({ startMainActivity() }, 2500)
+                    binding.rootView.postDelayed({ startMainActivity() }, 2500)
                 } else {
                     toast("权限被拒绝,将导致部分功能异常,请到设置中开启相关权限")
 //                    finish()
                 }
             }
 
-        tvSkip.setOnClickListener { startMainActivity() }
+        binding.tvSkip.setOnClickListener { startMainActivity() }
     }
 
     @Synchronized
@@ -71,4 +74,5 @@ class WelcomeActivity : BaseActivity(R.layout.activity_welcome) {
         flag = true
         super.onDestroy()
     }
+
 }

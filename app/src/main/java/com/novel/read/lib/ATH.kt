@@ -10,6 +10,7 @@ import android.os.Build
 import android.view.View
 import android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
 import android.view.Window
+import android.view.WindowInsetsController
 import android.widget.EdgeEffect
 import android.widget.ScrollView
 import androidx.annotation.ColorInt
@@ -23,7 +24,6 @@ import com.novel.read.help.AppConfig
 import com.novel.read.help.TintHelper
 import com.novel.read.utils.ColorUtils
 import com.novel.read.utils.ext.*
-import kotlinx.android.synthetic.main.activity_main.view.*
 import org.jetbrains.anko.backgroundColor
 
 
@@ -85,6 +85,45 @@ object ATH {
             }
         }
     }
+
+    fun setLightStatusBarAuto(activity: Activity, bgColor: Int) {
+        setLightStatusBar(activity, ColorUtils.isColorLight(bgColor))
+    }
+
+    fun setLightStatusBar(activity: Activity, enabled: Boolean) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            activity.window.insetsController?.let {
+                if (enabled) {
+                    it.setSystemBarsAppearance(
+                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
+                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                    )
+                } else {
+                    it.setSystemBarsAppearance(
+                        0,
+                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                    )
+                }
+            }
+        }
+        setLightStatusBarO(activity, enabled)
+    }
+
+    @Suppress("DEPRECATION")
+    private fun setLightStatusBarO(activity: Activity, enabled: Boolean) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val decorView = activity.window.decorView
+            val systemUiVisibility = decorView.systemUiVisibility
+            if (enabled) {
+                decorView.systemUiVisibility =
+                    systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            } else {
+                decorView.systemUiVisibility =
+                    systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
+            }
+        }
+    }
+
 
     fun setLightNavigationBar(activity: Activity, enabled: Boolean) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -207,7 +246,7 @@ object ATH {
             val textColor = context.getSecondaryTextColor(textIsDark)
             val colorStateList = Selector.colorBuild()
                 .setDefaultColor(textColor)
-                .setSelectedColor(ThemeStore.accentColor(bottom_navigation_view.context)).create()
+                .setSelectedColor(ThemeStore.accentColor(context)).create()
             itemIconTintList = colorStateList
             itemTextColor = colorStateList
         }

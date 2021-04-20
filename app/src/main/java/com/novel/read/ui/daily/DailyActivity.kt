@@ -8,28 +8,32 @@ import com.chad.library.adapter.base.listener.OnLoadMoreListener
 import com.novel.read.R
 import com.novel.read.base.VMBaseActivity
 import com.novel.read.constant.AppConst
+import com.novel.read.databinding.ActivityDailyBinding
 import com.novel.read.lib.ATH
 import com.novel.read.utils.ext.getViewModel
-import kotlinx.android.synthetic.main.activity_daily.*
 
-class DailyActivity : VMBaseActivity<DailyViewModel>(R.layout.activity_daily) {
+class DailyActivity : VMBaseActivity<ActivityDailyBinding,DailyViewModel>() {
     
     override val viewModel: DailyViewModel
         get() = getViewModel(DailyViewModel::class.java)
 
+    override fun getViewBinding(): ActivityDailyBinding {
+        return ActivityDailyBinding.inflate(layoutInflater)
+    }
+
     private lateinit var adapter: DailyAdapter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        ATH.applyEdgeEffectColor(rlv_daily)
+        ATH.applyEdgeEffectColor(binding.rlvDaily)
         initRecyclerView()
         upRecyclerData()
         initLoadMore()
     }
 
     private fun initRecyclerView() {
-        rlv_daily.layoutManager = LinearLayoutManager(this)
+        binding.rlvDaily.layoutManager = LinearLayoutManager(this)
         adapter = DailyAdapter()
-        rlv_daily.adapter = adapter
+        binding.rlvDaily.adapter = adapter
     }
 
     private fun upRecyclerData() {
@@ -87,7 +91,7 @@ class DailyActivity : VMBaseActivity<DailyViewModel>(R.layout.activity_daily) {
     }
 
     private fun getErrorView(): View {
-        val errorView: View = layoutInflater.inflate(R.layout.view_net_error, rlv_daily, false)
+        val errorView: View = layoutInflater.inflate(R.layout.view_net_error, binding.rlvDaily, false)
         errorView.setOnClickListener { onRefresh() }
         return errorView
     }

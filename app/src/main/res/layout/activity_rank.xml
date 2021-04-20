@@ -19,7 +19,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lv_type"
+        android:id="@+id/rlv_type"
         android:layout_width="90dp"
         android:layout_height="0dp"
         android:scrollbars="none"
@@ -34,7 +34,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/lv_type"
+        app:layout_constraintLeft_toRightOf="@+id/rlv_type"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_bar" />
 

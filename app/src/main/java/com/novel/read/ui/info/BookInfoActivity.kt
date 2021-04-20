@@ -13,17 +13,17 @@ import com.novel.read.constant.AppConst
 import com.novel.read.constant.EventBus
 import com.novel.read.constant.IntentAction
 import com.novel.read.data.db.entity.Book
+import com.novel.read.databinding.ActivityBookInfoBinding
 import com.novel.read.help.AppConfig
 import com.novel.read.help.IntentDataHelp
 import com.novel.read.ui.read.ReadBookActivity
 import com.novel.read.utils.ColorUtils
 import com.novel.read.utils.ext.*
-import kotlinx.android.synthetic.main.activity_book_info.*
 import org.jetbrains.anko.sdk27.listeners.onClick
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.startActivityForResult
 
-class BookInfoActivity : VMBaseActivity<BookInfoViewModel>(R.layout.activity_book_info) {
+class BookInfoActivity : VMBaseActivity<ActivityBookInfoBinding,BookInfoViewModel>() {
 
     private lateinit var adapter: BookInfoAdapter
     private val requestCodeRead = 432
@@ -31,6 +31,10 @@ class BookInfoActivity : VMBaseActivity<BookInfoViewModel>(R.layout.activity_boo
     override val viewModel: BookInfoViewModel
         get() = getViewModel(BookInfoViewModel::class.java)
 
+    override fun getViewBinding(): ActivityBookInfoBinding {
+        return ActivityBookInfoBinding.inflate(layoutInflater)
+    }
+    
     companion object {
         fun actionBookInfo(context: Context, bookId: Long, bookTypeId: Int?) {
             context.startActivity<BookInfoActivity>(
@@ -43,16 +47,16 @@ class BookInfoActivity : VMBaseActivity<BookInfoViewModel>(R.layout.activity_boo
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         viewModel.initData(intent)
         viewModel.getRecommend(intent)
-        tv_shelf.setTextColor(getPrimaryTextColor(ColorUtils.isColorLight(bottomBackground)))
+        binding.tvShelf.setTextColor(getPrimaryTextColor(ColorUtils.isColorLight(bottomBackground)))
         initRecycleView()
         initData()
         initClick()
     }
 
     private fun initRecycleView() {
-        rlv_recommend.layoutManager = GridLayoutManager(this, 4)
+        binding.rlvRecommend.layoutManager = GridLayoutManager(this, 4)
         adapter = BookInfoAdapter()
-        rlv_recommend.adapter = adapter
+        binding.rlvRecommend.adapter = adapter
     }
 
     private fun initData() {
@@ -61,17 +65,16 @@ class BookInfoActivity : VMBaseActivity<BookInfoViewModel>(R.layout.activity_boo
         } else {
             ColorUtils.shiftColor(backgroundColor, 0.95f)
         }
-        preference_divider_above.setBackgroundColor(dividerColor)
+
+        binding.preferenceDividerAbove.setBackgroundColor(dividerColor)
         viewModel.bookResp.observe(this) {
-            iv_book.load(it.coverImageUrl, it.bookName, it.authorName)
-            tv_book_name.text = it.bookName
-            tv_book_author.text = it.authorName
-            tv_key.text = it.lastUpdateChapterDate
-            tv_status.text = it.categoryName
-            tv_word.text = getString(R.string.book_word, it.wordCount / 10000)
-
-            tv_tro.text = it.introduction
-
+            binding.ivBook.load(it.coverImageUrl, it.bookName, it.authorName)
+            binding.tvBookName.text = it.bookName
+            binding.tvBookAuthor.text = it.authorName
+            binding.tvKey.text = it.lastUpdateChapterDate
+            binding.tvStatus.text = it.categoryName
+            binding.tvWord.text = getString(R.string.book_word, it.wordCount / 10000)
+            binding.tvTro.text = it.introduction
             upTvBookshelf()
         }
         viewModel.bookListResp.observe(this) {
@@ -80,20 +83,20 @@ class BookInfoActivity : VMBaseActivity<BookInfoViewModel>(R.layout.activity_boo
         viewModel.status.observe(this) {
             when (it) {
                 AppConst.loading -> {
-                    refresh.showLoading()
+                    binding.refresh.showLoading()
                 }
                 AppConst.complete -> {
-                    refresh.showFinish()
+                    binding.refresh.showFinish()
                 }
                 else -> {
-                    refresh.showError()
+                    binding.refresh.showError()
                 }
             }
         }
     }
 
     private fun initClick() {
-        tv_shelf.onClick {
+        binding.tvShelf.onClick {
             if (viewModel.inBookshelf) {
                 deleteBook()
             } else {
@@ -104,14 +107,14 @@ class BookInfoActivity : VMBaseActivity<BookInfoViewModel>(R.layout.activity_boo
 
         }
 
-        tv_read.onClick {
+        binding.tvRead.onClick {
             viewModel.bookData.value?.let {
                 readBook(it)
             }
 
         }
 
-        refresh.setOnReloadingListener {
+        binding.refresh.setOnReloadingListener {
             viewModel.initData(intent)
             viewModel.getRecommend(intent)
         }
@@ -139,9 +142,9 @@ class BookInfoActivity : VMBaseActivity<BookInfoViewModel>(R.layout.activity_boo
 
     private fun upTvBookshelf() {
         if (viewModel.inBookshelf) {
-            tv_shelf.text = getString(R.string.remove_from_bookshelf)
+            binding.tvShelf.text = getString(R.string.remove_from_bookshelf)
         } else {
-            tv_shelf.text = getString(R.string.add_to_shelf)
+            binding.tvShelf.text = getString(R.string.add_to_shelf)
         }
         postEvent(EventBus.UP_BOOK, 0L)
     }
@@ -164,4 +167,5 @@ class BookInfoActivity : VMBaseActivity<BookInfoViewModel>(R.layout.activity_boo
             }
         }
     }
+
 }

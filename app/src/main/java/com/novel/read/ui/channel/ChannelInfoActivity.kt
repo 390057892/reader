@@ -9,17 +9,23 @@ import com.novel.read.R
 import com.novel.read.base.VMBaseActivity
 import com.novel.read.constant.AppConst
 import com.novel.read.constant.IntentAction
+import com.novel.read.databinding.ActivityChannelInfoBinding
 import com.novel.read.lib.ATH
 import com.novel.read.utils.ext.getViewModel
-import kotlinx.android.synthetic.main.activity_channel_info.*
 
-class ChannelInfoActivity : VMBaseActivity<ChannelInfoViewModel>(R.layout.activity_channel_info) {
+class ChannelInfoActivity : VMBaseActivity<ActivityChannelInfoBinding,ChannelInfoViewModel>() {
+    
     override val viewModel: ChannelInfoViewModel
         get() = getViewModel(ChannelInfoViewModel::class.java)
+    
+    override fun getViewBinding(): ActivityChannelInfoBinding {
+        return ActivityChannelInfoBinding.inflate(layoutInflater)
+    }
+
     private lateinit var adapter: ChannelInfoAdapter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        ATH.applyEdgeEffectColor(rlv_book)
+        ATH.applyEdgeEffectColor(binding.rlvBook)
         initRecyclerView()
         viewModel.initData(intent)
         upRecyclerData()
@@ -27,14 +33,14 @@ class ChannelInfoActivity : VMBaseActivity<ChannelInfoViewModel>(R.layout.activi
     }
 
     private fun initRecyclerView() {
-        rlv_book.layoutManager = LinearLayoutManager(this)
+        binding.rlvBook.layoutManager = LinearLayoutManager(this)
         adapter = ChannelInfoAdapter()
-        rlv_book.adapter = adapter
+        binding.rlvBook.adapter = adapter
     }
 
     private fun upRecyclerData() {
         val channelName = intent.getStringExtra(IntentAction.channelName) ?: ""
-        title_bar.title = channelName
+        binding.titleBar.title = channelName
         onRefresh()
         viewModel.run {
             bookListResp.observe(this@ChannelInfoActivity) {
@@ -88,9 +94,10 @@ class ChannelInfoActivity : VMBaseActivity<ChannelInfoViewModel>(R.layout.activi
     }
 
     private fun getErrorView(): View {
-        val errorView: View = layoutInflater.inflate(R.layout.view_net_error, rlv_book, false)
+        val errorView: View = layoutInflater.inflate(R.layout.view_net_error, binding.rlvBook, false)
         errorView.setOnClickListener { onRefresh() }
         return errorView
     }
 
+  
 }
