@@ -30,16 +30,6 @@
             android:textSize="12sp"
             android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tv_chapter_url"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:singleLine="true"
-            android:textSize="12sp"
-            android:visibility="gone" />
-
     </com.novel.read.ui.widget.TitleBar>
 
     <LinearLayout

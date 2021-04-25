@@ -1,10 +1,8 @@
 package com.novel.read.ui.read
 
 import android.content.Context
-import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.drawable.GradientDrawable
-import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.WindowManager
@@ -119,14 +117,6 @@ class ReadMenu @JvmOverloads constructor(
         tvChapterName.onClick {
 
         }
-        tvChapterUrl.onClick {
-            runCatching {
-                val url = tvChapterUrl.text.toString()
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse(url)
-                context.startActivity(intent)
-            }
-        }
         //阅读进度
         seekReadPage.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
@@ -145,7 +135,7 @@ class ReadMenu @JvmOverloads constructor(
         //搜索
         fabSearch.onClick {
             runMenuOut {
-                callBack?.openSearchActivity(null)
+                callBack.openSearchActivity(null)
             }
         }
 
@@ -164,31 +154,31 @@ class ReadMenu @JvmOverloads constructor(
         //目录
         llCatalog.onClick {
             runMenuOut {
-                callBack?.openChapterList()
+                callBack.openChapterList()
             }
         }
 
         //朗读
         llReadAloud.onClick {
             runMenuOut {
-                callBack?.onClickReadAloud()
+                callBack.onClickReadAloud()
             }
         }
         llReadAloud.onLongClick {
-            runMenuOut { callBack?.showReadAloudDialog() }
+            runMenuOut { callBack.showReadAloudDialog() }
             true
         }
         //界面
         llFont.onClick {
             runMenuOut {
-                callBack?.showAdjust()
+                callBack.showAdjust()
             }
         }
 
         //设置
         llSetting.onClick {
             runMenuOut {
-                callBack?.showReadStyle()
+                callBack.showReadStyle()
             }
         }
     }
@@ -199,7 +189,7 @@ class ReadMenu @JvmOverloads constructor(
         menuBottomIn = AnimationUtilsSupport.loadAnimation(context, R.anim.anim_readbook_bottom_in)
         menuTopIn.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation) {
-                callBack?.upSystemUiVisibility()
+                callBack.upSystemUiVisibility()
             }
 
             override fun onAnimationEnd(animation: Animation) {
@@ -232,7 +222,7 @@ class ReadMenu @JvmOverloads constructor(
                 binding.bottomMenu.invisible()
                 cnaShowMenu = false
                 onMenuOutEnd?.invoke()
-                callBack?.upSystemUiVisibility()
+                callBack.upSystemUiVisibility()
             }
 
             override fun onAnimationRepeat(animation: Animation) = Unit
@@ -248,19 +238,12 @@ class ReadMenu @JvmOverloads constructor(
         ReadBook.curTextChapter?.let {
             binding.tvChapterName.text = it.title
             binding.tvChapterName.visible()
-            if (!ReadBook.isLocalBook) {
-                binding.tvChapterUrl.text = it.title
-                binding.tvChapterUrl.visible()
-            } else {
-                binding.tvChapterUrl.gone()
-            }
             binding.seekReadPage.max = it.pageSize.minus(1)
             binding.seekReadPage.progress = ReadBook.durPageIndex
             binding.tvPre.isEnabled = ReadBook.durChapterIndex != 0
             binding.tvNext.isEnabled = ReadBook.durChapterIndex != ReadBook.chapterSize - 1
         } ?: let {
             binding.tvChapterName.gone()
-            binding.tvChapterUrl.gone()
         }
     }
 
