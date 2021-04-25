@@ -1,7 +1,6 @@
 package com.novel.read.help
 
 import android.util.Log
-import com.hankcs.hanlp.HanLP
 import com.novel.read.App
 import com.novel.read.constant.AppPattern
 import com.novel.read.constant.EventBus
@@ -14,6 +13,7 @@ import com.novel.read.utils.ext.*
 import com.novel.read.help.coroutine.Coroutine
 import com.novel.read.network.repository.ImageRepository
 import com.novel.read.utils.NetworkUtils
+import com.spreada.utils.chinese.ZHConverter
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -367,12 +367,12 @@ object BookHelp {
         try {
             when (AppConfig.chineseConverterType) {
                 1 -> {
-                    title1 = HanLP.convertToSimplifiedChinese(title1)
-                    content1 = HanLP.convertToSimplifiedChinese(content1)
+                    title1=ZHConverter.getInstance(ZHConverter.SIMPLIFIED).convert(title1)
+                    content1=ZHConverter.getInstance(ZHConverter.SIMPLIFIED).convert(content1)
                 }
                 2 -> {
-                    title1 = HanLP.convertToTraditionalChinese(title1)
-                    content1 = HanLP.convertToTraditionalChinese(content1)
+                    title1=ZHConverter.getInstance(ZHConverter.TRADITIONAL).convert(title1)
+                    content1=ZHConverter.getInstance(ZHConverter.TRADITIONAL).convert(content1)
                 }
             }
         } catch (e: Exception) {

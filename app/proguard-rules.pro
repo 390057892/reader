@@ -215,10 +215,6 @@
     public static ** valueOf(java.lang.String);
 }
 
-
--keep class com.burst.k17reader_sdk.** { *; }
--keep class com.chineseall.reader.utils.** { *; }
-
 -keep class org.litepal.** { *;}
 -keep class * extends org.litepal.crud.DataSupport { *;}
 -keep class * extends org.litepal.crud.LitePalSupport { *;}
@@ -230,7 +226,4 @@
     public static ** valueOf(java.lang.String);
 }
 
--dontwarn com.youth.banner.**
--keep class com.youth.banner.**{*;}
-
--keep class com.android.vending.billing.**
+-keep class com.spreada.utils.chinese.**

@@ -1,9 +1,7 @@
 package com.novel.read.service.help
 
 import androidx.lifecycle.MutableLiveData
-import com.hankcs.hanlp.HanLP
 import com.novel.read.App
-import com.novel.read.constant.AppConst
 import com.novel.read.constant.BookType
 import com.novel.read.data.db.entity.Book
 import com.novel.read.data.db.entity.BookChapter
@@ -16,6 +14,7 @@ import com.novel.read.help.IntentDataHelp
 import com.novel.read.help.ReadBookConfig
 import com.novel.read.service.BaseReadAloudService
 import com.novel.read.help.coroutine.Coroutine
+import com.spreada.utils.chinese.ZHConverter
 import io.legado.app.ui.book.read.page.provider.ChapterProvider
 import io.legado.app.ui.book.read.page.provider.ImageProvider
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +23,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.anko.getStackTraceString
 import org.jetbrains.anko.toast
-
 
 object ReadBook {
     var titleDate = MutableLiveData<String>()
@@ -354,8 +352,8 @@ object ReadBook {
         Coroutine.async {
             if (chapter.chapterIndex in durChapterIndex - 1..durChapterIndex + 1) {
                 chapter.chapterName = when (AppConfig.chineseConverterType) {
-                    1 -> HanLP.convertToSimplifiedChinese(chapter.chapterName)
-                    2 -> HanLP.convertToTraditionalChinese(chapter.chapterName)
+                    1 -> ZHConverter.getInstance(ZHConverter.SIMPLIFIED).convert(chapter.chapterName)
+                    2 -> ZHConverter.getInstance(ZHConverter.TRADITIONAL).convert(chapter.chapterName)
                     else -> chapter.chapterName
                 }
                 val contents = BookHelp.disposeContent(

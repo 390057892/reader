@@ -9,6 +9,7 @@ import android.provider.Settings
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.multidex.MultiDexApplication
+import com.bumptech.glide.Glide
 import com.jeremyliao.liveeventbus.LiveEventBus
 import com.novel.read.constant.AppConst.channelIdDownload
 import com.novel.read.constant.AppConst.channelIdReadAloud
@@ -118,6 +119,20 @@ class App : MultiDexApplication() {
             //向notification manager 提交channel
             it.createNotificationChannels(listOf(downloadChannel, readAloudChannel))
         }
+    }
+
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        Glide.get(this).clearMemory()
+    }
+
+    override fun onTrimMemory(level: Int) {
+        super.onTrimMemory(level)
+        if (level == TRIM_MEMORY_UI_HIDDEN) {
+            Glide.get(this).clearMemory()
+        }
+        Glide.get(this).trimMemory(level)
     }
 
 }

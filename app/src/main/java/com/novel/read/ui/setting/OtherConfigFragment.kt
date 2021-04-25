@@ -65,7 +65,6 @@ class OtherConfigFragment : BasePreferenceFragment(), CoroutineScope by MainScop
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         when (key) {
-            PreferKey.showRss -> postEvent(EventBus.SHOW_RSS, "")
             PreferKey.language -> {
                 val lg = sharedPreferences?.all?.get("language")
                 if (lg == "zh") {

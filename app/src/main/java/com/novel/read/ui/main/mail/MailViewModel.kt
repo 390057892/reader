@@ -9,8 +9,10 @@ import com.novel.read.network.repository.HomeRepository
 
 class MailViewModel(application: Application) : BaseViewModel(application) {
     private val homeRepository by lazy { HomeRepository() }
+
     var homeResp = MutableLiveData<HomeResp>()
     val refreshStatus = MutableLiveData<Int>()
+
     fun getAll() {
         refreshStatus.value = AppConst.loading
         launch(block = {
@@ -18,6 +20,7 @@ class MailViewModel(application: Application) : BaseViewModel(application) {
             refreshStatus.value = AppConst.complete
         }, error = {
             refreshStatus.value = AppConst.error
-        },showErrorToast = false)
+        }, showErrorToast = false)
     }
+
 }

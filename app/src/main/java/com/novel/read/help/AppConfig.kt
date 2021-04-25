@@ -55,9 +55,6 @@ object AppConfig {
             }
         }
 
-    val autoRefreshBook: Boolean
-        get() = App.INSTANCE.getPrefBoolean(R.string.pk_auto_refresh)
-
     var threadCount: Int
         get() = App.INSTANCE.getPrefInt(PreferKey.threadCount, 16)
         set(value) {
@@ -83,7 +80,7 @@ object AppConfig {
     val clickAllNext: Boolean get() = App.INSTANCE.getPrefBoolean(PreferKey.clickAllNext, false)
 
     var chineseConverterType: Int
-        get() = App.INSTANCE.getPrefInt(PreferKey.chineseConverterType,2)
+        get() = App.INSTANCE.getPrefInt(PreferKey.chineseConverterType,1)
         set(value) {
             App.INSTANCE.putPrefInt(PreferKey.chineseConverterType, value)
         }

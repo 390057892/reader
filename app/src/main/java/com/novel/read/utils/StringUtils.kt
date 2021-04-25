@@ -2,12 +2,13 @@ package com.novel.read.utils
 
 import android.annotation.SuppressLint
 import android.text.TextUtils.isEmpty
-import com.hankcs.hanlp.HanLP
+import android.util.Log
 import com.novel.read.App
 import com.novel.read.constant.PreferKey
 import com.novel.read.help.AppConfig
 import com.novel.read.utils.ext.getPrefInt
 import com.novel.read.utils.ext.getPrefLong
+import com.spreada.utils.chinese.ZHConverter
 import java.text.DecimalFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -340,10 +341,10 @@ object StringUtils {
     fun convertCC(input: String?): String {
         return when (AppConfig.chineseConverterType) {
             1 -> {
-                HanLP.convertToSimplifiedChinese(input)
+                ZHConverter.getInstance(ZHConverter.SIMPLIFIED).convert(input)
             }
             2 -> {
-                HanLP.convertToTraditionalChinese(input)
+                ZHConverter.getInstance(ZHConverter.TRADITIONAL).convert(input)
             }
             else -> {
                 input!!
