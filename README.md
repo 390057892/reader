@@ -1,5 +1,8 @@
 # Reader
-一款开源小说阅读软件📕，借鉴任阅与阅读3.0，采用 Jetpack + 协程实现的 MVVM 架构。Kotlin+AndroidX编写，支持TTS听书、章节缓存、字体切换、繁简转换、黑夜模式、各种翻页(仿真、滚动、滑动、覆盖、无动画)、插页图片加载等。对比old分支:
+一款开源小说阅读软件📕，借鉴任阅与阅读3.0，采用 Jetpack + 协程实现的 MVVM 架构。Kotlin+AndroidX编写，支持TTS听书、章节缓存、字体切换、繁简转换、黑夜模式、各种翻页(仿真、滚动、滑动、覆盖、无动画)、插页图片加载等。demo下载：[轻阅读.apk](https://github.com/390057892/reader/blob/master/app/release/reader_app_1.0.0.apk)
+
+
+master分支对比old分支:
 
     重写代码，优化阅读器代码结构,Md设计风格
 
